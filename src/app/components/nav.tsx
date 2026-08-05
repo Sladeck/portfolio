@@ -40,9 +40,8 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 				className="nav-brand"
 				onClick={() => onNavigate("home")}
 			>
-				<span className="nav-cursor" aria-hidden="true" />
-				<span className="nav-name">SEBASTIAN_HOLLOWAY</span>
-				<span className="nav-role">/ full-stack</span>
+				<span className="nav-name">MOULIN GUILLAUME</span>
+				<span className="nav-role">/ full-stack engineer</span>
 			</button>
 
 			<div className="nav-links">
