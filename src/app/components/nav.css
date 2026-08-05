@@ -1,0 +1,101 @@
+/* Top nav bar. Sits outside the CRT "screen" on the pure-black page
+   background, and stays mounted the whole time — only the screen's
+   contents change when a link is clicked. */
+.nav {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 6px 12px;
+  font-family: var(--gt-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Brand mark, also acts as the "go home" button */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--gt-gold);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.nav-cursor {
+  width: 7px;
+  height: 12px;
+  background: var(--gt-green);
+  animation: blink 1.1s steps(1, end) infinite;
+}
+
+.nav-name {
+  font-weight: 700;
+}
+
+.nav-role {
+  color: var(--gt-iron);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px 18px;
+  white-space: nowrap;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--gt-text-muted);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: var(--gt-green);
+}
+
+/* Section currently shown in the screen */
+.nav-link--active {
+  color: var(--gt-gold);
+}
+
+/* CTA reads as a bordered terminal command, always gold regardless of
+   which section is active */
+.nav-cta {
+  background: none;
+  border: 1px solid var(--gt-gold);
+  padding: 6px 12px;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--gt-gold);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.nav-cta:hover {
+  background: var(--gt-gold);
+  color: var(--gt-bg);
+}
