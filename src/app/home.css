@@ -7,25 +7,10 @@
 	box-sizing: border-box;
 	background: #000;
 
-	/* Temporary stand-in for the real CRT "screen" — replace with
-	   <Screen> once it exists. Only here to prove the router/nav wiring
-	   works. */
-	.home-screen-stub {
-		width: 100%;
-		max-width: 1200px;
-		flex: 1;
-		min-height: 0;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		background: var(--gt-bg);
-		border: 1px solid var(--gt-iron);
-		color: var(--gt-text);
-
-		.home-status-stub {
-			margin: 8px 40px 0;
-			font-size: 11px;
-			color: var(--gt-text-dim);
-		}
+	/* Temporary debug readout — remove once real section content exists. */
+	.home-status-stub {
+		margin: 8px 40px 0;
+		font-size: 11px;
+		color: var(--gt-text-dim);
 	}
 }

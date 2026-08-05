@@ -1,0 +1,45 @@
+/* Persistent path header, pinned to the top-left of the screen. Reads
+   as a gold banner strip across the top, with the path text itself
+   hugging the left edge. */
+.lifeline {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	padding: 8px 14px;
+	background: linear-gradient(
+		to right,
+		rgba(201, 162, 39, 0.08),
+		transparent 60%
+	);
+	font-size: 12px;
+	letter-spacing: 0.24em;
+	color: var(--gt-gold);
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	.lifeline-bullet {
+		color: var(--gt-green);
+		font-size: 9px;
+	}
+
+	.lifeline-cursor {
+		display: inline-block;
+		width: 6px;
+		height: 11px;
+		margin-left: 2px;
+		background: var(--gt-green);
+		box-shadow: 0 0 10px 2px rgba(57, 255, 20, 0.4);
+		animation: blink 0.9s steps(1, end) infinite;
+		vertical-align: baseline;
+	}
+
+	.lifeline-sub {
+		margin-left: 6px;
+		font-size: 10px;
+		color: var(--gt-text-dim);
+		letter-spacing: 0.1em;
+		text-transform: none;
+	}
+}

@@ -2,6 +2,7 @@
 
 import "./home.css";
 import Nav from "./components/nav";
+import Screen from "./components/screen";
 import Lifeline from "./components/lifeline";
 import { useSectionRouter } from "./hooks/useSectionRouter";
 
@@ -13,8 +14,7 @@ export default function Home() {
 		<div className="home">
 			<Nav activeSection={activeSection} onNavigate={goTo} />
 
-			{/* Stand-in for the CRT screen, until <Screen> exists. */}
-			<div className="home-screen-stub">
+			<Screen>
 				<Lifeline
 					text={lifelineText}
 					activeSection={activeSection}
@@ -24,7 +24,7 @@ export default function Home() {
 					active: {activeSection}
 					{transitioning ? " (transitioning…)" : ""}
 				</p>
-			</div>
+			</Screen>
 		</div>
 	);
 }
