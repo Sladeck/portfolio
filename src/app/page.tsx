@@ -5,6 +5,7 @@ import Nav from "./components/nav";
 import Screen from "./components/screen";
 import Lifeline from "./components/lifeline";
 import HomeSection from "./components/home-section";
+import Footer from "./components/footer";
 import { useSectionRouter } from "./hooks/useSectionRouter";
 
 export default function Home() {
@@ -27,6 +28,8 @@ export default function Home() {
 						<HomeSection onNavigate={goTo} />
 					)}
 				</main>
+
+				<Footer />
 			</Screen>
 		</div>
 	);

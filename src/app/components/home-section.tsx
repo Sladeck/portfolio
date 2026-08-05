@@ -32,7 +32,7 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 	return (
 		<>
 			<div className="home-meta">
-				SESSION 0x41 · NODE: REMOTE · STATUS:{" "}
+				NODE: REMOTE · STATUS:{" "}
 				<span className="home-meta-available">AVAILABLE</span>
 			</div>
 
