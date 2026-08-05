@@ -1,5 +1,5 @@
 :root {
-	/* Gothic-tech terminal palette — shared across every component so
+	/* Gothic-tech terminal palette, shared across every component so
      colors stay consistent without re-declaring hex values per file. */
 	--gt-bg: #0a0a0d;
 	--gt-gold: #c9a227;
@@ -8,10 +8,13 @@
 	--gt-text: #8d8d93;
 	--gt-text-dim: #6f6f77;
 	--gt-text-muted: #9a9aa2;
+	/* One step darker than --gt-iron: secondary/internal dividers only. */
+	--gt-border: #26262a;
 	--gt-font-mono: "JetBrains Mono", ui-monospace, monospace;
+	--gt-font-display: "Cinzel", Georgia, serif;
 }
 
-/* Blinking block cursor — reused by the nav brand, the lifeline header,
+/* Blinking block cursor, reused by the nav brand, the lifeline header,
    and the hero name. Kept here since it's a cross-component primitive. */
 @keyframes blink {
 
@@ -34,7 +37,7 @@ html {
 html,
 body {
 	max-width: 100vw;
-	/* The design has no page-level scroll — every section is sized to fit
+	/* The design has no page-level scroll. Every section is sized to fit
      the screen, with internal scroll only as a safety net inside it. */
 	overflow: hidden;
 }

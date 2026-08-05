@@ -18,7 +18,7 @@
 	color: var(--gt-text);
 	padding: 2rem;
 
-	/* Thin gold line just inside the outer border — the "frame" */
+	/* Thin gold line just inside the outer border, the "frame" */
 	.screen-inset-border {
 		position: absolute;
 		inset: 8px;
@@ -26,7 +26,7 @@
 		border: 1px solid rgba(201, 162, 39, 0.3);
 	}
 
-	/* Four L-shaped brackets, one per corner — base rule draws all four
+	/* Four L-shaped brackets, one per corner. Base rule draws all four
 	   sides, each modifier hides the two that shouldn't show. */
 	.screen-corner {
 		position: absolute;

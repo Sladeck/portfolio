@@ -61,7 +61,7 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 					</button>
 				))}
 
-				{/* Always gold — a call to action, not a regular nav state */}
+				{/* Always gold, a call to action, not a regular nav state */}
 				<button
 					type="button"
 					className="nav-cta"

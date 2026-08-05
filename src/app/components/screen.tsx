@@ -10,8 +10,8 @@ interface ScreenProps {
 }
 
 // The CRT-framed "TV" every section renders inside. Owns the decorative
-// gold frame (inset border, corner brackets, diamond accents) for now —
-// background texture and animated overlays are a separate pass.
+// gold frame (inset border, corner brackets, diamond accents) for now.
+// Background texture and animated overlays are a separate pass.
 export default function Screen({ children }: ScreenProps) {
 	return (
 		<div className="screen">

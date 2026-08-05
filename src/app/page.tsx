@@ -4,6 +4,7 @@ import "./home.css";
 import Nav from "./components/nav";
 import Screen from "./components/screen";
 import Lifeline from "./components/lifeline";
+import HomeSection from "./components/home-section";
 import { useSectionRouter } from "./hooks/useSectionRouter";
 
 export default function Home() {
@@ -20,10 +21,12 @@ export default function Home() {
 					activeSection={activeSection}
 					transitioning={transitioning}
 				/>
-				<p className="home-status-stub">
-					active: {activeSection}
-					{transitioning ? " (transitioning…)" : ""}
-				</p>
+
+				<main className="home-main">
+					{!transitioning && activeSection === "home" && (
+						<HomeSection onNavigate={goTo} />
+					)}
+				</main>
 			</Screen>
 		</div>
 	);

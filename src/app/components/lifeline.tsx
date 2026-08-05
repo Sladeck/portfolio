@@ -3,7 +3,7 @@
 import "./lifeline.css";
 import type { SectionId } from "./nav";
 
-// Small flavor text shown after the path once it's settled — hidden
+// Small flavor text shown after the path once it's settled. Hidden
 // while the text itself is still erasing/retyping.
 const SUBLABELS: Record<SectionId, string> = {
 	home: "",
@@ -15,14 +15,14 @@ const SUBLABELS: Record<SectionId, string> = {
 };
 
 interface LifelineProps {
-	/** What the path currently reads — may be mid erase/retype. */
+	/** What the path currently reads, may be mid erase/retype. */
 	text: string;
 	activeSection: SectionId;
 	transitioning: boolean;
 }
 
 // Persistent "~/section" header pinned to the top-left of the screen.
-// Stays mounted across every section — only its own text changes.
+// Stays mounted across every section, only its own text changes.
 export default function Lifeline({
 	text,
 	activeSection,

@@ -7,10 +7,17 @@
 	box-sizing: border-box;
 	background: #000;
 
-	/* Temporary debug readout — remove once real section content exists. */
-	.home-status-stub {
-		margin: 8px 40px 0;
-		font-size: 11px;
-		color: var(--gt-text-dim);
+	/* Content viewport inside the screen, below the lifeline. Centered
+	   vertically. Internal scroll is only a safety net on short viewports;
+	   sections are meant to fit without it. */
+	.home-main {
+		position: relative;
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+		padding: 22px 40px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 }

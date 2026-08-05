@@ -24,7 +24,7 @@ const REVEAL_PAUSE_MS = 200;
 
 interface SectionRouter {
   activeSection: SectionId;
-  /** True while the lifeline is erasing/retyping — gate section content on this. */
+  /** True while the lifeline is erasing/retyping. Gate section content on this. */
   transitioning: boolean;
   /** What the lifeline header should display right now. */
   lifelineText: string;
@@ -34,7 +34,7 @@ interface SectionRouter {
 /**
  * Owns which section is on screen and drives the lifeline's
  * erase-then-retype animation whenever it changes. Section content
- * should only render once `transitioning` is false — that's what makes
+ * should only render once `transitioning` is false. That's what makes
  * the reveal wait for the lifeline to finish typing.
  */
 export function useSectionRouter(): SectionRouter {
@@ -68,7 +68,7 @@ export function useSectionRouter(): SectionRouter {
       setTransitioning(true);
 
       let t = 0;
-      // Erase down to the root "~/" — never below 2 characters.
+      // Erase down to the root "~/", never below 2 characters.
       for (let len = from.length; len > 2; len--) {
         const next = from.slice(0, len - 1);
         schedule(t, () => setLifelineText(next));

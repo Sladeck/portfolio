@@ -1,0 +1,211 @@
+/* Hero name glitch burst: clean for most of the loop, jitters through a
+   handful of clip-path/transform offsets for a brief window, then holds
+   clean again until the next loop. Percentages are compressed into the
+   first ~9% of the cycle so raising the animation duration makes the
+   glitch rarer without slowing the burst itself down. */
+@keyframes home-name-glitch {
+	0%,
+	100% {
+		transform: translate(0);
+		clip-path: inset(0 0 0 0);
+	}
+
+	1.5% {
+		transform: translate(-6px, 2px);
+		clip-path: inset(18% 0 52% 0);
+	}
+
+	3.5% {
+		transform: translate(5px, -3px);
+		clip-path: inset(64% 0 12% 0);
+	}
+
+	5.5% {
+		transform: translate(-3px, 1px);
+		clip-path: inset(4% 0 78% 0);
+	}
+
+	7.5% {
+		transform: translate(4px, 2px);
+		clip-path: inset(44% 0 34% 0);
+	}
+
+	9% {
+		transform: translate(0);
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+/* Ghost duplicate is only visible during that same burst window. */
+@keyframes home-name-ghost {
+	0%,
+	9% {
+		opacity: 0.55;
+	}
+
+	9.01%,
+	100% {
+		opacity: 0;
+	}
+}
+
+/* Standalone status readout, sits right below the lifeline but is not
+   part of it, and not part of the two-column layout below. */
+.home-meta {
+	margin: -14px 0 32px;
+	font-size: 11px;
+	letter-spacing: 0.14em;
+	color: var(--gt-text-dim);
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	.home-meta-available {
+		color: var(--gt-green);
+	}
+}
+
+.home-section {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 40px;
+	align-items: start;
+
+	.home-intro {
+		.home-name {
+			position: relative;
+			margin: 0;
+			padding-bottom: 0.06em;
+			font-family: var(--gt-font-display);
+			font-weight: 900;
+			font-size: clamp(24px, 3.4vw, 52px);
+			line-height: 0.95;
+			letter-spacing: 0.01em;
+			text-transform: uppercase;
+			word-break: keep-all;
+
+			/* Real text. Holds clean for most of the cycle, jitters through
+			   the clip-path/transform burst for a fraction of a second every
+			   loop, like the signal briefly drops. */
+			.home-name-text {
+				position: relative;
+				display: inline-block;
+				color: var(--gt-gold);
+				text-shadow: 0 0 26px rgba(201, 162, 39, 0.28);
+				animation: home-name-glitch 8s steps(1, end) infinite;
+			}
+
+			/* Offset green duplicate, only visible during the burst window,
+			   giving the impression of a second, misaligned signal layer. */
+			.home-name-ghost {
+				position: absolute;
+				left: 3px;
+				top: 0;
+				width: 100%;
+				color: var(--gt-green);
+				pointer-events: none;
+				animation: home-name-ghost 8s steps(1, end) infinite;
+			}
+		}
+
+		.home-tagline {
+			max-width: 44ch;
+			margin: 16px 0 0;
+			font-size: 13.5px;
+			line-height: 1.6;
+			color: var(--gt-text-muted);
+		}
+
+		.home-actions {
+			display: flex;
+			gap: 12px;
+			margin-top: 20px;
+			font-size: 12px;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+
+			.home-action {
+				background: none;
+				font: inherit;
+				letter-spacing: inherit;
+				text-transform: inherit;
+				padding: 9px 16px;
+				cursor: pointer;
+				transition:
+					background-color 0.15s ease,
+					color 0.15s ease,
+					border-color 0.15s ease;
+
+				&.home-action--primary {
+					border: 1px solid var(--gt-gold);
+					color: var(--gt-gold);
+
+					&:hover {
+						background: var(--gt-gold);
+						color: var(--gt-bg);
+					}
+				}
+
+				&.home-action--secondary {
+					border: 1px solid var(--gt-iron);
+					color: var(--gt-text);
+
+					&:hover {
+						border-color: var(--gt-green);
+						color: var(--gt-green);
+					}
+				}
+			}
+		}
+	}
+
+	/* Stack of side panels (toolset, status, ...) next to the intro text */
+	.home-panels {
+		display: grid;
+		gap: 14px;
+	}
+
+	.home-panel {
+		border: 1px solid var(--gt-iron);
+		background: rgba(20, 20, 24, 0.5);
+
+		.home-panel-header {
+			display: flex;
+			justify-content: space-between;
+			padding: 8px 12px;
+			border-bottom: 1px solid var(--gt-iron);
+			font-size: 10.5px;
+			letter-spacing: 0.18em;
+			color: var(--gt-gold);
+			text-transform: uppercase;
+
+			.home-panel-badge {
+				color: var(--gt-text);
+			}
+		}
+
+		.home-panel-body {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+			gap: 8px;
+			padding: 10px;
+			font-size: 12px;
+
+			.home-panel-group {
+				display: grid;
+				gap: 4px;
+				padding: 7px 9px;
+				border: 1px solid var(--gt-border);
+
+				.home-panel-label {
+					font-size: 9.5px;
+					letter-spacing: 0.18em;
+					color: var(--gt-text-dim);
+				}
+
+				.home-panel-value {
+					color: var(--gt-gold);
+				}
+			}
+		}
+	}
+}

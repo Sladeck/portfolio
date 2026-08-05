@@ -1,5 +1,5 @@
 /* Top nav bar. Sits outside the CRT "screen" on the pure-black page
-   background, and stays mounted the whole time — only the screen's
+   background, and stays mounted the whole time. Only the screen's
    contents change when a link is clicked. */
 .nav {
 	width: 100%;
