@@ -2,6 +2,10 @@
    as a gold banner strip across the top, with the path text itself
    hugging the left edge. */
 .lifeline {
+	position: relative;
+	/* Above the screen's CRT texture (scanlines/flicker/vignette top out
+	   at z-index 6) so the overlay never washes over the text. */
+	z-index: 10;
 	flex-shrink: 0;
 	display: flex;
 	align-items: center;

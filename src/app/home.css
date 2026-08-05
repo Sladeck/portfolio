@@ -12,6 +12,9 @@
 	   sections are meant to fit without it. */
 	.home-main {
 		position: relative;
+		/* Above the screen's CRT texture (scanlines/flicker/vignette top
+		   out at z-index 6) so the overlay never washes over the text. */
+		z-index: 10;
 		flex: 1;
 		min-height: 0;
 		overflow-y: auto;

@@ -10,11 +10,19 @@ interface ScreenProps {
 }
 
 // The CRT-framed "TV" every section renders inside. Owns the decorative
-// gold frame (inset border, corner brackets, diamond accents) for now.
-// Background texture and animated overlays are a separate pass.
+// gold frame (inset border, corner brackets, diamond accents) and the
+// background texture (scanlines, flicker, vignette, a slow scan roll).
 export default function Screen({ children }: ScreenProps) {
 	return (
 		<div className="screen">
+			<div className="screen-vignette" aria-hidden="true" />
+			<div className="screen-flicker" aria-hidden="true" />
+			<div className="screen-scanlines" aria-hidden="true">
+				<div className="screen-scanlines-gold" />
+				<div className="screen-scanlines-green" />
+				<div className="screen-rollbar" />
+			</div>
+
 			<div className="screen-inset-border" aria-hidden="true" />
 
 			{CORNERS.map((corner) => (

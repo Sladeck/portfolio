@@ -10,6 +10,8 @@
 	--gt-text-muted: #9a9aa2;
 	/* One step darker than --gt-iron: secondary/internal dividers only. */
 	--gt-border: #26262a;
+	/* Faintest divider tier, footer/changelog hairlines only. */
+	--gt-hairline: #1e1e22;
 	--gt-font-mono: "JetBrains Mono", ui-monospace, monospace;
 	--gt-font-display: "Cinzel", Georgia, serif;
 }
