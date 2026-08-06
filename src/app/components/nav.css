@@ -1,12 +1,55 @@
+/* One-shot version of the hero name's glitch burst (see home-section.css):
+   same clip-path/transform jitter, but plays once through instead of
+   looping, since it's triggered by the MENU/CLOSE swap rather than idling. */
+@keyframes nav-toggle-glitch {
+	0% {
+		transform: translate(0);
+		clip-path: inset(0 0 0 0);
+	}
+
+	20% {
+		transform: translate(-3px, 1px);
+		clip-path: inset(30% 0 40% 0);
+	}
+
+	40% {
+		transform: translate(3px, -2px);
+		clip-path: inset(60% 0 10% 0);
+	}
+
+	60% {
+		transform: translate(-2px, 2px);
+		clip-path: inset(10% 0 65% 0);
+	}
+
+	80% {
+		transform: translate(2px, -1px);
+		clip-path: inset(45% 0 30% 0);
+	}
+
+	100% {
+		transform: translate(0);
+		clip-path: inset(0 0 0 0);
+	}
+}
+
 /* Top nav bar. Sits outside the CRT "screen" on the pure-black page
    background, and stays mounted the whole time. Only the screen's
    contents change when a link is clicked. */
 .nav {
+	position: relative;
+	/* .screen's inner layers (lifeline/home-main/footer all sit at
+	   z-index: 10) aren't isolated in their own stacking context, so
+	   they'd otherwise leak above nav-links here despite its own
+	   z-index. Giving .nav a real z-index (not just position) makes it
+	   a stacking context of its own, above all of that, in one shot. */
+	z-index: 20;
 	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
 	flex-shrink: 0;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
@@ -16,8 +59,40 @@
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
 
-	/* Brand mark, also acts as the "go home" button */
+	/* Hidden until the mobile breakpoint below swaps it in for .nav-links.
+	   Stays above the full-screen .nav-links overlay (z-index) so it's
+	   still reachable as the close button while the menu is open. */
+	.nav-toggle {
+		position: relative;
+		z-index: 2;
+		display: none;
+		background: none;
+		border: 1px solid var(--gt-iron);
+		padding: 6px 10px;
+		font: inherit;
+		letter-spacing: inherit;
+		text-transform: inherit;
+		color: var(--gt-text-muted);
+		cursor: pointer;
+		transition: border-color 0.15s ease, color 0.15s ease;
+
+		&:hover {
+			border-color: var(--gt-gold);
+			color: var(--gt-gold);
+		}
+
+		.nav-toggle-label {
+			display: inline-block;
+			animation: nav-toggle-glitch 0.35s steps(1, end) both;
+		}
+	}
+
+	/* Brand mark, also acts as the "go home" button. Kept above the
+	   full-screen .nav-links overlay (z-index), same as .nav-toggle, so
+	   the name stays visible while the mobile menu is open. */
 	.nav-brand {
+		position: relative;
+		z-index: 2;
 		display: flex;
 		align-items: center;
 		gap: 10px;
@@ -95,6 +170,42 @@
 			&:hover {
 				background: var(--gt-gold);
 				color: var(--gt-bg);
+			}
+		}
+	}
+
+	@media (max-width: 640px) {
+		.nav-role {
+			display: none;
+		}
+
+		.nav-toggle {
+			display: block;
+		}
+
+		.nav-links {
+			display: none;
+			position: fixed;
+			inset: 0;
+			z-index: 1;
+			flex-direction: column;
+			align-items: stretch;
+			justify-content: center;
+			gap: 20px;
+			padding: 24px;
+			background: var(--gt-bg);
+
+			&.nav-links--open {
+				display: flex;
+			}
+
+			.nav-link {
+				text-align: center;
+				font-size: 14px;
+			}
+
+			.nav-cta {
+				text-align: center;
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 "use client";
 
 import "./nav.css";
+import { useState } from "react";
 
 // The section ids every nav-aware piece (this menu, the lifeline header,
 // the page router) needs to agree on. Keep this the single source of
@@ -31,19 +32,47 @@ interface NavProps {
 }
 
 export default function Nav({ activeSection, onNavigate }: NavProps) {
+	// Only relevant below the mobile breakpoint, where nav-links collapses
+	// into a dropdown behind this toggle instead of a row of links.
+	const [menuOpen, setMenuOpen] = useState(false);
+
+	function navigate(id: SectionId) {
+		setMenuOpen(false);
+		onNavigate(id);
+	}
+
 	return (
 		<nav className="nav">
 			{/* Brand mark on the left doubles as a "go to hero" link */}
 			<button
 				type="button"
 				className="nav-brand"
-				onClick={() => onNavigate("home")}
+				onClick={() => navigate("home")}
 			>
 				<span className="nav-name">MOULIN GUILLAUME</span>
 				<span className="nav-role">/ full-stack engineer</span>
 			</button>
 
-			<div className="nav-links">
+			<button
+				type="button"
+				className="nav-toggle"
+				aria-expanded={menuOpen}
+				aria-controls="nav-links"
+				onClick={() => setMenuOpen((open) => !open)}
+			>
+				[{" "}
+				{/* key remounts this span on every toggle, so the glitch
+				    animation below replays from scratch each time */}
+				<span className="nav-toggle-label" key={menuOpen ? "close" : "menu"}>
+					{menuOpen ? "CLOSE" : "MENU"}
+				</span>{" "}
+				]
+			</button>
+
+			<div
+				id="nav-links"
+				className={menuOpen ? "nav-links nav-links--open" : "nav-links"}
+			>
 				{NAV_LINKS.map(({ id, label }) => (
 					<button
 						key={id}
@@ -54,7 +83,7 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 						// aria-current tells assistive tech which link matches the
 						// page currently on screen, same idea as :active-page in CSS
 						aria-current={activeSection === id ? "page" : undefined}
-						onClick={() => onNavigate(id)}
+						onClick={() => navigate(id)}
 					>
 						{label}
 					</button>
@@ -64,7 +93,7 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 				<button
 					type="button"
 					className="nav-cta"
-					onClick={() => onNavigate("contact")}
+					onClick={() => navigate("contact")}
 				>
 					&gt; initiate_contact
 				</button>
