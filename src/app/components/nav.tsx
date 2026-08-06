@@ -14,11 +14,12 @@ export type SectionId =
 
 // Ordered nav links, in the same order they render. "hero" and "contact"
 // are handled separately below since they render differently (brand mark
-// and CTA button rather than a plain link).
+// and CTA button rather than a plain link). "changelog" is intentionally
+// missing: it's reachable from a small link on the projects page instead
+// of taking up a top-level nav slot.
 const NAV_LINKS: { id: SectionId; label: string }[] = [
 	{ id: "home", label: "~/home" },
 	{ id: "about", label: "~/about" },
-	{ id: "changelog", label: "changelog.log" },
 	{ id: "projects", label: "~/projects" },
 ];
 

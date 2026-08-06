@@ -6,7 +6,7 @@ import type { SectionId } from "./nav";
 // Small flavor text shown after the path once it's settled. Hidden
 // while the text itself is still erasing/retyping.
 const SUBLABELS: Record<SectionId, string> = {
-	home: "caat home.md",
+	home: "cat home.md",
 	about: "cat about.md",
 	changelog: "curl api.github.com/events",
 	projects: "ls -la --status",
