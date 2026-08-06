@@ -1,6 +1,7 @@
 "use client";
 
 import "./home-section.css";
+import Panel from "./panel";
 import type { SectionId } from "./nav";
 
 interface HomeSectionProps {
@@ -46,7 +47,7 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 					</h1>
 
 					<p className="home-tagline">
-						Full-stack engineer based in France with 8 years of
+						Freelance full-stack engineer based in France with 8 years of
 						international experience. I take product from a blank page to
 						a live release, start to finish.
 					</p>
@@ -70,37 +71,8 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 				</div>
 
 				<div className="home-panels">
-					<div className="home-panel">
-						<div className="home-panel-header">
-							<span>TOOLSET</span>
-							<span className="home-panel-badge">8 YRS</span>
-						</div>
-
-						<div className="home-panel-body">
-							{TOOLSET.map(({ label, value }) => (
-								<div className="home-panel-group" key={label}>
-									<span className="home-panel-label">{label}</span>
-									<span className="home-panel-value">{value}</span>
-								</div>
-							))}
-						</div>
-					</div>
-
-					<div className="home-panel">
-						<div className="home-panel-header">
-							<span>STATUS</span>
-							<span className="home-panel-badge">FREELANCE</span>
-						</div>
-
-						<div className="home-panel-body">
-							{STATUS.map(({ label, value }) => (
-								<div className="home-panel-group" key={label}>
-									<span className="home-panel-label">{label}</span>
-									<span className="home-panel-value">{value}</span>
-								</div>
-							))}
-						</div>
-					</div>
+					<Panel title="TOOLSET" badge="8 YRS" items={TOOLSET} />
+					<Panel title="STATUS" badge="FREELANCE" items={STATUS} />
 				</div>
 			</section>
 		</>

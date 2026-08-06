@@ -1,0 +1,62 @@
+.panel {
+	border: 1px solid var(--gt-iron);
+	background: rgba(20, 20, 24, 0.5);
+
+	.panel-header {
+		display: flex;
+		justify-content: space-between;
+		padding: 8px 12px;
+		border-bottom: 1px solid var(--gt-iron);
+		font-size: 10.5px;
+		letter-spacing: 0.18em;
+		color: var(--gt-gold);
+		text-transform: uppercase;
+
+		.panel-badge {
+			color: var(--gt-text);
+		}
+	}
+
+	.panel-body {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 8px;
+		padding: 10px;
+		font-size: 12px;
+
+		.panel-group {
+			display: grid;
+			gap: 4px;
+			padding: 7px 9px;
+			border: 1px solid var(--gt-border);
+
+			.panel-label {
+				font-size: 9.5px;
+				letter-spacing: 0.18em;
+				color: var(--gt-text-dim);
+			}
+
+			.panel-value {
+				color: var(--gt-gold);
+			}
+		}
+	}
+}
+
+/* Flat tag list, used as custom panel-body content (e.g. hobbies)
+   instead of the label/value tile grid. */
+.panel-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	grid-column: 1 / -1;
+
+	.panel-tag {
+		border: 1px solid var(--gt-border);
+		padding: 4px 9px;
+		font-size: 10.5px;
+		letter-spacing: 0.06em;
+		color: var(--gt-text-muted);
+		text-transform: uppercase;
+	}
+}

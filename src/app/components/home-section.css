@@ -163,49 +163,4 @@
 		display: grid;
 		gap: 14px;
 	}
-
-	.home-panel {
-		border: 1px solid var(--gt-iron);
-		background: rgba(20, 20, 24, 0.5);
-
-		.home-panel-header {
-			display: flex;
-			justify-content: space-between;
-			padding: 8px 12px;
-			border-bottom: 1px solid var(--gt-iron);
-			font-size: 10.5px;
-			letter-spacing: 0.18em;
-			color: var(--gt-gold);
-			text-transform: uppercase;
-
-			.home-panel-badge {
-				color: var(--gt-text);
-			}
-		}
-
-		.home-panel-body {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-			gap: 8px;
-			padding: 10px;
-			font-size: 12px;
-
-			.home-panel-group {
-				display: grid;
-				gap: 4px;
-				padding: 7px 9px;
-				border: 1px solid var(--gt-border);
-
-				.home-panel-label {
-					font-size: 9.5px;
-					letter-spacing: 0.18em;
-					color: var(--gt-text-dim);
-				}
-
-				.home-panel-value {
-					color: var(--gt-gold);
-				}
-			}
-		}
-	}
 }
