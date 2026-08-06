@@ -8,8 +8,10 @@
 	background: #000;
 
 	/* Content viewport inside the screen, below the lifeline. Centered
-	   vertically. Internal scroll is only a safety net on short viewports;
-	   sections are meant to fit without it. */
+	   vertically when content fits (home, about, ...). "safe center"
+	   auto-falls-back to top-aligned once content overflows (changelog),
+	   since plain "center" clips the start edge above scrollTop 0 instead
+	   of leaving it scrollable. */
 	.home-main {
 		position: relative;
 		/* Above the screen's CRT texture (scanlines/flicker/vignette top
@@ -21,6 +23,6 @@
 		padding: 22px 40px;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: safe center;
 	}
 }

@@ -8,6 +8,7 @@ import type { SectionId } from "./nav";
 const SUBLABELS: Record<SectionId, string> = {
 	home: "caat home.md",
 	about: "cat about.md",
+	changelog: "curl api.github.com/events",
 	projects: "ls -la --status",
 	contact: "",
 };

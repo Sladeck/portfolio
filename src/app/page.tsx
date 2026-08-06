@@ -6,6 +6,7 @@ import Screen from "./components/screen";
 import Lifeline from "./components/lifeline";
 import HomeSection from "./components/home-section";
 import AboutSection from "./components/about-section";
+import ChangelogSection from "./components/changelog-section";
 import Footer from "./components/footer";
 import { useSectionRouter } from "./hooks/useSectionRouter";
 
@@ -29,6 +30,9 @@ export default function Home() {
 						<HomeSection onNavigate={goTo} />
 					)}
 					{!transitioning && activeSection === "about" && <AboutSection />}
+					{!transitioning && activeSection === "changelog" && (
+						<ChangelogSection />
+					)}
 				</main>
 
 				<Footer />
