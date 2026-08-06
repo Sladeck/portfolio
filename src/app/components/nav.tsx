@@ -8,8 +8,6 @@ import "./nav.css";
 export type SectionId =
 	| "home"
 	| "about"
-	| "stack"
-	| "changelog"
 	| "projects"
 	| "contact";
 
@@ -19,8 +17,6 @@ export type SectionId =
 const NAV_LINKS: { id: SectionId; label: string }[] = [
 	{ id: "home", label: "~/home" },
 	{ id: "about", label: "~/about" },
-	{ id: "stack", label: "~/stack" },
-	{ id: "changelog", label: "changelog.log" },
 	{ id: "projects", label: "~/projects" },
 ];
 

@@ -7,8 +7,6 @@ import type { SectionId } from "../components/nav";
 const PATHS: Record<SectionId, string> = {
   home: "~/home",
   about: "~/about",
-  stack: "~/stack",
-  changelog: "~/changelog.log",
   projects: "~/projects",
   contact: "~/contact",
 };

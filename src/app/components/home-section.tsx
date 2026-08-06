@@ -17,7 +17,7 @@ const TOOLSET: { label: string; value: string }[] = [
 	{ label: "INFRASTRUCTURE", value: "AWS · Cloudflare · Sentry · Linux" },
 	{ label: "AI INTEGRATION", value: "ChatGPT API · Google Imagen" },
 	{ label: "DESIGN", value: "UX/UI · Figma" },
-	{ label: "LEADERSHIP", value: "Team lead · intern mentoring" },
+	{ label: "LEADERSHIP", value: "Team lead · Mentoring" },
 	{ label: "IT / ADMIN", value: "Google Workspace · security training" },
 	{ label: "SPOKEN", value: "French · English · Japanese" },
 ];
