@@ -34,7 +34,7 @@ export default function ContactSection() {
 							<input
 								type="text"
 								name="from"
-								placeholder="name @ company"
+								placeholder="name & company"
 								autoFocus
 								required
 							/>
@@ -48,7 +48,7 @@ export default function ContactSection() {
 							<input
 								type="email"
 								name="replyTo"
-								placeholder="you@domain.com"
+								placeholder="your@email.com"
 								required
 							/>
 						</div>
@@ -60,7 +60,7 @@ export default function ContactSection() {
 							<span className="contact-prompt">$</span>
 							<textarea
 								name="body"
-								rows={3}
+								rows={9}
 								placeholder="scope, timeline, budget range"
 								required
 							/>

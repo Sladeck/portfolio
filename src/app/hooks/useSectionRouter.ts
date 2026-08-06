@@ -44,7 +44,7 @@ const REVEAL_PAUSE_MS = 200;
 // One-time boot sequence, on mount only: type the landing section's
 // path, then hold with the cursor blinking before the rest of the page
 // is allowed to appear.
-const BOOT_HOLD_MS = 700;
+const BOOT_HOLD_MS = 400;
 
 interface SectionRouter {
 	activeSection: SectionId;
