@@ -104,9 +104,13 @@ export default function ContactSection() {
 						>
 							&gt; send --now
 						</button>
-						<span className="contact-status" role="status" aria-live="polite">
-							{STATUS_MESSAGES[status]}
-						</span>
+						<span
+						className={`contact-status contact-status--${status}`}
+						role="status"
+						aria-live="polite"
+					>
+						{STATUS_MESSAGES[status]}
+					</span>
 					</div>
 				</form>
 

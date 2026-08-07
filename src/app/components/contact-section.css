@@ -12,7 +12,6 @@
 	}
 
 	.contact-intro {
-		max-width: 56ch;
 		margin: 0 0 16px;
 		font-size: 16px;
 		line-height: 1.55;
@@ -145,6 +144,14 @@
 
 			@media (max-width: 640px) {
 				font-size: 13px;
+			}
+
+			&.contact-status--sent {
+				color: var(--gt-green);
+			}
+
+			&.contact-status--error {
+				color: var(--gt-red);
 			}
 		}
 	}
