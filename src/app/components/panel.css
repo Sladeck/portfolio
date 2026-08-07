@@ -28,7 +28,7 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
 		gap: 8px;
-		padding: 10px;
+		padding: 12px;
 		font-size: 12px;
 
 		@media (max-width: 640px) {
@@ -38,7 +38,7 @@
 		.panel-group {
 			display: grid;
 			gap: 4px;
-			padding: 7px 9px;
+			padding: 8px;
 			border: 1px solid var(--gt-border);
 
 			.panel-label {
@@ -57,12 +57,12 @@
 .panel-tags {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 6px;
+	gap: 8px;
 	grid-column: 1 / -1;
 
 	.panel-tag {
 		border: 1px solid var(--gt-border);
-		padding: 4px 9px;
+		padding: 4px 8px;
 		font-size: 10.5px;
 		letter-spacing: 0.06em;
 		color: var(--gt-text-muted);

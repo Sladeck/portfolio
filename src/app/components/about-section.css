@@ -25,6 +25,6 @@
 
 	.about-panels {
 		display: grid;
-		gap: 14px;
+		gap: 16px;
 	}
 }

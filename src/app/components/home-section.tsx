@@ -17,12 +17,17 @@ const TOOLSET: { label: string; value: string }[] = [
 	{ label: "DESIGN", value: "UX/UI · Figma" },
 	{ label: "LEADERSHIP", value: "Team lead · Mentoring" },
 	{ label: "IT / ADMIN", value: "Google Workspace · security training" },
-	{ label: "SPOKEN", value: "French · English · Japanese" },
 ];
 
 const STATUS: { label: string; value: string }[] = [
 	{ label: "ENGAGEMENT", value: "Freelance" },
 	{ label: "LOCATION", value: "France" },
+];
+
+const LANGUAGES: { label: string; value: string }[] = [
+	{ label: "FRENCH", value: "Native" },
+	{ label: "ENGLISH", value: "Professional" },
+	{ label: "JAPANESE", value: "Intermediate" },
 ];
 
 // Homepage hero: name, tagline, hire_me/view_work actions, and the
@@ -38,9 +43,15 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 			<section className="home-section">
 				<div className="home-intro">
 					<h1 className="home-name">
-						<span className="home-name-text">MOULIN GUILLAUME</span>
+						<span className="home-name-text">
+							MOULIN
+							<br />
+							GUILLAUME
+						</span>
 						<span className="home-name-ghost" aria-hidden="true">
-							MOULIN GUILLAUME
+							MOULIN
+							<br />
+							GUILLAUME
 						</span>
 					</h1>
 
@@ -71,6 +82,7 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 				<div className="home-panels">
 					<Panel title="TOOLSET" badge="8 YRS" items={TOOLSET} />
 					<Panel title="STATUS" badge="FREELANCE" items={STATUS} />
+					<Panel title="LANGUAGES" badge="3" items={LANGUAGES} />
 				</div>
 			</section>
 		</>

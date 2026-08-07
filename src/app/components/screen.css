@@ -44,10 +44,10 @@
 		inset 0 0 2px 1px rgba(201, 162, 39, 0.22),
 		0 0 40px rgba(0, 0, 0, 0.6);
 	color: var(--gt-text);
-	padding: 2rem;
+	padding: 32px;
 
 	@media (max-width: 640px) {
-		padding: 0.9rem;
+		padding: 16px;
 	}
 
 	/* These texture layers sit at z-index 4-6; actual content (lifeline,
