@@ -1,10 +1,12 @@
 import { Resend } from "resend";
 
 const TO_EMAIL = "hello@gmmoulin.com";
-// Verified against a subdomain, not the gmmoulin.com apex, so Resend's
-// SPF/DKIM records never collide with the Cloudflare Email Routing MX
-// records already on the apex for receiving hello@gmmoulin.com.
-const FROM_EMAIL = "Portfolio Contact <contact@send.gmmoulin.com>";
+// The domain verified in Resend is gmmoulin.com itself (that's what was
+// typed into "Add Domain"): Resend scopes the actual MX/SPF DNS records
+// under a send.gmmoulin.com prefix internally to avoid colliding with the
+// Cloudflare Email Routing MX records on the apex, but the sender identity
+// it validates `from` against is still the gmmoulin.com domain object.
+const FROM_EMAIL = "Portfolio Contact <contact@gmmoulin.com>";
 
 interface ContactPayload {
 	from?: string;
@@ -33,6 +35,7 @@ export async function POST(request: Request) {
 	});
 
 	if (error) {
+		console.error("Resend send failed:", error);
 		return Response.json({ error: "Failed to send" }, { status: 502 });
 	}
 
