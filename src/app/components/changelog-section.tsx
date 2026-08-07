@@ -48,8 +48,8 @@ export default function ChangelogSection() {
 	// Reveal entries one at a time, like the list is being crawled live.
 	useEffect(() => {
 		if (!entries || entries.length === 0) return;
-		setVisibleCount(0);
 		const timers: ReturnType<typeof setTimeout>[] = [];
+		timers.push(setTimeout(() => setVisibleCount(0), 0));
 		for (let i = 1; i <= entries.length; i++) {
 			timers.push(setTimeout(() => setVisibleCount(i), i * REVEAL_STEP_MS));
 		}

@@ -22,7 +22,7 @@ export default function ContactSection() {
 
 			<p className="contact-intro">
 				Freelance and currently available for new projects. Tell me
-				what's broken or what needs building, I'll get back to you as soon as possible.
+				what&apos;s broken or what needs building, I&apos;ll get back to you as soon as possible.
 			</p>
 
 			<div className="contact-grid">
