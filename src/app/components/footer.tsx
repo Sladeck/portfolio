@@ -2,6 +2,7 @@
 
 import "./footer.css";
 
+// Bottom bar, sits below the screen on every section.
 export default function Footer() {
 	return (
 		<footer className="footer">

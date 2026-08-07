@@ -1,5 +1,4 @@
-/* Each row plays this once, right when it mounts, since rows are
-   revealed into the DOM one at a time rather than all at once. */
+/* Plays once as each row mounts, since rows are revealed one at a time. */
 @keyframes changelog-row-in {
 	from {
 		opacity: 0;
@@ -21,6 +20,10 @@
 		font-size: 12px;
 		color: var(--gt-text-dim);
 
+		@media (max-width: 640px) {
+			font-size: 14px;
+		}
+
 		a {
 			color: var(--gt-gold);
 		}
@@ -39,6 +42,10 @@
 		display: grid;
 		font-size: 12.5px;
 		line-height: 1.5;
+
+		@media (max-width: 640px) {
+			font-size: 15px;
+		}
 	}
 
 	.changelog-row {
@@ -52,12 +59,17 @@
 		transition: background-color 0.15s ease;
 		animation: changelog-row-in 0.25s ease-out both;
 
+		@media (max-width: 640px) {
+			grid-template-columns: 1fr;
+			gap: 4px;
+		}
+
 		&:hover {
 			background: rgba(201, 162, 39, 0.05);
 		}
 
-		/* :last-of-type (not :last-child): the crawling cursor can sit
-		   after the last row as a sibling <div> while still revealing. */
+		/* :last-of-type, not :last-child: the crawling cursor div can be
+		   the actual last child while rows are still revealing. */
 		&:last-of-type {
 			border-bottom: 1px solid var(--gt-hairline);
 		}
@@ -80,8 +92,6 @@
 		}
 	}
 
-	/* Blinking cursor at the growing edge of the list while more rows
-	   are still being revealed. */
 	.changelog-crawling {
 		padding: 10px 0;
 		border-top: 1px solid var(--gt-hairline);

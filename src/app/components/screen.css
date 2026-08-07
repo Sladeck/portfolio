@@ -1,4 +1,4 @@
-/* CRT brightness flicker, subtle and irregular rather than a steady pulse. */
+/* Irregular flicker, not a steady pulse. */
 @keyframes flick {
 	0%,
 	100% {
@@ -18,7 +18,6 @@
 	}
 }
 
-/* Slow, continuous scan roll, low opacity, no pause between passes. */
 @keyframes rollbar {
 	0% {
 		transform: translateY(-60%);
@@ -29,8 +28,6 @@
 	}
 }
 
-/* The CRT "screen" every section renders inside of. Sits below the nav,
-   centered up to 1200px, pure black beyond that. */
 .screen {
 	position: relative;
 	width: 100%;
@@ -49,7 +46,12 @@
 	color: var(--gt-text);
 	padding: 2rem;
 
-	/* Radial darkening toward the edges, plus a faint green glow at center */
+	@media (max-width: 640px) {
+		padding: 0.9rem;
+	}
+
+	/* These texture layers sit at z-index 4-6; actual content (lifeline,
+	   home-main, footer) uses z-index: 10 to stay above all of them. */
 	.screen-vignette {
 		position: absolute;
 		inset: 0;
@@ -69,7 +71,6 @@
 			);
 	}
 
-	/* Faint dark scanlines that flicker in brightness over time */
 	.screen-flicker {
 		position: absolute;
 		inset: 0;
@@ -86,8 +87,6 @@
 		animation: flick 5.5s steps(2, end) infinite;
 	}
 
-	/* Gold horizontal lines, green aperture-grille lines, and the slow
-	   scan roll, blended additively so text underneath stays legible. */
 	.screen-scanlines {
 		position: absolute;
 		inset: 0;
@@ -136,7 +135,6 @@
 		}
 	}
 
-	/* Thin gold line just inside the outer border, the "frame" */
 	.screen-inset-border {
 		position: absolute;
 		inset: 8px;
@@ -144,8 +142,8 @@
 		border: 1px solid rgba(201, 162, 39, 0.3);
 	}
 
-	/* Four L-shaped brackets, one per corner. Base rule draws all four
-	   sides, each modifier hides the two that shouldn't show. */
+	/* L-shaped corner brackets: base rule draws all 4 sides, each
+	   modifier removes the two that shouldn't show. */
 	.screen-corner {
 		position: absolute;
 		width: 26px;
@@ -182,7 +180,6 @@
 		}
 	}
 
-	/* Small diamond glyph tucked inside each corner bracket */
 	.screen-diamond {
 		position: absolute;
 		font-size: 10px;

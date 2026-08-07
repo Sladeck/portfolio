@@ -19,10 +19,14 @@
 
 	.panel-body {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
 		gap: 8px;
 		padding: 10px;
 		font-size: 12px;
+
+		@media (max-width: 640px) {
+			font-size: 16px;
+		}
 
 		.panel-group {
 			display: grid;
@@ -43,8 +47,6 @@
 	}
 }
 
-/* Flat tag list, used as custom panel-body content (e.g. hobbies)
-   instead of the label/value tile grid. */
 .panel-tags {
 	display: flex;
 	flex-wrap: wrap;
@@ -58,5 +60,9 @@
 		letter-spacing: 0.06em;
 		color: var(--gt-text-muted);
 		text-transform: uppercase;
+
+		@media (max-width: 640px) {
+			font-size: 12.5px;
+		}
 	}
 }

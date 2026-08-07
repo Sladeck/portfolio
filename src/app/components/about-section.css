@@ -1,6 +1,6 @@
 .about-section {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 	gap: 40px;
 	align-items: start;
 
@@ -9,6 +9,10 @@
 		font-size: 13.5px;
 		line-height: 1.6;
 		color: var(--gt-text-muted);
+
+		@media (max-width: 640px) {
+			font-size: 16px;
+		}
 
 		.about-paragraph {
 			margin: 0;

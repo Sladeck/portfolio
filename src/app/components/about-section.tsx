@@ -67,6 +67,7 @@ function TagPanel({ title, tags }: { title: string; tags: string[] }) {
 	);
 }
 
+// About page: bio, then toolbelt/adjacent-fields/hobbies tag panels.
 export default function AboutSection() {
 	return (
 		<section className="about-section">

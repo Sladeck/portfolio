@@ -1,3 +1,5 @@
+// Latest public commits for the changelog page, cached server-side so
+// every visitor doesn't burn into GitHub's unauthenticated rate limit.
 const GITHUB_USERNAME = "Sladeck";
 const EVENTS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/events/public`;
 const ENTRY_CAP = 20;
@@ -21,9 +23,8 @@ interface GitHubEvent {
 	};
 }
 
-// The Events API no longer inlines the commit list on PushEvent payloads,
-// just a before/head SHA range, so each push needs a follow-up request
-// to resolve the actual commits.
+// PushEvent payloads only carry a before/head SHA range now, not the
+// commit list, so each push needs a follow-up request to resolve them.
 interface CompareCommit {
 	sha: string;
 	html_url: string;
@@ -59,17 +60,13 @@ async function commitsForPush(
 		);
 		if (compare) return compare.commits;
 	}
-	// First push on a brand new branch (before is all zeros), or the
-	// compare request failed: fall back to just the head commit.
+	// New branch (before is all zeros) or the compare failed: just the head.
 	const single = await fetchGitHub<CompareCommit>(
 		`https://api.github.com/repos/${repo}/commits/${head}`,
 	);
 	return single ? [single] : [];
 }
 
-// Cache GitHub's response for an hour, server-side, so this route makes
-// at most a handful of upstream requests per hour regardless of visitor
-// traffic, well under the unauthenticated API's 60 requests/hour limit.
 export const revalidate = 3600;
 
 export async function GET() {
@@ -79,9 +76,8 @@ export async function GET() {
 	}
 
 	const entries: ActivityEntry[] = [];
-	// Two different push events (e.g. pushing the same range to two
-	// branches at once) can resolve to the exact same commit: key on
-	// repo+sha so it's only counted once.
+	// Two push events (e.g. same range pushed to two branches) can
+	// resolve to the same commit: key on repo+sha to dedupe.
 	const seen = new Set<string>();
 
 	for (const event of events) {

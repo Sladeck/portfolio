@@ -1,5 +1,8 @@
 .home {
 	height: 100vh;
+	/* dvh accounts for mobile browser chrome collapsing; vh is the
+	   fallback for browsers that don't support it. */
+	height: 100dvh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -7,22 +10,50 @@
 	box-sizing: border-box;
 	background: #000;
 
-	/* Content viewport inside the screen, below the lifeline. Centered
-	   vertically when content fits (home, about, ...). "safe center"
-	   auto-falls-back to top-aligned once content overflows (changelog),
-	   since plain "center" clips the start edge above scrollTop 0 instead
-	   of leaving it scrollable. */
 	.home-main {
 		position: relative;
-		/* Above the screen's CRT texture (scanlines/flicker/vignette top
-		   out at z-index 6) so the overlay never washes over the text. */
 		z-index: 10;
 		flex: 1;
 		min-height: 0;
 		overflow-y: auto;
+		/* Explicit, not left to default: per spec, overflow-x left unset
+		   while overflow-y isn't "visible" computes to "auto" too, which
+		   would let an overly wide child open its own horizontal
+		   scrollbar here even though the page itself never scrolls. */
+		overflow-x: hidden;
 		padding: 22px 40px;
 		display: flex;
 		flex-direction: column;
+		/* "safe" avoids clipping the start edge when content overflows
+		   (plain center does that instead of leaving it scrollable). */
 		justify-content: safe center;
+
+		scrollbar-width: thin;
+		scrollbar-color: var(--gt-iron) transparent;
+
+		&::-webkit-scrollbar {
+			width: 8px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: var(--gt-iron);
+			border-radius: 0;
+
+			&:hover {
+				background: var(--gt-gold);
+			}
+		}
+	}
+
+	@media (max-width: 640px) {
+		padding: 10px;
+
+		.home-main {
+			padding: 16px;
+		}
 	}
 }

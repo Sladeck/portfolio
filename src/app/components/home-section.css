@@ -1,8 +1,6 @@
-/* Hero name glitch burst: clean for most of the loop, jitters through a
-   handful of clip-path/transform offsets for a brief window, then holds
-   clean again until the next loop. Percentages are compressed into the
-   first ~9% of the cycle so raising the animation duration makes the
-   glitch rarer without slowing the burst itself down. */
+/* Glitch burst compressed into the first ~9% of the cycle, then clean
+   until the next loop: raising the duration makes it rarer without
+   slowing the burst itself down. */
 @keyframes home-name-glitch {
 	0%,
 	100% {
@@ -36,7 +34,6 @@
 	}
 }
 
-/* Ghost duplicate is only visible during that same burst window. */
 @keyframes home-name-ghost {
 	0%,
 	9% {
@@ -49,8 +46,6 @@
 	}
 }
 
-/* Standalone status readout, sits right below the lifeline but is not
-   part of it, and not part of the two-column layout below. */
 .home-meta {
 	margin: -14px 0 32px;
 	font-size: 11px;
@@ -62,11 +57,20 @@
 	.home-meta-available {
 		color: var(--gt-green);
 	}
+
+	@media (max-width: 640px) {
+		margin-top: 14px;
+	}
+
+	@media (max-width: 480px) {
+		white-space: normal;
+	}
 }
 
 .home-section {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	/* min() keeps a narrow viewport from being forced wider than 280px. */
+	grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
 	gap: 40px;
 	align-items: start;
 
@@ -77,15 +81,19 @@
 			padding-bottom: 0.06em;
 			font-family: var(--gt-font-display);
 			font-weight: 900;
-			font-size: clamp(24px, 3.4vw, 52px);
+			font-size: clamp(24px, 3.4vw, 46px);
 			line-height: 0.95;
 			letter-spacing: 0.01em;
 			text-transform: uppercase;
 			word-break: keep-all;
+			/* Fallback if a single word is ever too wide on its own:
+			   break it rather than clip against overflow-x: hidden. */
+			overflow-wrap: anywhere;
 
-			/* Real text. Holds clean for most of the cycle, jitters through
-			   the clip-path/transform burst for a fraction of a second every
-			   loop, like the signal briefly drops. */
+			@media (max-width: 640px) {
+				font-size: clamp(40px, 16vw, 46px);
+			}
+
 			.home-name-text {
 				position: relative;
 				display: inline-block;
@@ -94,8 +102,6 @@
 				animation: home-name-glitch 8s steps(1, end) infinite;
 			}
 
-			/* Offset green duplicate, only visible during the burst window,
-			   giving the impression of a second, misaligned signal layer. */
 			.home-name-ghost {
 				position: absolute;
 				left: 3px;
@@ -113,10 +119,15 @@
 			font-size: 13.5px;
 			line-height: 1.6;
 			color: var(--gt-text-muted);
+
+			@media (max-width: 640px) {
+				font-size: 16px;
+			}
 		}
 
 		.home-actions {
 			display: flex;
+			flex-wrap: wrap;
 			gap: 12px;
 			margin-top: 20px;
 			font-size: 12px;
@@ -158,7 +169,6 @@
 		}
 	}
 
-	/* Stack of side panels (toolset, status, ...) next to the intro text */
 	.home-panels {
 		display: grid;
 		gap: 14px;

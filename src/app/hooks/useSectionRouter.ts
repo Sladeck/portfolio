@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { SectionId } from "../components/nav";
 
-// Terminal-style path shown in the lifeline header for each section.
+// Path shown in the lifeline header (display text, not a real URL).
 const PATHS: Record<SectionId, string> = {
 	home: "~/home",
 	about: "~/about",
@@ -13,8 +13,7 @@ const PATHS: Record<SectionId, string> = {
 	contact: "~/contact",
 };
 
-// Real URL for each section, kept separate from the lifeline's display
-// text above (e.g. "changelog.log" isn't an actual route).
+// Real URL for each section, distinct from PATHS above.
 const URL_PATHS: Record<SectionId, string> = {
 	home: "/",
 	about: "/about",
@@ -35,15 +34,12 @@ function sectionFromPathname(pathname: string): SectionId {
 }
 
 // Timing (ms) for the erase → pause → retype → reveal choreography.
-// Tuned to read as a fast terminal edit, not a slow typewriter.
 const ERASE_STEP_MS = 16;
 const ERASE_PAUSE_MS = 90;
 const TYPE_STEP_MS = 30;
 const REVEAL_PAUSE_MS = 200;
 
-// One-time boot sequence, on mount only: type the landing section's
-// path, then hold with the cursor blinking before the rest of the page
-// is allowed to appear.
+// Hold after the boot sequence types the landing path, before content appears.
 const BOOT_HOLD_MS = 400;
 
 interface SectionRouter {
@@ -68,10 +64,8 @@ export function useSectionRouter(): SectionRouter {
 	const pathname = usePathname();
 	const router = useRouter();
 
-	// Whatever section the URL pointed at on first render, e.g. someone
-	// landing straight on /projects. The boot sequence types this path
-	// instead of always assuming home. Lazy initializer so it's computed
-	// once, not a ref read during render.
+	// Lazy initializer, not a ref: reads the URL once on mount (e.g.
+	// someone landing straight on /projects) without a ref-during-render.
 	const [initialSection] = useState<SectionId>(() =>
 		sectionFromPathname(pathname),
 	);
@@ -82,9 +76,7 @@ export function useSectionRouter(): SectionRouter {
 	const [booting, setBooting] = useState(true);
 	const [lifelineText, setLifelineText] = useState("");
 
-	// Pending setTimeout ids, so a new transition (or the boot sequence
-	// still running) cancels the old animation instead of letting both
-	// run at once.
+	// Pending timeout ids, so a new transition cancels any still running.
 	const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
 	const clearTimers = useCallback(() => {
@@ -92,7 +84,6 @@ export function useSectionRouter(): SectionRouter {
 		timers.current = [];
 	}, []);
 
-	// Boot sequence, runs once on mount.
 	useEffect(() => {
 		const schedule = (delay: number, fn: () => void) => {
 			timers.current.push(setTimeout(fn, delay));
@@ -117,10 +108,9 @@ export function useSectionRouter(): SectionRouter {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// Whenever the URL's section differs from what's currently on screen
-	// (a nav click that already pushed a new URL via goTo below, or the
-	// user hitting back/forward and changing it directly), run the same
-	// erase/retype transition to catch the lifeline and content up to it.
+	// URL is the source of truth: whenever it differs from what's on
+	// screen (goTo pushed it, or the user hit back/forward), run the
+	// erase/retype transition to catch up to it.
 	useEffect(() => {
 		if (booting) return;
 		const target = sectionFromPathname(pathname);
@@ -144,7 +134,6 @@ export function useSectionRouter(): SectionRouter {
 		}
 		t += ERASE_PAUSE_MS;
 
-		// Type the new path back in, one character at a time.
 		for (let len = 2; len <= to.length; len++) {
 			const next = to.slice(0, len);
 			schedule(t, () => setLifelineText(next));
@@ -152,7 +141,6 @@ export function useSectionRouter(): SectionRouter {
 		}
 		t += REVEAL_PAUSE_MS;
 
-		// Only now does the new section actually appear.
 		schedule(t, () => {
 			setTransitioning(false);
 			setActiveSection(target);

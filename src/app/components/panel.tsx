@@ -12,9 +12,8 @@ interface PanelProps {
 	children?: ReactNode;
 }
 
-// Bordered box with a header (title + optional badge) and a body, shared
-// by every "equipped gear"-style readout (home's toolset/status, about's
-// practices/hobbies, ...).
+// Bordered box with a header (title + optional badge) and a body: the
+// toolset/status/tag-panel readouts used across the site.
 export default function Panel({ title, badge, items, children }: PanelProps) {
 	return (
 		<div className="panel">

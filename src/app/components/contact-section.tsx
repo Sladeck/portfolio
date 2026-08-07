@@ -3,11 +3,11 @@
 import "./contact-section.css";
 import { useState, type FormEvent } from "react";
 
-// Placeholder until Guillaume has a domain + alias set up. See the
-// contact-form-backend memory: this form intentionally doesn't send
-// anywhere yet, it just reports that honestly instead of faking success.
+// Placeholder until a real domain/alias is set up.
 const CONTACT_EMAIL = "john.doe@domain.com";
 
+// Contact page: form (not wired to a backend yet, see handleSubmit) plus
+// direct email/GitHub/LinkedIn links.
 export default function ContactSection() {
 	const [status, setStatus] = useState("");
 

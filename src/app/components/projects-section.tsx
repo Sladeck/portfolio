@@ -65,6 +65,7 @@ const PROJECTS: Project[] = [
 	},
 ];
 
+// Project cards, plus a small link over to the changelog page.
 export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 	return (
 		<section className="projects-section">

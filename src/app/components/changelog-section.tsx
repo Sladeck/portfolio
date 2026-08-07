@@ -21,9 +21,8 @@ function formatDate(iso: string): string {
 	return `${yyyy}.${mm}.${dd}`;
 }
 
-// Live GitHub activity, fetched from our own cached Route Handler
-// (never GitHub's API directly, that would hand every visitor's browser
-// the same 60-requests/hour budget). Latest 20 commits, newest first.
+// Latest 20 commits from GitHub, newest first, fetched from our own
+// cached Route Handler rather than GitHub's API directly.
 export default function ChangelogSection() {
 	const [entries, setEntries] = useState<ActivityEntry[] | null>(null);
 	const [failed, setFailed] = useState(false);
@@ -46,8 +45,7 @@ export default function ChangelogSection() {
 		};
 	}, []);
 
-	// Reveal entries one at a time once fetched, like the list is being
-	// crawled live, rather than dumping the whole result in at once.
+	// Reveal entries one at a time, like the list is being crawled live.
 	useEffect(() => {
 		if (!entries || entries.length === 0) return;
 		setVisibleCount(0);
@@ -91,8 +89,7 @@ export default function ChangelogSection() {
 				<div className="changelog-list">
 					{visibleEntries.map((entry) => (
 						<a
-							// Composite key: the same sha could theoretically repeat
-							// across different repos.
+							// Composite key: a sha could repeat across repos.
 							key={`${entry.repo}:${entry.id}`}
 							href={entry.url}
 							target="_blank"

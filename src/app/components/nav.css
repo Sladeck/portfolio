@@ -1,6 +1,5 @@
-/* One-shot version of the hero name's glitch burst (see home-section.css):
-   same clip-path/transform jitter, but plays once through instead of
-   looping, since it's triggered by the MENU/CLOSE swap rather than idling. */
+/* Same jitter as the hero name's glitch burst, but plays once on the
+   MENU/CLOSE swap instead of looping. */
 @keyframes nav-toggle-glitch {
 	0% {
 		transform: translate(0);
@@ -33,16 +32,11 @@
 	}
 }
 
-/* Top nav bar. Sits outside the CRT "screen" on the pure-black page
-   background, and stays mounted the whole time. Only the screen's
-   contents change when a link is clicked. */
 .nav {
 	position: relative;
-	/* .screen's inner layers (lifeline/home-main/footer all sit at
-	   z-index: 10) aren't isolated in their own stacking context, so
-	   they'd otherwise leak above nav-links here despite its own
-	   z-index. Giving .nav a real z-index (not just position) makes it
-	   a stacking context of its own, above all of that, in one shot. */
+	/* A real z-index (not just position) makes .nav its own stacking
+	   context, so it sits above .screen's z-index: 10 content in one
+	   shot instead of each nav child having to out-rank it individually. */
 	z-index: 20;
 	width: 100%;
 	max-width: 1200px;
@@ -59,9 +53,6 @@
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
 
-	/* Hidden until the mobile breakpoint below swaps it in for .nav-links.
-	   Stays above the full-screen .nav-links overlay (z-index) so it's
-	   still reachable as the close button while the menu is open. */
 	.nav-toggle {
 		position: relative;
 		z-index: 2;
@@ -87,9 +78,6 @@
 		}
 	}
 
-	/* Brand mark, also acts as the "go home" button. Kept above the
-	   full-screen .nav-links overlay (z-index), same as .nav-toggle, so
-	   the name stays visible while the mobile menu is open. */
 	.nav-brand {
 		position: relative;
 		z-index: 2;
@@ -146,14 +134,11 @@
 				color: var(--gt-gold);
 			}
 
-			/* Section currently shown in the screen */
 			&.nav-link--active {
 				color: var(--gt-gold);
 			}
 		}
 
-		/* CTA reads as a bordered terminal command, always gold regardless
-       of which section is active */
 		.nav-cta {
 			background: none;
 			border: 1px solid var(--gt-gold);

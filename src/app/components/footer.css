@@ -1,16 +1,23 @@
 .footer {
 	position: relative;
-	/* Above the screen's CRT texture (scanlines/flicker/vignette top out
-	   at z-index 6) so the overlay never washes over the text. */
 	z-index: 10;
 	flex-shrink: 0;
 	border-top: 1px solid var(--gt-hairline);
 	padding: 10px 32px;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
-	gap: 20px;
+	gap: 6px 20px;
 	font-size: 10px;
 	letter-spacing: 0.14em;
 	color: var(--gt-iron);
 	text-transform: uppercase;
+
+	@media (max-width: 640px) {
+		padding: 10px 16px;
+		gap: 6px 10px;
+		/* Kept small on purpose to stay on one line; it's flavor text. */
+		font-size: 6.5px;
+		letter-spacing: 0.06em;
+	}
 }

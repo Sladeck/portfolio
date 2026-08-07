@@ -12,10 +12,9 @@ import ContactSection from "../components/contact-section";
 import Footer from "../components/footer";
 import { useSectionRouter } from "../hooks/useSectionRouter";
 
-// Optional catch-all: every section lives at its own URL (/about,
-// /projects, ...) but they're all one client-driven page, not separate
-// routes, since the lifeline/erase-retype transition needs to own the
-// swap. useSectionRouter reads/writes the URL to match.
+// Optional catch-all route: every section has its own URL (/about,
+// /projects, ...) but they're all this one client-driven page, since the
+// lifeline's erase-retype transition needs to own the swap.
 export default function Home() {
 	const { activeSection, transitioning, lifelineText, goTo } =
 		useSectionRouter();

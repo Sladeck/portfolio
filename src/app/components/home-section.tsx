@@ -8,9 +8,6 @@ interface HomeSectionProps {
 	onNavigate: (id: SectionId) => void;
 }
 
-// Everything that fits the "equipped gear" toolset panel, one tile each,
-// laid out in a responsive grid so it can hold more than 3 without the
-// panel turning into a tall single column.
 const TOOLSET: { label: string; value: string }[] = [
 	{ label: "LANGUAGES", value: "Python · JavaScript" },
 	{ label: "FRAMEWORKS", value: "Django · DRF · React · Next.js" },
@@ -22,13 +19,13 @@ const TOOLSET: { label: string; value: string }[] = [
 	{ label: "SPOKEN", value: "French · English · Japanese" },
 ];
 
-// Current engagement, separate from TOOLSET since it's about availability
-// right now, not accumulated skills.
 const STATUS: { label: string; value: string }[] = [
 	{ label: "ENGAGEMENT", value: "Freelance" },
 	{ label: "LOCATION", value: "France" },
 ];
 
+// Homepage hero: name, tagline, hire_me/view_work actions, and the
+// toolset/status panels.
 export default function HomeSection({ onNavigate }: HomeSectionProps) {
 	return (
 		<>
