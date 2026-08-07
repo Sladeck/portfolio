@@ -2,6 +2,7 @@
 
 import "./nav.css";
 import { useState } from "react";
+import SectionLink from "./section-link";
 
 // Single source of truth for section ids, shared by this menu, the
 // lifeline header, and the page router.
@@ -40,14 +41,10 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 
 	return (
 		<nav className="nav">
-			<button
-				type="button"
-				className="nav-brand"
-				onClick={() => navigate("home")}
-			>
+			<SectionLink id="home" onNavigate={navigate} className="nav-brand">
 				<span className="nav-name">MOULIN GUILLAUME</span>
 				<span className="nav-role">/ full-stack engineer</span>
-			</button>
+			</SectionLink>
 
 			<button
 				type="button"
@@ -70,26 +67,22 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 				className={menuOpen ? "nav-links nav-links--open" : "nav-links"}
 			>
 				{NAV_LINKS.map(({ id, label }) => (
-					<button
+					<SectionLink
 						key={id}
-						type="button"
+						id={id}
+						onNavigate={navigate}
 						className={
 							activeSection === id ? "nav-link nav-link--active" : "nav-link"
 						}
 						aria-current={activeSection === id ? "page" : undefined}
-						onClick={() => navigate(id)}
 					>
 						{label}
-					</button>
+					</SectionLink>
 				))}
 
-				<button
-					type="button"
-					className="nav-cta"
-					onClick={() => navigate("contact")}
-				>
+				<SectionLink id="contact" onNavigate={navigate} className="nav-cta">
 					&gt; initiate_contact
-				</button>
+				</SectionLink>
 			</div>
 		</nav>
 	);

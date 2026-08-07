@@ -30,7 +30,7 @@ export default function Lifeline({
 	const subLabel = transitioning ? "" : SUBLABELS[activeSection];
 
 	return (
-		<h2 className="lifeline">
+		<div className="lifeline">
 			<span className="lifeline-bullet" aria-hidden="true">
 				◆
 			</span>
@@ -39,6 +39,6 @@ export default function Lifeline({
 				<span className="lifeline-cursor" aria-hidden="true" />
 			</span>
 			{subLabel && <span className="lifeline-sub">{subLabel}</span>}
-		</h2>
+		</div>
 	);
 }

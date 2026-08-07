@@ -1,53 +1,39 @@
-"use client";
+import type { Metadata } from "next";
+import HomeClient from "./home-client";
 
-import "../home.css";
-import Nav from "../components/nav";
-import Screen from "../components/screen";
-import Lifeline from "../components/lifeline";
-import HomeSection from "../components/home-section";
-import AboutSection from "../components/about-section";
-import ChangelogSection from "../components/changelog-section";
-import ProjectsSection from "../components/projects-section";
-import ContactSection from "../components/contact-section";
-import Footer from "../components/footer";
-import { useSectionRouter } from "../hooks/useSectionRouter";
+const SITE_NAME = "Moulin Guillaume";
 
-// Optional catch-all route: every section has its own URL (/about,
-// /projects, ...) but they're all this one client-driven page, since the
-// lifeline's erase-retype transition needs to own the swap.
-export default function Home() {
-	const { activeSection, transitioning, lifelineText, goTo } =
-		useSectionRouter();
+const TITLES: Record<string, string> = {
+	"": `${SITE_NAME} — Freelance Full-Stack Engineer`,
+	about: `About — ${SITE_NAME}`,
+	projects: `Projects — ${SITE_NAME}`,
+	changelog: `Changelog — ${SITE_NAME}`,
+	contact: `Contact — ${SITE_NAME}`,
+};
 
-	return (
-		<div className="home">
-			<Nav activeSection={activeSection} onNavigate={goTo} />
+const DESCRIPTIONS: Record<string, string> = {
+	"": "Freelance full-stack engineer based in France. Django, React and Next.js, eight years of shipping product end to end.",
+	about: "Background, toolbelt, and adjacent fields.",
+	projects: "A selection of projects, including ax3.io, Manzanita, and The Obsidian Table.",
+	changelog: "Latest public commits from github.com/Sladeck.",
+	contact: "Get in touch about freelance work.",
+};
 
-			<Screen>
-				<Lifeline
-					text={lifelineText}
-					activeSection={activeSection}
-					transitioning={transitioning}
-				/>
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug?: string[] }>;
+}): Promise<Metadata> {
+	const { slug } = await params;
+	const key = slug?.[0] ?? "";
+	return {
+		title: TITLES[key] ?? TITLES[""],
+		description: DESCRIPTIONS[key] ?? DESCRIPTIONS[""],
+	};
+}
 
-				<main className="home-main">
-					{!transitioning && activeSection === "home" && (
-						<HomeSection onNavigate={goTo} />
-					)}
-					{!transitioning && activeSection === "about" && <AboutSection />}
-					{!transitioning && activeSection === "changelog" && (
-						<ChangelogSection />
-					)}
-					{!transitioning && activeSection === "projects" && (
-						<ProjectsSection onNavigate={goTo} />
-					)}
-					{!transitioning && activeSection === "contact" && (
-						<ContactSection />
-					)}
-				</main>
-
-				<Footer />
-			</Screen>
-		</div>
-	);
+// Server wrapper so each section can get its own <title>/description;
+// HomeClient owns the actual client-driven routing/animation.
+export default function Page() {
+	return <HomeClient />;
 }

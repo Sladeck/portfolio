@@ -12,6 +12,13 @@
 		color: var(--gt-gold);
 		text-transform: uppercase;
 
+		h2 {
+			font: inherit;
+			letter-spacing: inherit;
+			text-transform: inherit;
+			color: inherit;
+		}
+
 		.panel-badge {
 			color: var(--gt-text);
 		}

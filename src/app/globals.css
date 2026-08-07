@@ -4,7 +4,9 @@
 	--gt-green: #39ff14;
 	--gt-iron: #3a3a3e;
 	--gt-text: #8d8d93;
-	--gt-text-dim: #6f6f77;
+	/* Brightened from the original #6f6f77 to clear WCAG AA (4.5:1) at
+	   the small sizes it's used at; still the dimmest text tier. */
+	--gt-text-dim: #7d7d85;
 	--gt-text-muted: #9a9aa2;
 	/* Darker than --gt-iron: internal dividers only, not outer borders. */
 	--gt-border: #26262a;
@@ -58,4 +60,24 @@ body {
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }

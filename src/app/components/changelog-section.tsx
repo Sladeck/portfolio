@@ -61,6 +61,7 @@ export default function ChangelogSection() {
 
 	return (
 		<section className="changelog-section">
+			<h1 className="sr-only">Changelog</h1>
 			<p className="changelog-intro">
 				Live from{" "}
 				<a

@@ -2,6 +2,7 @@
 
 import "./home-section.css";
 import Panel from "./panel";
+import SectionLink from "./section-link";
 import type { SectionId } from "./nav";
 
 interface HomeSectionProps {
@@ -50,20 +51,20 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 					</p>
 
 					<div className="home-actions">
-						<button
-							type="button"
+						<SectionLink
+							id="contact"
+							onNavigate={onNavigate}
 							className="home-action home-action--primary"
-							onClick={() => onNavigate("contact")}
 						>
 							&gt; hire_me
-						</button>
-						<button
-							type="button"
+						</SectionLink>
+						<SectionLink
+							id="projects"
+							onNavigate={onNavigate}
 							className="home-action home-action--secondary"
-							onClick={() => onNavigate("projects")}
 						>
 							&gt; view_work
-						</button>
+						</SectionLink>
 					</div>
 				</div>
 

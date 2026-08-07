@@ -14,7 +14,7 @@ const PATHS: Record<SectionId, string> = {
 };
 
 // Real URL for each section, distinct from PATHS above.
-const URL_PATHS: Record<SectionId, string> = {
+export const URL_PATHS: Record<SectionId, string> = {
 	home: "/",
 	about: "/about",
 	changelog: "/changelog",
@@ -31,6 +31,15 @@ const SECTION_BY_URL_PATH = Object.fromEntries(
 
 function sectionFromPathname(pathname: string): SectionId {
 	return SECTION_BY_URL_PATH[pathname] ?? "home";
+}
+
+// The CSS-side prefers-reduced-motion override (globals.css) doesn't
+// reach this: the typing effect is driven by setTimeout, not animation.
+function prefersReducedMotion(): boolean {
+	return (
+		typeof window !== "undefined" &&
+		window.matchMedia("(prefers-reduced-motion: reduce)").matches
+	);
 }
 
 // Timing (ms) for the erase → pause → retype → reveal choreography.
@@ -89,6 +98,16 @@ export function useSectionRouter(): SectionRouter {
 			timers.current.push(setTimeout(fn, delay));
 		};
 		const target = PATHS[initialSection];
+
+		if (prefersReducedMotion()) {
+			schedule(0, () => {
+				setLifelineText(target);
+				setTransitioning(false);
+				setBooting(false);
+			});
+			return clearTimers;
+		}
+
 		let t = 0;
 
 		for (let len = 1; len <= target.length; len++) {
@@ -122,6 +141,14 @@ export function useSectionRouter(): SectionRouter {
 		const schedule = (delay: number, fn: () => void) => {
 			timers.current.push(setTimeout(fn, delay));
 		};
+
+		if (prefersReducedMotion()) {
+			schedule(0, () => {
+				setLifelineText(to);
+				setActiveSection(target);
+			});
+			return clearTimers;
+		}
 
 		schedule(0, () => setTransitioning(true));
 

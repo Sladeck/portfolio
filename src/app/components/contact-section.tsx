@@ -18,7 +18,7 @@ export default function ContactSection() {
 
 	return (
 		<section className="contact-section">
-			<h2 className="contact-heading">&gt; initiate_contact</h2>
+			<h1 className="contact-heading">&gt; initiate_contact</h1>
 
 			<p className="contact-intro">
 				Freelance and currently available for new projects. Tell me
@@ -35,7 +35,6 @@ export default function ContactSection() {
 								type="text"
 								name="from"
 								placeholder="name & company"
-								autoFocus
 								required
 							/>
 						</div>
@@ -71,7 +70,9 @@ export default function ContactSection() {
 						<button type="submit" className="contact-submit">
 							&gt; send --now
 						</button>
-						<span className="contact-status">{status}</span>
+						<span className="contact-status" role="status" aria-live="polite">
+								{status}
+							</span>
 					</div>
 				</form>
 

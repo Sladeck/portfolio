@@ -71,6 +71,7 @@ function TagPanel({ title, tags }: { title: string; tags: string[] }) {
 export default function AboutSection() {
 	return (
 		<section className="about-section">
+			<h1 className="sr-only">About</h1>
 			<div className="about-intro">
 				<p className="about-paragraph">
 					At the end of my third year of a Bachelor&apos;s in Paris, I

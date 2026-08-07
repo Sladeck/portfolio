@@ -2,6 +2,7 @@
 
 import "./projects-section.css";
 import Panel from "./panel";
+import SectionLink from "./section-link";
 import type { SectionId } from "./nav";
 
 interface ProjectsSectionProps {
@@ -69,13 +70,14 @@ const PROJECTS: Project[] = [
 export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 	return (
 		<section className="projects-section">
-			<button
-				type="button"
+			<h1 className="sr-only">Projects</h1>
+			<SectionLink
+				id="changelog"
+				onNavigate={onNavigate}
 				className="projects-changelog-link"
-				onClick={() => onNavigate("changelog")}
 			>
 				&gt; See latest changelogs...
-			</button>
+			</SectionLink>
 
 			<div className="projects-list">
 				{PROJECTS.map((project) => (
@@ -83,7 +85,11 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 						<div className="project-body">
 							<div className="project-thumb">
 								{/* eslint-disable-next-line @next/next/no-img-element */}
-								<img src={project.image} alt="" loading="lazy" />
+								<img
+									src={project.image}
+									alt={`Screenshot of ${project.name}`}
+									loading="lazy"
+								/>
 								{project.offline && (
 									<span className="project-offline-stamp">OFFLINE</span>
 								)}

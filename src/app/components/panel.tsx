@@ -18,7 +18,7 @@ export default function Panel({ title, badge, items, children }: PanelProps) {
 	return (
 		<div className="panel">
 			<div className="panel-header">
-				<span>{title}</span>
+				<h2>{title}</h2>
 				{badge && <span className="panel-badge">{badge}</span>}
 			</div>
 
