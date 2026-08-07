@@ -20,13 +20,9 @@
 
 		.inspiration-paragraph {
 			margin: 0;
-			font-size: 13.5px;
+			font-size: 16px;
 			line-height: 1.6;
 			color: var(--gt-text-muted);
-
-			@media (max-width: 640px) {
-				font-size: 16px;
-			}
 		}
 	}
 
@@ -64,7 +60,7 @@
 	}
 
 	figcaption {
-		font-size: 10.5px;
+		font-size: 12.5px;
 		letter-spacing: 0.14em;
 		color: var(--gt-text-dim);
 		text-transform: uppercase;

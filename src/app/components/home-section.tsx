@@ -15,13 +15,8 @@ const TOOLSET: { label: string; value: string }[] = [
 	{ label: "INFRASTRUCTURE", value: "AWS · Cloudflare · Sentry · Linux" },
 	{ label: "AI INTEGRATION", value: "ChatGPT API · Google Imagen" },
 	{ label: "DESIGN", value: "UX/UI · Figma" },
-	{ label: "LEADERSHIP", value: "Team lead · Mentoring" },
-	{ label: "IT / ADMIN", value: "Google Workspace · security training" },
-];
-
-const STATUS: { label: string; value: string }[] = [
-	{ label: "ENGAGEMENT", value: "Freelance" },
-	{ label: "LOCATION", value: "France" },
+	{ label: "LEADERSHIP", value: "Team Lead · Mentoring" },
+	{ label: "IT / ADMIN", value: "Google Workspace · Security Training" },
 ];
 
 const LANGUAGES: { label: string; value: string }[] = [
@@ -31,7 +26,7 @@ const LANGUAGES: { label: string; value: string }[] = [
 ];
 
 // Homepage hero: name, tagline, hire_me/view_work actions, and the
-// toolset/status panels.
+// toolset/languages panels.
 export default function HomeSection({ onNavigate }: HomeSectionProps) {
 	return (
 		<>
@@ -64,10 +59,12 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 						</span>
 					</h1>
 
+					<p className="home-subtitle">Freelance full-stack engineer</p>
+
 					<p className="home-tagline">
-						Freelance full-stack engineer based in France with 8 years of
-						international experience. I take product from a blank page to
-						a live release, start to finish.
+						Based in France with 8 years of international experience. I
+						take product from a blank page to a live release, start to
+						finish.
 					</p>
 
 					<div className="home-actions">
@@ -89,8 +86,12 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 				</div>
 
 				<div className="home-panels">
-					<Panel title="TOOLSET" badge="8 YRS" items={TOOLSET} />
-					<Panel title="STATUS" badge="FREELANCE" items={STATUS} />
+					<Panel
+						title="TOOLSET"
+						badge="8 YRS"
+						items={TOOLSET}
+						className="panel--span-last"
+					/>
 					<Panel title="LANGUAGES" badge="3" items={LANGUAGES} />
 				</div>
 			</section>

@@ -10,13 +10,15 @@ interface PanelProps {
 	items?: { label: string; value: string }[];
 	/** Custom body content (e.g. a tag list) instead of the tile grid. */
 	children?: ReactNode;
+	/** Extra class on the outer .panel, for one-off layout tweaks. */
+	className?: string;
 }
 
 // Bordered box with a header (title + optional badge) and a body: the
 // toolset/status/tag-panel readouts used across the site.
-export default function Panel({ title, badge, items, children }: PanelProps) {
+export default function Panel({ title, badge, items, children, className }: PanelProps) {
 	return (
-		<div className="panel">
+		<div className={className ? `panel ${className}` : "panel"}>
 			<div className="panel-header">
 				<h2>{title}</h2>
 				{badge && <span className="panel-badge">{badge}</span>}

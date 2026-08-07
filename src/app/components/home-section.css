@@ -72,7 +72,7 @@
 
 .home-meta {
 	margin: -16px 0 32px;
-	font-size: 11px;
+	font-size: 13px;
 	letter-spacing: 0.14em;
 	color: var(--gt-text-dim);
 	text-transform: uppercase;
@@ -141,24 +141,33 @@
 			}
 		}
 
+		.home-subtitle {
+			/* Tight to the name: title + subtitle read as one identity block. */
+			margin: 8px 0 0;
+			font-size: clamp(14px, 1.6vw, 18px);
+			letter-spacing: 0.1em;
+			color: var(--gt-green);
+			text-transform: uppercase;
+		}
+
 		.home-tagline {
 			max-width: 44ch;
-			margin: 16px 0 0;
+			/* A clear step up from the name/subtitle gap: the paragraph is
+			   its own block, not part of the identity line. */
+			margin: 24px 0 0;
 			font-size: 16px;
 			line-height: 1.6;
 			color: var(--gt-text-muted);
-
-			@media (max-width: 640px) {
-				font-size: 16px;
-			}
 		}
 
 		.home-actions {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 12px;
-			margin-top: 32px;
-			font-size: 14px;
+			/* Widest gap of the three: the actions are a distinct group,
+			   not more body copy. */
+			margin-top: 40px;
+			font-size: 15px;
 			letter-spacing: 0.1em;
 			text-transform: uppercase;
 

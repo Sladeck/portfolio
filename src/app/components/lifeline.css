@@ -12,7 +12,7 @@
 		rgba(201, 162, 39, 0.08),
 		transparent 60%
 	);
-	font-size: 12px;
+	font-size: 13px;
 	letter-spacing: 0.24em;
 	color: var(--gt-gold);
 	text-transform: uppercase;
@@ -20,7 +20,7 @@
 
 	.lifeline-bullet {
 		color: var(--gt-green);
-		font-size: 9px;
+		font-size: 10px;
 	}
 
 	.lifeline-cursor {
@@ -36,7 +36,7 @@
 
 	.lifeline-sub {
 		margin-left: 8px;
-		font-size: 10px;
+		font-size: 11px;
 		color: var(--gt-text-dim);
 		letter-spacing: 0.1em;
 		text-transform: none;
@@ -44,7 +44,7 @@
 
 	@media (max-width: 640px) {
 		padding: 8px 12px;
-		font-size: 10.5px;
+		font-size: 11px;
 		/* Tighter tracking buys back room the longest path needs. */
 		letter-spacing: 0.14em;
 

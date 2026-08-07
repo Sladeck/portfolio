@@ -17,11 +17,11 @@
 	gap: 12px;
 
 	.changelog-intro {
-		font-size: 12px;
+		font-size: 15px;
 		color: var(--gt-text-dim);
 
 		@media (max-width: 640px) {
-			font-size: 14px;
+			font-size: 16px;
 		}
 
 		a {
@@ -34,17 +34,17 @@
 	}
 
 	.changelog-empty {
-		font-size: 12.5px;
+		font-size: 15px;
 		color: var(--gt-text-dim);
 	}
 
 	.changelog-list {
 		display: grid;
-		font-size: 12.5px;
+		font-size: 15px;
 		line-height: 1.5;
 
 		@media (max-width: 640px) {
-			font-size: 15px;
+			font-size: 16px;
 		}
 	}
 

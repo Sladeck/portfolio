@@ -7,7 +7,7 @@
 		justify-content: space-between;
 		padding: 8px 12px;
 		border-bottom: 1px solid var(--gt-iron);
-		font-size: 10.5px;
+		font-size: 13px;
 		letter-spacing: 0.18em;
 		color: var(--gt-gold);
 		text-transform: uppercase;
@@ -29,11 +29,7 @@
 		grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
 		gap: 8px;
 		padding: 12px;
-		font-size: 12px;
-
-		@media (max-width: 640px) {
-			font-size: 16px;
-		}
+		font-size: 15px;
 
 		.panel-group {
 			display: grid;
@@ -42,7 +38,7 @@
 			border: 1px solid var(--gt-border);
 
 			.panel-label {
-				font-size: 9.5px;
+				font-size: 13px;
 				letter-spacing: 0.18em;
 				color: var(--gt-text-dim);
 			}
@@ -54,6 +50,13 @@
 	}
 }
 
+/* When an item count doesn't divide evenly into the tile grid's columns,
+   the last tile is left alone in its row with empty space beside it:
+   stretch it to fill the row instead. */
+.panel--span-last .panel-group:last-child {
+	grid-column: 1 / -1;
+}
+
 .panel-tags {
 	display: flex;
 	flex-wrap: wrap;
@@ -63,13 +66,13 @@
 	.panel-tag {
 		border: 1px solid var(--gt-border);
 		padding: 4px 8px;
-		font-size: 10.5px;
+		font-size: 13px;
 		letter-spacing: 0.06em;
 		color: var(--gt-text-muted);
 		text-transform: uppercase;
 
 		@media (max-width: 640px) {
-			font-size: 12.5px;
+			font-size: 14px;
 		}
 	}
 }
