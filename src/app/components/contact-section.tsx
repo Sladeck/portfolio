@@ -1,18 +1,49 @@
 "use client";
 
 import "./contact-section.css";
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 
 const CONTACT_EMAIL = "hello@gmmoulin.com";
 
-// Contact page: form (not wired to a backend yet, see handleSubmit) plus
+type Status = "idle" | "sending" | "sent" | "error";
+
+const STATUS_MESSAGES: Record<Status, string> = {
+	idle: "",
+	sending: "sending...",
+	sent: "sent, I'll get back to you soon",
+	error: "failed to send, email me directly instead",
+};
+
+// Contact page: form (POSTs to /api/contact, which sends via Resend) plus
 // direct email/GitHub/LinkedIn links.
 export default function ContactSection() {
-	const [status, setStatus] = useState("");
+	const [status, setStatus] = useState<Status>("idle");
 
-	function handleSubmit(event: FormEvent<HTMLFormElement>) {
+	async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
 		event.preventDefault();
-		setStatus("not wired yet, email me directly for now");
+		const form = event.currentTarget;
+		const data = new FormData(form);
+
+		setStatus("sending");
+
+		try {
+			const res = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					from: data.get("from"),
+					replyTo: data.get("replyTo"),
+					body: data.get("body"),
+				}),
+			});
+
+			if (!res.ok) throw new Error("send failed");
+
+			setStatus("sent");
+			form.reset();
+		} catch {
+			setStatus("error");
+		}
 	}
 
 	return (
@@ -66,12 +97,16 @@ export default function ContactSection() {
 					</label>
 
 					<div className="contact-submit-row">
-						<button type="submit" className="contact-submit">
+						<button
+							type="submit"
+							className="contact-submit"
+							disabled={status === "sending"}
+						>
 							&gt; send --now
 						</button>
 						<span className="contact-status" role="status" aria-live="polite">
-								{status}
-							</span>
+							{STATUS_MESSAGES[status]}
+						</span>
 					</div>
 				</form>
 

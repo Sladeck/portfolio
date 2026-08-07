@@ -133,6 +133,17 @@
 				background: var(--gt-gold);
 				color: var(--gt-bg);
 			}
+
+			&:disabled {
+				border-color: var(--gt-iron);
+				color: var(--gt-text-dim);
+				cursor: default;
+
+				&:hover {
+					background: transparent;
+					color: var(--gt-text-dim);
+				}
+			}
 		}
 
 		.contact-status {
