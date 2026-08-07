@@ -11,11 +11,13 @@ export type SectionId =
 	| "about"
 	| "changelog"
 	| "projects"
-	| "contact";
+	| "contact"
+	| "inspiration";
 
 // "home" and "contact" render separately below (brand mark, CTA button).
-// "changelog" is reachable from a link on the projects page instead of
-// taking up a top-level nav slot.
+// "changelog" is reachable from a link on the projects page, and
+// "inspiration" from the "?" badge on the homepage, instead of taking up
+// a top-level nav slot.
 const NAV_LINKS: { id: SectionId; label: string }[] = [
 	{ id: "home", label: "~/home" },
 	{ id: "about", label: "~/about" },

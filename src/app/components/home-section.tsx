@@ -35,6 +35,15 @@ const LANGUAGES: { label: string; value: string }[] = [
 export default function HomeSection({ onNavigate }: HomeSectionProps) {
 	return (
 		<>
+			<SectionLink
+				id="inspiration"
+				onNavigate={onNavigate}
+				className="home-inspiration-link"
+				aria-label="Where the design came from"
+			>
+				?
+			</SectionLink>
+
 			<div className="home-meta">
 				NODE: REMOTE · STATUS:{" "}
 				<span className="home-meta-available">AVAILABLE</span>

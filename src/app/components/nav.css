@@ -236,11 +236,14 @@
 
 			.nav-link {
 				text-align: center;
-				font-size: 14px;
+				font-size: 22px;
+				padding: 8px 0;
 			}
 
 			.nav-cta {
 				text-align: center;
+				font-size: 16px;
+				padding: 12px 20px;
 			}
 		}
 	}

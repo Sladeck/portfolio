@@ -11,6 +11,7 @@ const PATHS: Record<SectionId, string> = {
 	changelog: "~/changelog.log",
 	projects: "~/projects",
 	contact: "~/contact",
+	inspiration: "~/inspiration",
 };
 
 // Real URL for each section, distinct from PATHS above.
@@ -20,6 +21,7 @@ export const URL_PATHS: Record<SectionId, string> = {
 	changelog: "/changelog",
 	projects: "/projects",
 	contact: "/contact",
+	inspiration: "/inspiration",
 };
 
 const SECTION_BY_URL_PATH = Object.fromEntries(

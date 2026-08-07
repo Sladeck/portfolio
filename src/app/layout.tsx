@@ -12,9 +12,7 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
-// TODO: swap for the real domain once it's live. Required for
-// openGraph/twitter image URLs below to resolve to absolute URLs.
-const SITE_URL = "https://example.com";
+const SITE_URL = "https://gmmoulin.com";
 
 const TITLE = "Moulin Guillaume — Freelance Full-Stack Engineer";
 const DESCRIPTION =

@@ -9,6 +9,7 @@ const TITLES: Record<string, string> = {
 	projects: `Projects — ${SITE_NAME}`,
 	changelog: `Changelog — ${SITE_NAME}`,
 	contact: `Contact — ${SITE_NAME}`,
+	inspiration: `Inspiration — ${SITE_NAME}`,
 };
 
 const DESCRIPTIONS: Record<string, string> = {
@@ -17,6 +18,7 @@ const DESCRIPTIONS: Record<string, string> = {
 	projects: "A selection of projects, including ax3.io, Manzanita, and The Obsidian Table.",
 	changelog: "Latest public commits from github.com/Sladeck.",
 	contact: "Get in touch about freelance work.",
+	inspiration: "The references behind this site's terminal look.",
 };
 
 export async function generateMetadata({

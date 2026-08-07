@@ -46,6 +46,30 @@
 	}
 }
 
+.home-inspiration-link {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border: 1px solid var(--gt-iron);
+	border-radius: 50%;
+	font-size: 13px;
+	font-weight: 700;
+	color: var(--gt-text-dim);
+	transition: border-color 0.15s ease, color 0.15s ease;
+
+	@media (hover: hover) {
+		&:hover {
+			border-color: var(--gt-gold);
+			color: var(--gt-gold);
+		}
+	}
+}
+
 .home-meta {
 	margin: -16px 0 32px;
 	font-size: 11px;

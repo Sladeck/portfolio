@@ -1,0 +1,73 @@
+.inspiration-section {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	.inspiration-heading {
+		margin: 0;
+		font-family: var(--gt-font-display);
+		font-size: clamp(20px, 2.6vw, 30px);
+		letter-spacing: 0.03em;
+		color: var(--gt-gold);
+		text-transform: uppercase;
+	}
+
+	.inspiration-intro {
+		max-width: 65ch;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		.inspiration-paragraph {
+			margin: 0;
+			font-size: 13.5px;
+			line-height: 1.6;
+			color: var(--gt-text-muted);
+
+			@media (max-width: 640px) {
+				font-size: 16px;
+			}
+		}
+	}
+
+	.inspiration-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+		gap: 16px;
+	}
+}
+
+.inspiration-card {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	.inspiration-thumb {
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		border: 1px solid var(--gt-border);
+		background: var(--gt-bg);
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			filter: grayscale(0.3) contrast(1.1) brightness(0.75) sepia(0.25);
+			transition: filter 0.2s ease;
+		}
+	}
+
+	&:hover .inspiration-thumb img {
+		filter: grayscale(0.4) contrast(1.05) brightness(0.9) sepia(0.1);
+	}
+
+	figcaption {
+		font-size: 10.5px;
+		letter-spacing: 0.14em;
+		color: var(--gt-text-dim);
+		text-transform: uppercase;
+		text-align: center;
+	}
+}

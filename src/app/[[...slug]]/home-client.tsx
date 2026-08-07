@@ -9,6 +9,7 @@ import AboutSection from "../components/about-section";
 import ChangelogSection from "../components/changelog-section";
 import ProjectsSection from "../components/projects-section";
 import ContactSection from "../components/contact-section";
+import InspirationSection from "../components/inspiration-section";
 import Footer from "../components/footer";
 import { useSectionRouter } from "../hooks/useSectionRouter";
 
@@ -40,6 +41,9 @@ export default function HomeClient() {
 					)}
 					{!transitioning && activeSection === "contact" && (
 						<ContactSection />
+					)}
+					{!transitioning && activeSection === "inspiration" && (
+						<InspirationSection />
 					)}
 				</main>
 

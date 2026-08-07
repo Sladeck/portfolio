@@ -11,6 +11,7 @@ const SUBLABELS: Record<SectionId, string> = {
 	changelog: "curl api.github.com/events",
 	projects: "ls -la --status",
 	contact: "",
+	inspiration: "cat inspiration.md",
 };
 
 interface LifelineProps {

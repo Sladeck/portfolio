@@ -3,8 +3,7 @@
 import "./contact-section.css";
 import { useState, type FormEvent } from "react";
 
-// Placeholder until a real domain/alias is set up.
-const CONTACT_EMAIL = "john.doe@domain.com";
+const CONTACT_EMAIL = "hello@gmmoulin.com";
 
 // Contact page: form (not wired to a backend yet, see handleSubmit) plus
 // direct email/GitHub/LinkedIn links.
