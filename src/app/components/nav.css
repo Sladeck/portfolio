@@ -32,6 +32,44 @@
 	}
 }
 
+/* CRT power-on: the overlay snaps up from a thin line with a brief
+   brightness flash, like an old monitor switching on. */
+@keyframes nav-overlay-power-on {
+	0% {
+		transform: scaleY(0.02);
+		filter: brightness(3);
+	}
+
+	60% {
+		transform: scaleY(1);
+		filter: brightness(1.8);
+	}
+
+	100% {
+		transform: scaleY(1);
+		filter: brightness(1);
+	}
+}
+
+/* Reverse of the above: collapses back down to a thin line with the
+   same brightness flash, like the monitor switching off. */
+@keyframes nav-overlay-power-off {
+	0% {
+		transform: scaleY(1);
+		filter: brightness(1);
+	}
+
+	40% {
+		transform: scaleY(1);
+		filter: brightness(1.8);
+	}
+
+	100% {
+		transform: scaleY(0.02);
+		filter: brightness(3);
+	}
+}
+
 .nav {
 	position: relative;
 	/* A real z-index (not just position) makes .nav its own stacking
@@ -67,9 +105,14 @@
 		cursor: pointer;
 		transition: border-color 0.15s ease, color 0.15s ease;
 
-		&:hover {
-			border-color: var(--gt-gold);
-			color: var(--gt-gold);
+		/* (hover: hover) excludes touchscreens: without it, mobile
+		   browsers apply :hover after a tap and leave it stuck until the
+		   next tap elsewhere, so the button randomly looks gold or grey. */
+		@media (hover: hover) {
+			&:hover {
+				border-color: var(--gt-gold);
+				color: var(--gt-gold);
+			}
 		}
 
 		.nav-toggle-label {
@@ -179,9 +222,16 @@
 			gap: 20px;
 			padding: 24px;
 			background: var(--gt-bg);
+			transform-origin: center;
 
 			&.nav-links--open {
 				display: flex;
+				animation: nav-overlay-power-on 0.2s ease-out;
+			}
+
+			&.nav-links--closing {
+				display: flex;
+				animation: nav-overlay-power-off 0.2s ease-in;
 			}
 
 			.nav-link {

@@ -33,10 +33,25 @@ interface NavProps {
 // mobile breakpoint, links collapse behind a MENU/CLOSE toggle instead.
 export default function Nav({ activeSection, onNavigate }: NavProps) {
 	const [menuOpen, setMenuOpen] = useState(false);
+	// Kept true for the duration of the close animation, so the overlay
+	// stays mounted (display: flex) long enough to play it in reverse
+	// instead of just vanishing with menuOpen.
+	const [menuClosing, setMenuClosing] = useState(false);
+
+	function closeMenu() {
+		setMenuOpen(false);
+		setMenuClosing(true);
+	}
 
 	function navigate(id: SectionId) {
-		setMenuOpen(false);
+		closeMenu();
 		onNavigate(id);
+	}
+
+	// Fires after both the open and close overlay animations; only the
+	// close one needs to do anything here.
+	function handleOverlayAnimationEnd() {
+		if (!menuOpen) setMenuClosing(false);
 	}
 
 	return (
@@ -51,7 +66,7 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 				className="nav-toggle"
 				aria-expanded={menuOpen}
 				aria-controls="nav-links"
-				onClick={() => setMenuOpen((open) => !open)}
+				onClick={() => (menuOpen ? closeMenu() : setMenuOpen(true))}
 			>
 				[{" "}
 				{/* key remounts this span on every toggle, so the glitch
@@ -64,7 +79,14 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 
 			<div
 				id="nav-links"
-				className={menuOpen ? "nav-links nav-links--open" : "nav-links"}
+				className={
+					menuOpen
+						? "nav-links nav-links--open"
+						: menuClosing
+							? "nav-links nav-links--closing"
+							: "nav-links"
+				}
+				onAnimationEnd={handleOverlayAnimationEnd}
 			>
 				{NAV_LINKS.map(({ id, label }) => (
 					<SectionLink
