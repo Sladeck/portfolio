@@ -13,7 +13,6 @@
 	}
 
 	.inspiration-intro {
-		max-width: 65ch;
 		display: flex;
 		flex-direction: column;
 		gap: 12px;

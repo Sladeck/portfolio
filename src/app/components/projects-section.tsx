@@ -24,7 +24,7 @@ interface Project {
 
 const PROJECTS: Project[] = [
 	{
-		name: "the-obsidian-table.com",
+		name: "The Obsidian Table",
 		url: "https://the-obsidian-table.com",
 		badge: "PERSONAL",
 		description:
@@ -35,30 +35,30 @@ const PROJECTS: Project[] = [
 		repository: "https://github.com/Sladeck/TheObsidianTable"
 	},
 	{
-		name: "ax3.io",
+		name: "ax3",
 		url: "https://ax3.io",
 		badge: "PLATFORM",
 		description:
-			"SaaS platform mixing real neuroscience research with marketing, built solo at Manzanita over eight years. Login-gated, so the link only shows the front door.",
+			"SaaS platform blending marketing with real neuroscience research. I owned product, design, and engineering at Manzanita for eight years. Login-gated, so the link only shows the front door.",
 		stack: ["DJANGO", "NEXT.JS", "I18N"],
 		note: "EN / JP",
 		image: "/projects/ax3.png",
 	},
 	{
-		name: "mnzt.io",
+		name: "Manzanita",
 		url: "https://mnzt.io",
 		badge: "COMPANY SITE",
-		description: "Public website for Manzanita, my previous company in Tokyo.",
+		description: "Public website for Manzanita, my previous company in Tokyo. We built ax3's technology together.",
 		stack: ["NEXT.JS", "I18N"],
 		note: "EN / JP",
 		image: "/projects/manzanita.png",
 	},
 	{
-		name: "cominauv.fr",
+		name: "cominauv",
 		url: "https://cominauv.fr",
 		badge: "CLIENT WORK",
 		description:
-			"Website for a startup that bought an amethyst field. Plain HTML/CSS by client request, no framework.",
+			"Website for a startup that bought an amethyst quarry. Plain HTML/CSS by client request, no framework.",
 		stack: ["HTML5", "CSS"],
 		note: "FR / EN",
 		image: "/projects/cominauv.png",
