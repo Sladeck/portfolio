@@ -12,10 +12,31 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
+// TODO: swap for the real domain once it's live. Required for
+// openGraph/twitter image URLs below to resolve to absolute URLs.
+const SITE_URL = "https://example.com";
+
+const TITLE = "Moulin Guillaume — Freelance Full-Stack Engineer";
+const DESCRIPTION =
+	"Freelance full-stack engineer based in France. Django, React and Next.js, eight years of shipping product end to end.";
+
 export const metadata: Metadata = {
-	title: "Moulin Guillaume — Freelance Full-Stack Engineer",
-	description:
-		"Freelance full-stack engineer based in France. Django, React and Next.js, eight years of shipping product end to end.",
+	metadataBase: new URL(SITE_URL),
+	title: TITLE,
+	description: DESCRIPTION,
+	icons: { icon: "/favicon.svg" },
+	openGraph: {
+		title: TITLE,
+		description: DESCRIPTION,
+		type: "website",
+		images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: TITLE,
+		description: DESCRIPTION,
+		images: ["/og-image.png"],
+	},
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

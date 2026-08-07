@@ -26,9 +26,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const { slug } = await params;
 	const key = slug?.[0] ?? "";
+	const title = TITLES[key] ?? TITLES[""];
+	const description = DESCRIPTIONS[key] ?? DESCRIPTIONS[""];
+	// Next shallow-merges openGraph/twitter with the layout's, so the
+	// image has to be repeated here or this route's override would drop it.
+	const images = [{ url: "/og-image.png", width: 1200, height: 630 }];
+
 	return {
-		title: TITLES[key] ?? TITLES[""],
-		description: DESCRIPTIONS[key] ?? DESCRIPTIONS[""],
+		title,
+		description,
+		openGraph: { title, description, images, type: "website" },
+		twitter: { title, description, images: images.map((i) => i.url) },
 	};
 }
 
