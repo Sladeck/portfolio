@@ -92,7 +92,7 @@ export default function AboutSection() {
 					myself.
 				</p>
 				<p className="about-paragraph">
-					The result: our tech is now used by a major international constuling company.
+					The result: our tech is now used by a major international consulting company.
 				</p>
 				<p className="about-paragraph">
 					All of it in a foreign country, a foreign culture, a foreign
