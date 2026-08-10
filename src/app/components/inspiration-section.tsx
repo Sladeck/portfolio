@@ -57,12 +57,12 @@ export default function InspirationSection() {
 				<p className="inspiration-paragraph">
 					I wanted to push the effects and animations further, but
 					pulled back. This is still a page professionals will look at,
-					and I didn&apos;t want anyone waiting on an animation or
+					and I didn't want anyone waiting on an animation or
 					getting annoyed by one.
 				</p>
 				<p className="inspiration-paragraph">
-					I hope you enjoy the result as much as I do. And if it&apos;s
-					not your taste, don&apos;t worry, I can do plenty of more
+					I hope you enjoy the result as much as I do. And if it's
+					not your taste, don't worry, I can do plenty of more
 					conventional work too.
 				</p>
 			</div>

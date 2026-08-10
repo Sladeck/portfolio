@@ -74,7 +74,7 @@ export default function AboutSection() {
 			<h1 className="sr-only">About</h1>
 			<div className="about-intro">
 				<p className="about-paragraph">
-					At the end of my third year of a Bachelor&apos;s in Paris, I
+					At the end of my third year of a Bachelor's in Paris, I
 					moved to Japan alone, left family and friends behind, and
 					joined a small startup called Manzanita to build ax3.io: a SaaS platform mixing
 					real neuroscience research with marketing. I stayed eight
@@ -82,11 +82,11 @@ export default function AboutSection() {
 				</p>
 				<p className="about-paragraph">
 					I started as an intern, became the sole full-time developer
-					with a junior&apos;s title and a lead&apos;s responsibilities,
+					with a junior's title and a lead's responsibilities,
 					then grew into a platform engineer leading a small team.
 					Whatever needed doing, I was the only one who could do it:
 					turning ideas into design into working software, running the
-					office&apos;s IT, mentoring junior developers and designers,
+					office's IT, mentoring junior developers and designers,
 					acting as security officer, writing documentation and privacy
 					policies, and sitting in front of clients to explain the tech
 					myself.
@@ -96,8 +96,8 @@ export default function AboutSection() {
 				</p>
 				<p className="about-paragraph">
 					All of it in a foreign country, a foreign culture, a foreign
-					language. That&apos;s why new challenges don&apos;t worry me.
-					Whatever needs to be done gets done. Now I&apos;m back in
+					language. That's why new challenges don't worry me.
+					Whatever needs to be done gets done. Now I'm back in
 					France, freelance, and looking for new challenges and new
 					people to build with.
 				</p>
