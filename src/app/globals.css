@@ -12,8 +12,8 @@
 	/* Darker than --gt-iron: internal dividers only, not outer borders. */
 	--gt-border: #26262a;
 	--gt-hairline: #1e1e22;
-	--gt-font-mono: "JetBrains Mono", ui-monospace, monospace;
-	--gt-font-display: "Cinzel", Georgia, serif;
+	--gt-font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+	--gt-font-display: var(--font-cinzel), Georgia, serif;
 }
 
 @keyframes blink {

@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono, Cinzel } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+const jetbrainsMono = JetBrains_Mono({
+	variable: "--font-jetbrains-mono",
 	subsets: ["latin"],
+	weight: ["400", "700"],
 });
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
+const cinzel = Cinzel({
+	variable: "--font-cinzel",
 	subsets: ["latin"],
+	weight: ["700", "900"],
 });
 
 const SITE_URL = "https://gmmoulin.com";
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
 	return (
-		<html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+		<html lang="en" className={`${jetbrainsMono.variable} ${cinzel.variable}`}>
 			<body>{children}</body>
 		</html>
 	);

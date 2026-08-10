@@ -31,7 +31,7 @@ const PROJECTS: Project[] = [
 			"My own food blog, reviewing restaurants I love around the world. Design and frontend by me, backend built with Claude.",
 		stack: ["VUE.JS", "NODE.JS"],
 		note: "EN",
-		image: "/projects/obsidian_table.png",
+		image: "/projects/obsidian_table.webp",
 		repository: "https://github.com/Sladeck/TheObsidianTable"
 	},
 	{
@@ -42,7 +42,7 @@ const PROJECTS: Project[] = [
 			"SaaS platform blending marketing with real neuroscience research. I owned product, design, and engineering at Manzanita for eight years. Login-gated, so the link only shows the front door.",
 		stack: ["DJANGO", "NEXT.JS", "I18N"],
 		note: "EN / JP",
-		image: "/projects/ax3.png",
+		image: "/projects/ax3.webp",
 	},
 	{
 		name: "Manzanita",
@@ -51,7 +51,7 @@ const PROJECTS: Project[] = [
 		description: "Public website for Manzanita, my previous company in Tokyo. We built ax3's technology together.",
 		stack: ["NEXT.JS", "I18N"],
 		note: "EN / JP",
-		image: "/projects/manzanita.png",
+		image: "/projects/manzanita.webp",
 	},
 	{
 		name: "cominauv",
@@ -61,7 +61,7 @@ const PROJECTS: Project[] = [
 			"Website for a startup that bought an amethyst quarry. Plain HTML/CSS by client request, no framework.",
 		stack: ["HTML5", "CSS"],
 		note: "FR / EN",
-		image: "/projects/cominauv.png",
+		image: "/projects/cominauv.webp",
 		offline: true,
 	},
 ];

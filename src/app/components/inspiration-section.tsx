@@ -10,7 +10,7 @@ interface InspirationItem {
 
 const INSPIRATIONS: InspirationItem[] = [
 	{
-		image: "/inspiration/terminal.png",
+		image: "/inspiration/terminal.webp",
 		alt: "A computer terminal",
 		label: "TERMINAL",
 	},
@@ -20,7 +20,7 @@ const INSPIRATIONS: InspirationItem[] = [
 		label: "WARHAMMER 40K",
 	},
 	{
-		image: "/inspiration/old-tv.jpg",
+		image: "/inspiration/old-tv.webp",
 		alt: "An old cathode-ray TV",
 		label: "CATHODE-RAY TV",
 	},
