@@ -3,6 +3,8 @@
 import "./projects-section.css";
 import Panel from "./panel";
 import SectionLink from "./section-link";
+import { useTranslations } from "../hooks/useTranslations";
+import type { Dictionary } from "../i18n/dictionary";
 import type { SectionId } from "./nav";
 
 interface ProjectsSectionProps {
@@ -10,10 +12,10 @@ interface ProjectsSectionProps {
 }
 
 interface Project {
+	key: keyof Dictionary["projects"]["descriptions"];
 	name: string;
 	url: string;
-	badge: string;
-	description: string;
+	badgeKey: keyof Dictionary["projects"]["badges"];
 	stack: string[];
 	note: string;
 	image: string;
@@ -25,45 +27,45 @@ interface Project {
 	repository?: string;
 }
 
+// Names, URLs, tech stack, and images are proper nouns/universal terms
+// that don't change between languages; badge/description text lives in
+// the translation dictionary, looked up by key/badgeKey below.
 const PROJECTS: Project[] = [
 	{
+		key: "obsidian",
 		name: "The Obsidian Table",
 		url: "https://the-obsidian-table.com",
-		badge: "PERSONAL",
-		description:
-			"My own food blog, reviewing restaurants I love around the world. Design and frontend by me, backend built with Claude.",
+		badgeKey: "personal",
 		stack: ["VUE.JS", "NODE.JS"],
 		note: "EN",
 		image: "/projects/obsidian_table.webp",
 		repository: "https://github.com/Sladeck/TheObsidianTable"
 	},
 	{
+		key: "ax3",
 		name: "ax3",
 		url: "https://ax3.io",
-		badge: "PLATFORM",
-		description:
-			"SaaS platform blending marketing with real neuroscience research. I owned product, design, and engineering at Manzanita for eight years. Login-gated, so the link only shows the front door.",
+		badgeKey: "platform",
 		stack: ["DJANGO", "NEXT.JS", "I18N"],
 		note: "EN / JP",
 		image: "/projects/ax3.webp",
 		imageMobile: "/projects/ax3-sm.webp",
 	},
 	{
+		key: "manzanita",
 		name: "Manzanita",
 		url: "https://mnzt.io",
-		badge: "COMPANY SITE",
-		description: "Public website for Manzanita, my previous company in Tokyo. We built ax3's technology together.",
+		badgeKey: "companySite",
 		stack: ["NEXT.JS", "I18N"],
 		note: "EN / JP",
 		image: "/projects/manzanita.webp",
 		imageMobile: "/projects/manzanita-sm.webp",
 	},
 	{
+		key: "cominauv",
 		name: "cominauv",
 		url: "https://cominauv.fr",
-		badge: "CLIENT WORK",
-		description:
-			"Website for a startup that bought an amethyst quarry. Plain HTML/CSS by client request, no framework.",
+		badgeKey: "clientWork",
 		stack: ["HTML5", "CSS"],
 		note: "FR / EN",
 		image: "/projects/cominauv.webp",
@@ -74,6 +76,8 @@ const PROJECTS: Project[] = [
 
 // Project cards, plus a small link over to the changelog page.
 export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
+	const dict = useTranslations();
+
 	return (
 		<section className="projects-section">
 			<h1 className="sr-only">Projects</h1>
@@ -82,12 +86,16 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 				onNavigate={onNavigate}
 				className="projects-changelog-link"
 			>
-				&gt; See latest changelogs...
+				{dict.projects.changelogLink}
 			</SectionLink>
 
 			<div className="projects-list">
 				{PROJECTS.map((project) => (
-					<Panel key={project.name} title={project.name} badge={project.badge}>
+					<Panel
+						key={project.key}
+						title={project.name}
+						badge={dict.projects.badges[project.badgeKey]}
+					>
 						<div className="project-body">
 							<div className="project-thumb">
 								{/* eslint-disable-next-line @next/next/no-img-element */}
@@ -103,11 +111,15 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 									loading="lazy"
 								/>
 								{project.offline && (
-									<span className="project-offline-stamp">OFFLINE</span>
+									<span className="project-offline-stamp">
+										{dict.projects.offlineLabel}
+									</span>
 								)}
 							</div>
 
-							<p className="project-description">{project.description}</p>
+							<p className="project-description">
+								{dict.projects.descriptions[project.key]}
+							</p>
 
 							<div className="project-meta">
 								<div className="panel-tags">
@@ -143,7 +155,7 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 										rel="noopener noreferrer"
 										className="project-link project-link--repo"
 									>
-										repo &#8599;
+										{dict.projects.repoLabel} &#8599;
 									</a>
 								)}
 							</div>

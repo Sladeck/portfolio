@@ -2,22 +2,24 @@
 
 import "./contact-section.css";
 import { useState, type SubmitEvent } from "react";
+import { useTranslations } from "../hooks/useTranslations";
 
 const CONTACT_EMAIL = "hello@gmmoulin.com";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-const STATUS_MESSAGES: Record<Status, string> = {
-	idle: "",
-	sending: "sending...",
-	sent: "sent, I'll get back to you soon",
-	error: "failed to send, email me directly instead",
-};
-
 // Contact page: form (POSTs to /api/contact, which sends via Resend) plus
 // direct email/GitHub/LinkedIn links.
 export default function ContactSection() {
+	const dict = useTranslations();
 	const [status, setStatus] = useState<Status>("idle");
+
+	const statusMessages: Record<Status, string> = {
+		idle: "",
+		sending: dict.contact.statusSending,
+		sent: dict.contact.statusSent,
+		error: dict.contact.statusError,
+	};
 
 	async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -48,49 +50,46 @@ export default function ContactSection() {
 
 	return (
 		<section className="contact-section">
-			<h1 className="contact-heading">&gt; initiate_contact</h1>
+			<h1 className="contact-heading">{dict.contact.heading}</h1>
 
-			<p className="contact-intro">
-				Freelance and currently available for new projects. Tell me
-				what's broken or what needs building, I'll get back to you as soon as possible.
-			</p>
+			<p className="contact-intro">{dict.contact.intro}</p>
 
 			<div className="contact-grid">
 				<form className="contact-form" onSubmit={handleSubmit}>
 					<label className="contact-field">
-						<span>--from</span>
+						<span>{dict.contact.fromLabel}</span>
 						<div className="contact-input-row">
 							<span className="contact-prompt">$</span>
 							<input
 								type="text"
 								name="from"
-								placeholder="name & company"
+								placeholder={dict.contact.fromPlaceholder}
 								required
 							/>
 						</div>
 					</label>
 
 					<label className="contact-field">
-						<span>--reply-to</span>
+						<span>{dict.contact.replyToLabel}</span>
 						<div className="contact-input-row">
 							<span className="contact-prompt">$</span>
 							<input
 								type="email"
 								name="replyTo"
-								placeholder="your@email.com"
+								placeholder={dict.contact.replyToPlaceholder}
 								required
 							/>
 						</div>
 					</label>
 
 					<label className="contact-field">
-						<span>--body</span>
+						<span>{dict.contact.bodyLabel}</span>
 						<div className="contact-input-row contact-input-row--area">
 							<span className="contact-prompt">$</span>
 							<textarea
 								name="body"
 								rows={9}
-								placeholder="scope, timeline, budget range"
+								placeholder={dict.contact.bodyPlaceholder}
 								required
 							/>
 						</div>
@@ -102,28 +101,28 @@ export default function ContactSection() {
 							className="contact-submit"
 							disabled={status === "sending"}
 						>
-							&gt; send --now
+							{dict.contact.submit}
 						</button>
 						<span
-						className={`contact-status contact-status--${status}`}
-						role="status"
-						aria-live="polite"
-					>
-						{STATUS_MESSAGES[status]}
-					</span>
+							className={`contact-status contact-status--${status}`}
+							role="status"
+							aria-live="polite"
+						>
+							{statusMessages[status]}
+						</span>
 					</div>
 				</form>
 
 				<div className="contact-side">
 					<div className="contact-card">
-						<span className="contact-card-label">DIRECT</span>
+						<span className="contact-card-label">{dict.contact.directLabel}</span>
 						<a href={`mailto:${CONTACT_EMAIL}`} className="contact-card-link">
 							{CONTACT_EMAIL}
 						</a>
 					</div>
 
 					<div className="contact-card">
-						<span className="contact-card-label">CHANNELS</span>
+						<span className="contact-card-label">{dict.contact.channelsLabel}</span>
 						<a
 							href="https://github.com/Sladeck?tab=repositories"
 							target="_blank"

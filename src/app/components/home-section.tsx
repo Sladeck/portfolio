@@ -3,45 +3,32 @@
 import "./home-section.css";
 import Panel from "./panel";
 import SectionLink from "./section-link";
+import { useTranslations } from "../hooks/useTranslations";
 import type { SectionId } from "./nav";
 
 interface HomeSectionProps {
 	onNavigate: (id: SectionId) => void;
 }
 
-const TOOLSET: { label: string; value: string }[] = [
-	{ label: "LANGUAGES", value: "Python · JavaScript" },
-	{ label: "FRAMEWORKS", value: "Django · DRF · React · Next.js" },
-	{ label: "INFRASTRUCTURE", value: "AWS · Cloudflare · Sentry · Linux" },
-	{ label: "AI INTEGRATION", value: "ChatGPT API · Google Imagen" },
-	{ label: "DESIGN", value: "UX/UI · Figma" },
-	{ label: "LEADERSHIP", value: "Team Lead · Mentoring" },
-	{ label: "IT / ADMIN", value: "Google Workspace · Security Training" },
-];
-
-const LANGUAGES: { label: string; value: string }[] = [
-	{ label: "FRENCH", value: "Native" },
-	{ label: "ENGLISH", value: "Professional" },
-	{ label: "JAPANESE", value: "Intermediate" },
-];
-
 // Homepage hero: name, tagline, hire_me/view_work actions, and the
 // toolset/languages panels.
 export default function HomeSection({ onNavigate }: HomeSectionProps) {
+	const dict = useTranslations();
+
 	return (
 		<>
 			<SectionLink
 				id="inspiration"
 				onNavigate={onNavigate}
 				className="home-inspiration-link"
-				aria-label="Where the design came from"
+				aria-label={dict.home.inspirationLinkLabel}
 			>
 				?
 			</SectionLink>
 
 			<div className="home-meta">
-				NODE: REMOTE · STATUS:{" "}
-				<span className="home-meta-available">AVAILABLE</span>
+				{dict.home.metaNode}{" "}
+				<span className="home-meta-available">{dict.home.metaAvailable}</span>
 			</div>
 
 			<section className="home-section">
@@ -59,13 +46,9 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 						</span>
 					</h1>
 
-					<p className="home-subtitle">Freelance full-stack engineer</p>
+					<p className="home-subtitle">{dict.home.subtitle}</p>
 
-					<p className="home-tagline">
-						Based in France with 8 years of international experience. I
-						take product from a blank page to a live release, start to
-						finish.
-					</p>
+					<p className="home-tagline">{dict.home.tagline}</p>
 
 					<div className="home-actions">
 						<SectionLink
@@ -73,26 +56,30 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 							onNavigate={onNavigate}
 							className="home-action home-action--primary"
 						>
-							&gt; hire_me
+							{dict.home.hireMe}
 						</SectionLink>
 						<SectionLink
 							id="projects"
 							onNavigate={onNavigate}
 							className="home-action home-action--secondary"
 						>
-							&gt; view_work
+							{dict.home.viewWork}
 						</SectionLink>
 					</div>
 				</div>
 
 				<div className="home-panels">
 					<Panel
-						title="TOOLSET"
-						badge="8 YRS"
-						items={TOOLSET}
+						title={dict.home.toolsetTitle}
+						badge={dict.home.toolsetBadge}
+						items={dict.home.toolset}
 						className="panel--span-last"
 					/>
-					<Panel title="LANGUAGES" badge="3" items={LANGUAGES} />
+					<Panel
+						title={dict.home.languagesTitle}
+						badge={dict.home.languagesBadge}
+						items={dict.home.languages}
+					/>
 				</div>
 			</section>
 		</>

@@ -2,6 +2,7 @@
 
 import "./changelog-section.css";
 import { useEffect, useState } from "react";
+import { useTranslations } from "../hooks/useTranslations";
 
 interface ActivityEntry {
 	id: string;
@@ -24,6 +25,7 @@ function formatDate(iso: string): string {
 // Latest 20 commits from GitHub, newest first, fetched from our own
 // cached Route Handler rather than GitHub's API directly.
 export default function ChangelogSection() {
+	const dict = useTranslations();
 	const [entries, setEntries] = useState<ActivityEntry[] | null>(null);
 	const [failed, setFailed] = useState(false);
 	const [visibleCount, setVisibleCount] = useState(0);
@@ -63,7 +65,7 @@ export default function ChangelogSection() {
 		<section className="changelog-section">
 			<h1 className="sr-only">Changelog</h1>
 			<p className="changelog-intro">
-				Live from{" "}
+				{dict.changelog.introPrefix}{" "}
 				<a
 					href="https://github.com/Sladeck"
 					target="_blank"
@@ -71,19 +73,19 @@ export default function ChangelogSection() {
 				>
 					github.com/Sladeck
 				</a>
-				: latest 20 commits.
+				{dict.changelog.introSuffix}
 			</p>
 
 			{failed && (
-				<p className="changelog-empty">Could not reach GitHub right now.</p>
+				<p className="changelog-empty">{dict.changelog.errorState}</p>
 			)}
 
 			{!failed && entries === null && (
-				<p className="changelog-empty">Fetching activity…</p>
+				<p className="changelog-empty">{dict.changelog.loadingState}</p>
 			)}
 
 			{!failed && entries !== null && entries.length === 0 && (
-				<p className="changelog-empty">No recent public commits found.</p>
+				<p className="changelog-empty">{dict.changelog.emptyState}</p>
 			)}
 
 			{visibleEntries.length > 0 && (
@@ -99,7 +101,7 @@ export default function ChangelogSection() {
 						>
 							<div className="changelog-date">[{formatDate(entry.date)}]</div>
 							<div className="changelog-body">
-								<span className="changelog-tag">COMMIT</span>{" "}
+								<span className="changelog-tag">{dict.changelog.commitTag}</span>{" "}
 								<span className="changelog-repo">{entry.repo}</span>
 								<div className="changelog-summary">{entry.summary}</div>
 							</div>

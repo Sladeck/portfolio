@@ -3,6 +3,8 @@
 import Link from "next/link";
 import type { AnchorHTMLAttributes, MouseEvent } from "react";
 import { URL_PATHS } from "../hooks/useSectionRouter";
+import { useLocale } from "../hooks/useLocale";
+import { withLocalePrefix } from "../i18n/locale";
 import type { SectionId } from "./nav";
 
 interface SectionLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -19,6 +21,8 @@ export default function SectionLink({
 	onClick,
 	...rest
 }: SectionLinkProps) {
+	const locale = useLocale();
+
 	function handleClick(event: MouseEvent<HTMLAnchorElement>) {
 		onClick?.(event);
 		if (event.defaultPrevented) return;
@@ -30,5 +34,11 @@ export default function SectionLink({
 		onNavigate(id);
 	}
 
-	return <Link href={URL_PATHS[id]} onClick={handleClick} {...rest} />;
+	return (
+		<Link
+			href={withLocalePrefix(URL_PATHS[id], locale)}
+			onClick={handleClick}
+			{...rest}
+		/>
+	);
 }

@@ -16,7 +16,9 @@ const cinzel = Cinzel({
 
 const SITE_URL = "https://gmmoulin.com";
 
-const TITLE = "Moulin Guillaume — Freelance Full-Stack Engineer";
+// Fallback only: each route's generateMetadata (en and fr trees) overrides
+// this with the localized title/description.
+const TITLE = "Moulin Guillaume · Freelance Full-Stack Engineer";
 const DESCRIPTION =
 	"Freelance full-stack engineer based in France. Django, React and Next.js, eight years of shipping product end to end.";
 

@@ -3,6 +3,8 @@
 import "./nav.css";
 import { useState } from "react";
 import SectionLink from "./section-link";
+import LanguageSwitcher from "./language-switcher";
+import { useTranslations } from "../hooks/useTranslations";
 
 // Single source of truth for section ids, shared by this menu, the
 // lifeline header, and the page router.
@@ -18,10 +20,10 @@ export type SectionId =
 // "changelog" is reachable from a link on the projects page, and
 // "inspiration" from the "?" badge on the homepage, instead of taking up
 // a top-level nav slot.
-const NAV_LINKS: { id: SectionId; label: string }[] = [
-	{ id: "home", label: "~/home" },
-	{ id: "about", label: "~/about" },
-	{ id: "projects", label: "~/projects" },
+const NAV_LINK_IDS: ("home" | "about" | "projects")[] = [
+	"home",
+	"about",
+	"projects",
 ];
 
 interface NavProps {
@@ -34,6 +36,7 @@ interface NavProps {
 // Top nav: brand mark, section links, and a contact CTA. Below the
 // mobile breakpoint, links collapse behind a MENU/CLOSE toggle instead.
 export default function Nav({ activeSection, onNavigate }: NavProps) {
+	const dict = useTranslations();
 	const [menuOpen, setMenuOpen] = useState(false);
 	// Kept true for the duration of the close animation, so the overlay
 	// stays mounted (display: flex) long enough to play it in reverse
@@ -60,7 +63,7 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 		<nav className="nav">
 			<SectionLink id="home" onNavigate={navigate} className="nav-brand">
 				<span className="nav-name">MOULIN GUILLAUME</span>
-				<span className="nav-role">/ full-stack engineer</span>
+				<span className="nav-role">{dict.nav.role}</span>
 			</SectionLink>
 
 			<button
@@ -74,7 +77,7 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 				{/* key remounts this span on every toggle, so the glitch
 				    animation below replays from scratch each time */}
 				<span className="nav-toggle-label" key={menuOpen ? "close" : "menu"}>
-					{menuOpen ? "CLOSE" : "MENU"}
+					{menuOpen ? dict.nav.menuClose : dict.nav.menuOpen}
 				</span>{" "}
 				]
 			</button>
@@ -90,7 +93,7 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 				}
 				onAnimationEnd={handleOverlayAnimationEnd}
 			>
-				{NAV_LINKS.map(({ id, label }) => (
+				{NAV_LINK_IDS.map((id) => (
 					<SectionLink
 						key={id}
 						id={id}
@@ -100,13 +103,15 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 						}
 						aria-current={activeSection === id ? "page" : undefined}
 					>
-						{label}
+						{dict.nav.links[id]}
 					</SectionLink>
 				))}
 
 				<SectionLink id="contact" onNavigate={navigate} className="nav-cta">
-					&gt; initiate_contact
+					{dict.nav.cta}
 				</SectionLink>
+
+				<LanguageSwitcher />
 			</div>
 		</nav>
 	);

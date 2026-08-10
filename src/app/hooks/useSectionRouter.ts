@@ -3,8 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { SectionId } from "../components/nav";
+import { localeFromPathname, stripLocalePrefix, withLocalePrefix } from "../i18n/locale";
 
-// Path shown in the lifeline header (display text, not a real URL).
+// Path shown in the lifeline header (display text, not a real URL). Kept
+// identical across locales on purpose, unlike the nav menu labels: it's
+// styled to look like literal terminal/file output, not prose.
 const PATHS: Record<SectionId, string> = {
 	home: "~/home",
 	about: "~/about",
@@ -32,7 +35,7 @@ const SECTION_BY_URL_PATH = Object.fromEntries(
 ) as Record<string, SectionId>;
 
 function sectionFromPathname(pathname: string): SectionId {
-	return SECTION_BY_URL_PATH[pathname] ?? "home";
+	return SECTION_BY_URL_PATH[stripLocalePrefix(pathname)] ?? "home";
 }
 
 // The CSS-side prefers-reduced-motion override (globals.css) doesn't
@@ -184,9 +187,10 @@ export function useSectionRouter(): SectionRouter {
 	const goTo = useCallback(
 		(id: SectionId) => {
 			if (booting || transitioning || id === activeSection) return;
-			router.push(URL_PATHS[id]);
+			const locale = localeFromPathname(pathname);
+			router.push(withLocalePrefix(URL_PATHS[id], locale));
 		},
-		[activeSection, booting, transitioning, router],
+		[activeSection, booting, transitioning, pathname, router],
 	);
 
 	return { activeSection, transitioning, booting, lifelineText, goTo };
