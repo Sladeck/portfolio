@@ -4,6 +4,10 @@ import "./inspiration-section.css";
 
 interface InspirationItem {
 	image: string;
+	/** width, in px, of `image` — needed for the srcSet width descriptor. */
+	imageWidth: number;
+	imageMobile: string;
+	imageMobileWidth: number;
 	alt: string;
 	label: string;
 }
@@ -11,16 +15,25 @@ interface InspirationItem {
 const INSPIRATIONS: InspirationItem[] = [
 	{
 		image: "/inspiration/terminal.webp",
+		imageWidth: 900,
+		imageMobile: "/inspiration/terminal-sm.webp",
+		imageMobileWidth: 450,
 		alt: "A computer terminal",
 		label: "TERMINAL",
 	},
 	{
 		image: "/inspiration/warhammer-40k.webp",
+		imageWidth: 640,
+		imageMobile: "/inspiration/warhammer-40k-sm.webp",
+		imageMobileWidth: 320,
 		alt: "Warhammer 40k artwork",
 		label: "WARHAMMER 40K",
 	},
 	{
 		image: "/inspiration/old-tv.webp",
+		imageWidth: 641,
+		imageMobile: "/inspiration/old-tv-sm.webp",
+		imageMobileWidth: 320,
 		alt: "An old cathode-ray TV",
 		label: "CATHODE-RAY TV",
 	},
@@ -59,7 +72,13 @@ export default function InspirationSection() {
 					<figure className="inspiration-card" key={item.label}>
 						<div className="inspiration-thumb">
 							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img src={item.image} alt={item.alt} loading="lazy" />
+							<img
+								src={item.image}
+								srcSet={`${item.imageMobile} ${item.imageMobileWidth}w, ${item.image} ${item.imageWidth}w`}
+								sizes="(max-width: 640px) 100vw, 300px"
+								alt={item.alt}
+								loading="lazy"
+							/>
 						</div>
 						<figcaption>{item.label}</figcaption>
 					</figure>

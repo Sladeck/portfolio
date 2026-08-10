@@ -17,6 +17,9 @@ interface Project {
 	stack: string[];
 	note: string;
 	image: string;
+	/** Smaller variant for mobile, via srcSet. Omitted where the full
+	 *  image is already small enough that a second variant isn't worth it. */
+	imageMobile?: string;
 	/** No SSL on the live domain right now, so the link out is disabled. */
 	offline?: boolean;
 	repository?: string;
@@ -43,6 +46,7 @@ const PROJECTS: Project[] = [
 		stack: ["DJANGO", "NEXT.JS", "I18N"],
 		note: "EN / JP",
 		image: "/projects/ax3.webp",
+		imageMobile: "/projects/ax3-sm.webp",
 	},
 	{
 		name: "Manzanita",
@@ -52,6 +56,7 @@ const PROJECTS: Project[] = [
 		stack: ["NEXT.JS", "I18N"],
 		note: "EN / JP",
 		image: "/projects/manzanita.webp",
+		imageMobile: "/projects/manzanita-sm.webp",
 	},
 	{
 		name: "cominauv",
@@ -62,6 +67,7 @@ const PROJECTS: Project[] = [
 		stack: ["HTML5", "CSS"],
 		note: "FR / EN",
 		image: "/projects/cominauv.webp",
+		imageMobile: "/projects/cominauv-sm.webp",
 		offline: true,
 	},
 ];
@@ -87,6 +93,12 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 								{/* eslint-disable-next-line @next/next/no-img-element */}
 								<img
 									src={project.image}
+									srcSet={
+										project.imageMobile
+											? `${project.imageMobile} 640w, ${project.image} 1280w`
+											: undefined
+									}
+									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
 									alt={`Screenshot of ${project.name}`}
 									loading="lazy"
 								/>
