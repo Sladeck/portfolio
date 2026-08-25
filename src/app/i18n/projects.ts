@@ -229,6 +229,8 @@ export interface ProjectUi {
 	owned: string;
 	workedWith: string;
 	clients: string;
+	expand: string;
+	collapse: string;
 	shotPending: string;
 	prev: string;
 	next: string;
@@ -247,6 +249,8 @@ export const PROJECT_UI: Record<Locale, ProjectUi> = {
 		owned: "OWNED",
 		workedWith: "WORKED WITH",
 		clients: "PARTNERS",
+		expand: "> read_more",
+		collapse: "> show_less",
 		shotPending: "screenshot pending",
 		prev: "prev",
 		next: "next",
@@ -263,6 +267,8 @@ export const PROJECT_UI: Record<Locale, ProjectUi> = {
 		owned: "PRIS EN CHARGE",
 		workedWith: "EN COLLABORATION AVEC",
 		clients: "PARTENAIRES",
+		expand: "> lire_la_suite",
+		collapse: "> reduire",
 		shotPending: "capture à venir",
 		prev: "précédent",
 		next: "suivant",

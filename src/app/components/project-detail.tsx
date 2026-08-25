@@ -1,6 +1,7 @@
 "use client";
 
 import "./project-detail.css";
+import { useId, useState } from "react";
 import Panel from "./panel";
 import SectionLink from "./section-link";
 import { useTranslations } from "../hooks/useTranslations";
@@ -54,6 +55,62 @@ function Shot({
 			</div>
 			{caption && <figcaption>{caption}</figcaption>}
 		</figure>
+	);
+}
+
+// Prose that shows its opening paragraph and keeps the rest behind a
+// toggle: the goal and role sections are the longest thing between a
+// reader and the result, and most people want to choose what to read.
+function CollapsibleProse({
+	paragraphs,
+	expandLabel,
+	collapseLabel,
+}: {
+	paragraphs: string[];
+	expandLabel: string;
+	collapseLabel: string;
+}) {
+	const [open, setOpen] = useState(false);
+	const restId = useId();
+	const [first, ...rest] = paragraphs;
+
+	if (rest.length === 0) {
+		return (
+			<div className="project-prose">
+				<p>{first}</p>
+			</div>
+		);
+	}
+
+	return (
+		<div className="project-prose">
+			<p>{first}</p>
+
+			{/* Always rendered, only hidden: keeps the text findable by
+			    in-page search and by crawlers. */}
+			<div
+				id={restId}
+				className={
+					open
+						? "project-prose-rest"
+						: "project-prose-rest project-prose-rest--closed"
+				}
+			>
+				{rest.map((paragraph) => (
+					<p key={paragraph}>{paragraph}</p>
+				))}
+			</div>
+
+			<button
+				type="button"
+				className="project-more"
+				aria-expanded={open}
+				aria-controls={restId}
+				onClick={() => setOpen((wasOpen) => !wasOpen)}
+			>
+				{open ? collapseLabel : expandLabel}
+			</button>
+		</div>
 	);
 }
 
@@ -182,20 +239,20 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 
 			<section className="project-block">
 				<h2 className="project-heading">{ui.goalHeading}</h2>
-				<div className="project-prose">
-					{copy.goal.map((paragraph) => (
-						<p key={paragraph}>{paragraph}</p>
-					))}
-				</div>
+				<CollapsibleProse
+					paragraphs={copy.goal}
+					expandLabel={ui.expand}
+					collapseLabel={ui.collapse}
+				/>
 			</section>
 
 			<section className="project-block">
 				<h2 className="project-heading">{ui.roleHeading}</h2>
-				<div className="project-prose">
-					{copy.role.map((paragraph) => (
-						<p key={paragraph}>{paragraph}</p>
-					))}
-				</div>
+				<CollapsibleProse
+					paragraphs={copy.role}
+					expandLabel={ui.expand}
+					collapseLabel={ui.collapse}
+				/>
 
 				<div className="project-role-grid">
 					<Panel title={ui.owned}>
