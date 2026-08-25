@@ -11,12 +11,13 @@ import ChangelogSection from "./changelog-section";
 import ProjectsSection from "./projects-section";
 import ContactSection from "./contact-section";
 import InspirationSection from "./inspiration-section";
+import ProjectDetail from "./project-detail";
 import Footer from "./footer";
 import { useSectionRouter } from "../hooks/useSectionRouter";
 import { useLocale } from "../hooks/useLocale";
 
 export default function HomeClient() {
-	const { activeSection, transitioning, lifelineText, goTo } =
+	const { activeSection, activeProjectSlug, transitioning, lifelineText, goTo } =
 		useSectionRouter();
 	const locale = useLocale();
 
@@ -35,6 +36,7 @@ export default function HomeClient() {
 				<Lifeline
 					text={lifelineText}
 					activeSection={activeSection}
+					activeProjectSlug={activeProjectSlug}
 					transitioning={transitioning}
 				/>
 
@@ -54,6 +56,9 @@ export default function HomeClient() {
 					)}
 					{!transitioning && activeSection === "inspiration" && (
 						<InspirationSection />
+					)}
+					{!transitioning && activeSection === "project" && activeProjectSlug && (
+						<ProjectDetail slug={activeProjectSlug} onNavigate={goTo} />
 					)}
 				</main>
 

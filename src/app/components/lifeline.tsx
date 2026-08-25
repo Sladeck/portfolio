@@ -12,12 +12,16 @@ const SUBLABELS: Record<SectionId, string> = {
 	projects: "ls -la --status",
 	contact: "",
 	inspiration: "cat inspiration.md",
+	// Overridden per-project below, using the slug as the file name.
+	project: "cat case-study.md",
 };
 
 interface LifelineProps {
 	/** What the path currently reads, may be mid erase/retype. */
 	text: string;
 	activeSection: SectionId;
+	/** Set while activeSection is "project"; names the sublabel's file. */
+	activeProjectSlug?: string;
 	transitioning: boolean;
 }
 
@@ -26,9 +30,14 @@ interface LifelineProps {
 export default function Lifeline({
 	text,
 	activeSection,
+	activeProjectSlug,
 	transitioning,
 }: LifelineProps) {
-	const subLabel = transitioning ? "" : SUBLABELS[activeSection];
+	const subLabel = transitioning
+		? ""
+		: activeSection === "project" && activeProjectSlug
+			? `cat ${activeProjectSlug}.md`
+			: SUBLABELS[activeSection];
 
 	return (
 		<div className="lifeline">

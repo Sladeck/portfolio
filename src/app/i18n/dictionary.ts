@@ -52,6 +52,7 @@ export interface Dictionary {
 		changelogLink: string;
 		repoLabel: string;
 		offlineLabel: string;
+		readMore: string;
 		badges: {
 			personal: string;
 			platform: string;
@@ -206,6 +207,7 @@ const en: Dictionary = {
 		changelogLink: "> See latest changelogs...",
 		repoLabel: "repo",
 		offlineLabel: "OFFLINE",
+		readMore: "> read_case_study",
 		badges: {
 			personal: "PERSONAL",
 			platform: "PLATFORM",
@@ -366,6 +368,7 @@ const fr: Dictionary = {
 		changelogLink: "> Voir les derniers changelogs...",
 		repoLabel: "dépôt",
 		offlineLabel: "HORS LIGNE",
+		readMore: "> lire_l_etude",
 		badges: {
 			personal: "PERSONNEL",
 			platform: "PLATEFORME",

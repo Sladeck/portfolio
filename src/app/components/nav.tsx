@@ -14,7 +14,10 @@ export type SectionId =
 	| "changelog"
 	| "projects"
 	| "contact"
-	| "inspiration";
+	| "inspiration"
+	// Slug-driven detail page (/projects/<slug>), reached from a card on
+	// the projects grid rather than a nav slot of its own.
+	| "project";
 
 // "home" and "contact" render separately below (brand mark, CTA button).
 // "changelog" is reachable from a link on the projects page, and
@@ -30,7 +33,7 @@ interface NavProps {
 	/** Currently visible section, used to highlight the matching link. */
 	activeSection: SectionId;
 	/** Called with the section id whenever a link/brand/CTA is clicked. */
-	onNavigate: (id: SectionId) => void;
+	onNavigate: (id: SectionId, projectSlug?: string) => void;
 }
 
 // Top nav: brand mark, section links, and a contact CTA. Below the
@@ -93,19 +96,25 @@ export default function Nav({ activeSection, onNavigate }: NavProps) {
 				}
 				onAnimationEnd={handleOverlayAnimationEnd}
 			>
-				{NAV_LINK_IDS.map((id) => (
+				{NAV_LINK_IDS.map((id) => {
+				// A project detail page is still "under" the projects grid,
+				// so it keeps that nav link highlighted.
+				const active =
+					activeSection === id ||
+					(id === "projects" && activeSection === "project");
+
+				return (
 					<SectionLink
 						key={id}
 						id={id}
 						onNavigate={navigate}
-						className={
-							activeSection === id ? "nav-link nav-link--active" : "nav-link"
-						}
-						aria-current={activeSection === id ? "page" : undefined}
+						className={active ? "nav-link nav-link--active" : "nav-link"}
+						aria-current={active ? "page" : undefined}
 					>
 						{dict.nav.links[id]}
 					</SectionLink>
-				))}
+				);
+			})}
 
 				<SectionLink id="contact" onNavigate={navigate} className="nav-cta">
 					{dict.nav.cta}

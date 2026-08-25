@@ -5,10 +5,14 @@ import { usePathname, useRouter } from "next/navigation";
 import type { SectionId } from "../components/nav";
 import { localeFromPathname, stripLocalePrefix, withLocalePrefix } from "../i18n/locale";
 
+// Every section except "project", which is slug-driven and so has no
+// single fixed path of its own.
+type FixedSectionId = Exclude<SectionId, "project">;
+
 // Path shown in the lifeline header (display text, not a real URL). Kept
 // identical across locales on purpose, unlike the nav menu labels: it's
 // styled to look like literal terminal/file output, not prose.
-const PATHS: Record<SectionId, string> = {
+const PATHS: Record<FixedSectionId, string> = {
 	home: "~/home",
 	about: "~/about",
 	changelog: "~/changelog.log",
@@ -17,8 +21,8 @@ const PATHS: Record<SectionId, string> = {
 	inspiration: "~/inspiration",
 };
 
-// Real URL for each section, distinct from PATHS above.
-export const URL_PATHS: Record<SectionId, string> = {
+// Real URL for each fixed section, distinct from PATHS above.
+export const URL_PATHS: Record<FixedSectionId, string> = {
 	home: "/",
 	about: "/about",
 	changelog: "/changelog",
@@ -28,14 +32,43 @@ export const URL_PATHS: Record<SectionId, string> = {
 };
 
 const SECTION_BY_URL_PATH = Object.fromEntries(
-	(Object.entries(URL_PATHS) as [SectionId, string][]).map(([id, path]) => [
+	(Object.entries(URL_PATHS) as [FixedSectionId, string][]).map(([id, path]) => [
 		path,
 		id,
 	]),
-) as Record<string, SectionId>;
+) as Record<string, FixedSectionId>;
 
-function sectionFromPathname(pathname: string): SectionId {
-	return SECTION_BY_URL_PATH[stripLocalePrefix(pathname)] ?? "home";
+// Project detail pages live one level under the projects grid:
+// /projects/ax3, and /fr/projects/ax3 for the French tree. The slug
+// itself stays locale-independent so a shared link survives a switch.
+const PROJECT_PATH = /^\/projects\/([a-z0-9-]+)$/;
+
+export function urlForRoute(id: SectionId, projectSlug?: string): string {
+	if (id === "project") {
+		return projectSlug ? `/projects/${projectSlug}` : URL_PATHS.projects;
+	}
+	return URL_PATHS[id];
+}
+
+function lifelinePathFor(id: SectionId, projectSlug?: string): string {
+	if (id === "project") {
+		return projectSlug ? `~/projects/${projectSlug}` : PATHS.projects;
+	}
+	return PATHS[id];
+}
+
+interface Route {
+	section: SectionId;
+	projectSlug?: string;
+}
+
+function routeFromPathname(pathname: string): Route {
+	const path = stripLocalePrefix(pathname);
+	const projectMatch = PROJECT_PATH.exec(path);
+	if (projectMatch) {
+		return { section: "project", projectSlug: projectMatch[1] };
+	}
+	return { section: SECTION_BY_URL_PATH[path] ?? "home" };
 }
 
 // The CSS-side prefers-reduced-motion override (globals.css) doesn't
@@ -58,13 +91,15 @@ const BOOT_HOLD_MS = 400;
 
 interface SectionRouter {
 	activeSection: SectionId;
+	/** Which project is on screen while activeSection is "project". */
+	activeProjectSlug?: string;
 	/** True while the lifeline is erasing/retyping. Gate section content on this. */
 	transitioning: boolean;
 	/** True until the initial boot sequence (type path → hold) finishes. */
 	booting: boolean;
 	/** What the lifeline header should display right now. */
 	lifelineText: string;
-	goTo: (id: SectionId) => void;
+	goTo: (id: SectionId, projectSlug?: string) => void;
 }
 
 /**
@@ -80,12 +115,14 @@ export function useSectionRouter(): SectionRouter {
 
 	// Lazy initializer, not a ref: reads the URL once on mount (e.g.
 	// someone landing straight on /projects) without a ref-during-render.
-	const [initialSection] = useState<SectionId>(() =>
-		sectionFromPathname(pathname),
-	);
+	const [initialRoute] = useState<Route>(() => routeFromPathname(pathname));
 
-	const [activeSection, setActiveSection] =
-		useState<SectionId>(initialSection);
+	const [activeSection, setActiveSection] = useState<SectionId>(
+		initialRoute.section,
+	);
+	const [activeProjectSlug, setActiveProjectSlug] = useState<
+		string | undefined
+	>(initialRoute.projectSlug);
 	const [transitioning, setTransitioning] = useState(true);
 	const [booting, setBooting] = useState(true);
 	const [lifelineText, setLifelineText] = useState("");
@@ -102,7 +139,10 @@ export function useSectionRouter(): SectionRouter {
 		const schedule = (delay: number, fn: () => void) => {
 			timers.current.push(setTimeout(fn, delay));
 		};
-		const target = PATHS[initialSection];
+		const target = lifelinePathFor(
+			initialRoute.section,
+			initialRoute.projectSlug,
+		);
 
 		if (prefersReducedMotion()) {
 			schedule(0, () => {
@@ -137,12 +177,13 @@ export function useSectionRouter(): SectionRouter {
 	// erase/retype transition to catch up to it.
 	useEffect(() => {
 		if (booting) return;
-		const target = sectionFromPathname(pathname);
-		if (target === activeSection) return;
+		const { section: target, projectSlug: targetSlug } =
+			routeFromPathname(pathname);
+		if (target === activeSection && targetSlug === activeProjectSlug) return;
 
 		clearTimers();
 		const from = lifelineText;
-		const to = PATHS[target];
+		const to = lifelinePathFor(target, targetSlug);
 		const schedule = (delay: number, fn: () => void) => {
 			timers.current.push(setTimeout(fn, delay));
 		};
@@ -151,6 +192,7 @@ export function useSectionRouter(): SectionRouter {
 			schedule(0, () => {
 				setLifelineText(to);
 				setActiveSection(target);
+				setActiveProjectSlug(targetSlug);
 			});
 			return clearTimers;
 		}
@@ -176,6 +218,7 @@ export function useSectionRouter(): SectionRouter {
 		schedule(t, () => {
 			setTransitioning(false);
 			setActiveSection(target);
+			setActiveProjectSlug(targetSlug);
 		});
 
 		return clearTimers;
@@ -185,13 +228,28 @@ export function useSectionRouter(): SectionRouter {
 	}, [pathname, booting]);
 
 	const goTo = useCallback(
-		(id: SectionId) => {
-			if (booting || transitioning || id === activeSection) return;
+		(id: SectionId, projectSlug?: string) => {
+			if (booting || transitioning) return;
+			if (id === activeSection && projectSlug === activeProjectSlug) return;
 			const locale = localeFromPathname(pathname);
-			router.push(withLocalePrefix(URL_PATHS[id], locale));
+			router.push(withLocalePrefix(urlForRoute(id, projectSlug), locale));
 		},
-		[activeSection, booting, transitioning, pathname, router],
+		[
+			activeSection,
+			activeProjectSlug,
+			booting,
+			transitioning,
+			pathname,
+			router,
+		],
 	);
 
-	return { activeSection, transitioning, booting, lifelineText, goTo };
+	return {
+		activeSection,
+		activeProjectSlug,
+		transitioning,
+		booting,
+		lifelineText,
+		goTo,
+	};
 }

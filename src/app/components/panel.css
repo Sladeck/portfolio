@@ -57,6 +57,12 @@
 	grid-column: 1 / -1;
 }
 
+/* Panels whose title is a project/brand name rather than a label:
+   keep the authored casing instead of shouting it. */
+.panel--name-as-authored .panel-header h2 {
+	text-transform: none;
+}
+
 .panel-tags {
 	display: flex;
 	flex-wrap: wrap;

@@ -132,6 +132,12 @@
 			cursor: default;
 		}
 
+		/* Reads as the card's primary action, since it replaces the
+		   outbound links entirely once a case study exists. */
+		&.project-link--case {
+			letter-spacing: 0.06em;
+		}
+
 		&.project-link--repo {
 			color: var(--gt-text-muted);
 

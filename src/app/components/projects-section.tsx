@@ -4,6 +4,7 @@ import "./projects-section.css";
 import Panel from "./panel";
 import SectionLink from "./section-link";
 import { useTranslations } from "../hooks/useTranslations";
+import { hasCaseStudy } from "../i18n/projects";
 import type { Dictionary } from "../i18n/dictionary";
 import type { SectionId } from "./nav";
 
@@ -13,6 +14,8 @@ interface ProjectsSectionProps {
 
 interface Project {
 	key: keyof Dictionary["projects"]["descriptions"];
+	/** URL segment for this project's detail page, when it has one. */
+	slug: string;
 	name: string;
 	url: string;
 	badgeKey: keyof Dictionary["projects"]["badges"];
@@ -33,6 +36,7 @@ interface Project {
 const PROJECTS: Project[] = [
 	{
 		key: "obsidian",
+		slug: "the-obsidian-table",
 		name: "The Obsidian Table",
 		url: "https://the-obsidian-table.com",
 		badgeKey: "personal",
@@ -43,6 +47,7 @@ const PROJECTS: Project[] = [
 	},
 	{
 		key: "ax3",
+		slug: "ax3",
 		name: "ax3",
 		url: "https://ax3.io",
 		badgeKey: "platform",
@@ -53,6 +58,7 @@ const PROJECTS: Project[] = [
 	},
 	{
 		key: "manzanita",
+		slug: "manzanita",
 		name: "Manzanita",
 		url: "https://mnzt.io",
 		badgeKey: "companySite",
@@ -63,6 +69,7 @@ const PROJECTS: Project[] = [
 	},
 	{
 		key: "cominauv",
+		slug: "cominauv",
 		name: "cominauv",
 		url: "https://cominauv.fr",
 		badgeKey: "clientWork",
@@ -95,6 +102,7 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 						key={project.key}
 						title={project.name}
 						badge={dict.projects.badges[project.badgeKey]}
+						className="panel--name-as-authored"
 					>
 						<div className="project-body">
 							<div className="project-thumb">
@@ -132,31 +140,46 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 								<span className="project-note">{project.note}</span>
 							</div>
 
+							{/* Once a project has a case study, the card points there
+							    and the outbound links live on that page instead. */}
 							<div className="project-links">
-								{project.offline ? (
-									<span className="project-link project-link--offline">
-										{project.url.replace("https://", "")}
-									</span>
+								{hasCaseStudy(project.slug) ? (
+									<SectionLink
+										id="project"
+										projectSlug={project.slug}
+										onNavigate={onNavigate}
+										className="project-link project-link--case"
+									>
+										{dict.projects.readMore}
+									</SectionLink>
 								) : (
-									<a
-										href={project.url}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="project-link"
-									>
-										{project.url.replace("https://", "")} &#8599;
-									</a>
-								)}
+									<>
+										{project.offline ? (
+											<span className="project-link project-link--offline">
+												{project.url.replace("https://", "")}
+											</span>
+										) : (
+											<a
+												href={project.url}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="project-link"
+											>
+												{project.url.replace("https://", "")} &#8599;
+											</a>
+										)}
 
-								{project.repository && (
-									<a
-										href={project.repository}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="project-link project-link--repo"
-									>
-										{dict.projects.repoLabel} &#8599;
-									</a>
+										{project.repository && (
+											<a
+												href={project.repository}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="project-link project-link--repo"
+											>
+												{dict.projects.repoLabel} &#8599;
+											</a>
+										)}
+									</>
 								)}
 							</div>
 						</div>

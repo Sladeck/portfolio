@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import type { AnchorHTMLAttributes, MouseEvent } from "react";
-import { URL_PATHS } from "../hooks/useSectionRouter";
+import { urlForRoute } from "../hooks/useSectionRouter";
 import { useLocale } from "../hooks/useLocale";
 import { withLocalePrefix } from "../i18n/locale";
 import type { SectionId } from "./nav";
 
 interface SectionLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	id: SectionId;
-	onNavigate: (id: SectionId) => void;
+	/** Required when id is "project": which detail page to link to. */
+	projectSlug?: string;
+	onNavigate: (id: SectionId, projectSlug?: string) => void;
 }
 
 // A real <Link> (correct href, opens in a new tab on ctrl/cmd/middle
@@ -17,6 +19,7 @@ interface SectionLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 // of a full navigation.
 export default function SectionLink({
 	id,
+	projectSlug,
 	onNavigate,
 	onClick,
 	...rest
@@ -31,12 +34,12 @@ export default function SectionLink({
 			return;
 		}
 		event.preventDefault();
-		onNavigate(id);
+		onNavigate(id, projectSlug);
 	}
 
 	return (
 		<Link
-			href={withLocalePrefix(URL_PATHS[id], locale)}
+			href={withLocalePrefix(urlForRoute(id, projectSlug), locale)}
 			onClick={handleClick}
 			{...rest}
 		/>
