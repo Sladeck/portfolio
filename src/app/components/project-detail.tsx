@@ -25,17 +25,28 @@ function Shot({
 	alt,
 	caption,
 	pendingLabel,
+	sizes,
 	priority,
 }: {
 	shot: ProjectShot;
 	alt: string;
 	caption?: string;
 	pendingLabel: string;
+	/** Rendered width of this slot, for picking the right srcSet entry. */
+	sizes: string;
 	priority?: boolean;
 }) {
 	return (
 		<figure className="project-shot">
-			<div className="project-shot-frame">
+			{/* The placeholder is the only state that needs a reserved box:
+			    a real shot sets its own height from its width/height attrs. */}
+			<div
+				className={
+					shot.src
+						? "project-shot-frame"
+						: "project-shot-frame project-shot-frame--pending"
+				}
+			>
 				{shot.src ? (
 					/* eslint-disable-next-line @next/next/no-img-element */
 					<img
@@ -45,7 +56,9 @@ function Shot({
 								? `${shot.srcMobile} ${shot.mobileWidth}w, ${shot.src} ${shot.width}w`
 								: undefined
 						}
-						sizes="(max-width: 640px) 100vw, 900px"
+						sizes={sizes}
+						width={shot.width}
+						height={shot.height}
 						alt={alt}
 						loading={priority ? "eager" : "lazy"}
 					/>
@@ -108,7 +121,7 @@ function CollapsibleProse({
 				aria-controls={restId}
 				onClick={() => setOpen((wasOpen) => !wasOpen)}
 			>
-				{open ? collapseLabel : expandLabel}
+				{open ? collapseLabel : `${expandLabel} (${rest.length})`}
 			</button>
 		</div>
 	);
@@ -155,11 +168,15 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 					</span>
 				</div>
 
-				<p className="project-tagline">{copy.tagline}</p>
+				{/* Side by side: at full width each of these on its own line
+				    left half the row empty. */}
+				<div className="project-lede">
+					<p className="project-tagline">{copy.tagline}</p>
 
-				<p className="project-stinger">
-					<span aria-hidden="true">&rarr;</span> {copy.stinger}
-				</p>
+					<p className="project-stinger">
+						<span aria-hidden="true">&rarr;</span> {copy.stinger}
+					</p>
+				</div>
 
 				<div className="project-meta-row">
 					<span className="project-meta-fact">{project.years}</span>
@@ -219,6 +236,7 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 					shot={project.hero}
 					alt={`${project.name} screenshot`}
 					pendingLabel={ui.shotPending}
+					sizes="(max-width: 640px) 100vw, 1136px"
 					priority
 				/>
 
@@ -231,6 +249,7 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 								alt={copy.shotAlts[index] || `${project.name} screenshot`}
 								caption={copy.shotCaptions[index]}
 								pendingLabel={ui.shotPending}
+								sizes="(max-width: 640px) 100vw, 568px"
 							/>
 						))}
 					</div>

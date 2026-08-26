@@ -12,7 +12,11 @@ export interface ProjectShot {
 	src?: string;
 	/** ~640w variant for the srcSet. */
 	srcMobile?: string;
+	/** Intrinsic pixel size, set as width/height attrs so the browser
+	    reserves the right box before the file lands. Shots render at
+	    their own aspect ratio, so these are not interchangeable. */
 	width?: number;
+	height?: number;
 	mobileWidth?: number;
 }
 
@@ -67,10 +71,25 @@ export const PROJECTS: ProjectMeta[] = [
 			src: "/projects/ax3.webp",
 			srcMobile: "/projects/ax3-sm.webp",
 			width: 1280,
+			height: 700,
 			mobileWidth: 640,
 		},
-		// TODO: swap these two placeholders for real screenshots.
-		gallery: [{}, {}],
+		gallery: [
+			{
+				src: "/projects/ax3-demo.webp",
+				srcMobile: "/projects/ax3-demo-sm.webp",
+				width: 1280,
+				height: 700,
+				mobileWidth: 640,
+			},
+			{
+				src: "/projects/ax3-brief.webp",
+				srcMobile: "/projects/ax3-brief-sm.webp",
+				width: 1280,
+				height: 700,
+				mobileWidth: 640,
+			},
+		],
 		// As listed publicly on ax3.io.
 		clients: [
 			"CHIVAS",
@@ -120,7 +139,7 @@ const EN_COPY: CopyBySlug = {
 		role: [
 			"I led ax3 from its first prototype to production and stayed its sole driver for eight years: six of them solo, the last two alongside a junior developer I mentored. The neuroscience and psychometric research came from Manzanita's science team. Everything that turned it into a product was mine.",
 			"Most days were spent writing code, but the part that made the product possible happened between the teams. I had to learn enough data science, psycom, and marketing to push back on each of them, then turn the result into something software could actually do. Getting the psychometrics right was not optional: a clean interface over a wrong calculation is worse than no product at all.",
-			"I designed the whole product in Figma, from brand guidelines and a component system through to prototypes, and rebuilt the way results are presented many times over as we learned where clients misread them. I worked directly with the neuroscience team to understand what each metric meant before deciding how to show it.",
+			"On a team this size design and engineering were the same job, which is why the design system and the frontend that implemented it were built together. I designed the whole product in Figma, from brand guidelines and a component system through to prototypes, and rebuilt the way results are presented many times over as we learned where clients misread them. I worked directly with the neuroscience team to understand what each metric meant before deciding how to show it.",
 			"On the engineering side I owned the architecture end to end: the Django and PostgreSQL backend, the data model behind the assessments and the clustering, the Next.js and TypeScript frontend, and every integration the platform runs on, including Stripe for payments, AWS S3 for sensitive data, and OpenAI and Imagen for generated content.",
 			"I ran the infrastructure myself: a Linux server with NGINX, DNS and SSL across several domains through Cloudflare, and S3 for the personal data the platform holds. Because that data is sensitive, security was part of the product rather than an afterthought: application security, plus the company's Information Security Policy and disaster recovery plan.",
 			"The rest was people. I owned the roadmap and release scope in Jira, mentored a junior developer and a run of design and development interns, and sat in front of clients myself to explain how the platform works and to understand what they actually needed from it.",
@@ -150,8 +169,11 @@ const EN_COPY: CopyBySlug = {
 			"Research that only specialists could read became a product a global consulting firm now puts in front of its own clients.",
 		resultBody:
 			"Eight years, many design iterations, and one constant: making psychometric data legible without making it wrong. What began as a Django prototype became a production SaaS running on its own infrastructure, serving brand work in English and Japanese.",
-		shotCaptions: ["", ""],
-		shotAlts: ["", ""],
+		shotCaptions: ["cluster analytics", "generated brief"],
+		shotAlts: [
+			"The ax3 analytics dashboard: audience totals, cluster distribution, top performers and keyword sentiment.",
+			"A generated brief in ax3: a personality trait, the clusters it maps to, its top markers, and example ad copy.",
+		],
 		metaTitle: "ax3",
 		metaDescription:
 			"Manzanita's SaaS platform bridging neuroscience and marketing, led from prototype to production over eight years.",
@@ -173,7 +195,7 @@ const FR_COPY: CopyBySlug = {
 		role: [
 			"J'ai mené ax3 du premier prototype à la production et j'en ai été le seul moteur pendant huit ans : six ans en solo, puis deux ans avec un développeur junior que j'ai encadré. La recherche en neurosciences et en psychométrie venait de l'équipe scientifique de Manzanita. Tout ce qui l'a transformée en produit était de mon ressort.",
 			"L'essentiel de mes journées se passait à coder, mais ce qui rendait le produit possible se jouait entre les équipes. Il me fallait comprendre assez de data science, de psycom et de marketing pour pouvoir challenger chacune, puis transformer le résultat en quelque chose qu'un logiciel puisse réellement faire. La justesse psychométrique n'était pas optionnelle : une belle interface posée sur un calcul faux est pire que pas de produit du tout.",
-			"J'ai conçu l'ensemble du produit sur Figma, des chartes graphiques et du système de composants jusqu'aux prototypes, et j'ai refondu de nombreuses fois la manière dont les résultats sont présentés, à mesure que nous découvrions où les clients se trompaient de lecture. J'ai travaillé directement avec l'équipe neurosciences pour comprendre ce que signifiait chaque métrique avant de décider comment l'afficher.",
+			"Dans une équipe de cette taille, le design et l'ingénierie étaient un seul et même métier : le design system et le front-end qui l'implémentait ont donc été construits ensemble. J'ai conçu l'ensemble du produit sur Figma, des chartes graphiques et du système de composants jusqu'aux prototypes, et j'ai refondu de nombreuses fois la manière dont les résultats sont présentés, à mesure que nous découvrions où les clients se trompaient de lecture. J'ai travaillé directement avec l'équipe neurosciences pour comprendre ce que signifiait chaque métrique avant de décider comment l'afficher.",
 			"Côté ingénierie, j'ai porté l'architecture de bout en bout : le back-end Django et PostgreSQL, le modèle de données derrière les évaluations et les clusters, le front-end Next.js et TypeScript, et toutes les intégrations dont dépend la plateforme, dont Stripe pour les paiements, AWS S3 pour les données sensibles, et OpenAI et Imagen pour la génération de contenu.",
 			"J'ai géré l'infrastructure moi-même : un serveur Linux avec NGINX, les DNS et les certificats SSL de plusieurs domaines via Cloudflare, et S3 pour les données personnelles que la plateforme héberge. Ces données étant sensibles, la sécurité faisait partie du produit plutôt que d'une réflexion après coup : sécurité applicative, mais aussi la politique de sécurité de l'information et le plan de reprise d'activité de l'entreprise.",
 			"Le reste, c'était l'humain. J'ai porté la roadmap et le périmètre des versions dans Jira, encadré un développeur junior ainsi qu'une série de stagiaires design et développement, et je me suis assis moi-même en face des clients pour leur expliquer le fonctionnement de la plateforme et comprendre ce dont ils avaient réellement besoin.",
@@ -203,8 +225,11 @@ const FR_COPY: CopyBySlug = {
 			"Une recherche que seuls des spécialistes pouvaient lire est devenue un produit qu'un cabinet de conseil d'envergure internationale présente aujourd'hui à ses propres clients.",
 		resultBody:
 			"Huit ans, de nombreuses itérations de design, et une constante : rendre la donnée psychométrique lisible sans la trahir. Ce qui a commencé comme un prototype Django est devenu un SaaS en production sur sa propre infrastructure, utilisé pour des marques en anglais et en japonais.",
-		shotCaptions: ["", ""],
-		shotAlts: ["", ""],
+		shotCaptions: ["analyse des clusters", "brief genere"],
+		shotAlts: [
+			"Le tableau de bord analytique d'ax3 : volumes d'audience, répartition des clusters, top performers et sentiment par mot-clé.",
+			"Un brief généré dans ax3 : un trait de personnalité, les clusters correspondants, ses marqueurs principaux et des exemples de copies publicitaires.",
+		],
 		metaTitle: "ax3",
 		metaDescription:
 			"Une plateforme SaaS entre neurosciences et marketing, menée du prototype à la production pendant huit ans.",
