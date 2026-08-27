@@ -103,6 +103,51 @@ export const PROJECTS: ProjectMeta[] = [
 			"YAMAGATA",
 		],
 	},
+	{
+		slug: "manzanita",
+		name: "Manzanita",
+		url: "https://mnzt.io",
+		badgeKey: "companySite",
+		years: "2023",
+		note: "EN / JP",
+		stack: [
+			"TYPESCRIPT",
+			"NEXT.JS",
+			"REACT",
+			"SCSS",
+			"I18N",
+			"PYTHON",
+			"DJANGO",
+			"NGINX",
+			"LINUX",
+			"FIGMA",
+		],
+		hero: {
+			src: "/projects/manzanita.webp",
+			srcMobile: "/projects/manzanita-sm.webp",
+			width: 1280,
+			height: 700,
+			mobileWidth: 640,
+		},
+		// The same section in both languages: the strongest evidence that
+		// the layout survives Japanese, which is what made this hard.
+		gallery: [
+			{
+				src: "/projects/manzanita-case-en.webp",
+				srcMobile: "/projects/manzanita-case-en-sm.webp",
+				width: 1280,
+				height: 968,
+				mobileWidth: 640,
+			},
+			{
+				src: "/projects/manzanita-case-jp.webp",
+				srcMobile: "/projects/manzanita-case-jp-sm.webp",
+				width: 1280,
+				height: 968,
+				mobileWidth: 640,
+			},
+		],
+	},
 ];
 
 export interface ProjectCopy {
@@ -188,6 +233,53 @@ const EN_COPY: CopyBySlug = {
 		metaDescription:
 			"Manzanita's SaaS platform bridging neuroscience and marketing, led from prototype to production over eight years.",
 	},
+	manzanita: {
+		tagline:
+			"Manzanita's public site, rebuilt in English and Japanese, and the first project I handed over end to end.",
+		stinger:
+			"The developer who built it went from features inside ax3 to taking a whole site from first frame to running service.",
+		goal: [
+			"Manzanita's old site had stopped representing the company. The rebuild had one job: explain Gen3 marketing to someone who had never heard of it, clearly enough that they write in at the end. Understanding first, enquiries second.",
+			"It had a second goal that had nothing to do with the site. Until then the junior developer on my team had only built features inside ax3, always within an architecture someone else had already settled. He needed one project he could take end to end, from the first design frame to a service running on the server. A public marketing site was the right size for that: real stakes and a real deadline, but a scope he could hold in his head.",
+			"English and Japanese was the hard part. The site is one long page of marketing copy, and Japanese runs at a completely different length and density. Every section had to hold its shape in both, which is the kind of constraint you only learn by hitting it.",
+		],
+		role: [
+			"I did not write most of this site. That was the point, and my job was to make sure it came out right anyway.",
+			"We designed it as a pair. He took the copy from the marketing team and we worked through what each section had to say, and in what order, before any of it became a page. I reviewed the structure: what belongs at the top, which section follows which, where the argument loses a reader. Then the details, spacing consistency from section to section, accessibility problems he had not run into before, and the layouts that work in English and fall apart in Japanese.",
+			"Feedback ran in rounds. Mine first, then the whole company: marketing on the message, everyone on whether the site actually did the job it was built for. He rewrote against that feedback rather than against my opinion, which is a different and more useful thing to learn.",
+			"Where I did put hands on was the deployment, because he had never done one. We went through it together: a release branch in the repo, then onto the Linux server, pull, install, a Python virtual environment for the small Django service behind the contact form, a service for the Next.js app, and NGINX in front of both. He drove, I explained why each step existed.",
+			"Since launch it has been maintenance rather than development: keeping it up, and watching the dependencies for anything that needs patching.",
+		],
+		roleOwned: [
+			"Section structure, hierarchy and order",
+			"Design direction, in duo",
+			"Design review: spacing, consistency, accessibility",
+			"Code review",
+			"Bilingual layout review (EN / JP)",
+			"Linux server, service setup, NGINX",
+			"First deployment, walked through together",
+			"Mentoring and feedback rounds",
+		],
+		roleTeam: [
+			"Junior developer (build)",
+			"Marketing team (copy)",
+			"Company-wide review",
+		],
+		resultLead:
+			"A developer who had only ever built features inside ax3 took a whole site from the first design frame to a running service.",
+		resultBody:
+			"The site has been live in English and Japanese since 2023 and is what Manzanita points people at: one page that explains Gen3 from nothing and ends in a contact form, and it brings in the enquiries it was built for. It has needed maintenance since, not development.",
+		outroLead:
+			"Convinced? Send me a message about your project, whether you need it built or someone to make sure it gets built right.",
+		shotCaptions: ["the gen3 case study, english", "the same section, japanese"],
+		shotAlts: [
+			"The Gen3 case study section of Manzanita's site in English: a national fitness chain, a 5x CTR increase across 3.3 million impressions.",
+			"The same case study section in Japanese, the layout holding its shape against a different text length and density.",
+		],
+		metaTitle: "Manzanita",
+		metaDescription:
+			"Manzanita's bilingual company site, rebuilt in Next.js by the junior developer I mentored through his first end-to-end build and deployment.",
+	},
 };
 
 const FR_COPY: CopyBySlug = {
@@ -247,6 +339,53 @@ const FR_COPY: CopyBySlug = {
 		metaTitle: "ax3",
 		metaDescription:
 			"Une plateforme SaaS entre neurosciences et marketing, menée du prototype à la production pendant huit ans.",
+	},
+	manzanita: {
+		tagline:
+			"Le site public de Manzanita, reconstruit en anglais et en japonais, et le premier projet que j'ai confié de bout en bout.",
+		stinger:
+			"Le développeur qui l'a construit est passé des fonctionnalités dans ax3 à un site entier mené de la première maquette à la mise en production.",
+		goal: [
+			"L'ancien site de Manzanita ne représentait plus l'entreprise. La refonte avait une mission : expliquer le marketing Gen3 à quelqu'un qui n'en a jamais entendu parler, assez clairement pour qu'il écrive à la fin. La compréhension d'abord, les demandes ensuite.",
+			"Elle avait un second objectif qui n'avait rien à voir avec le site. Jusque-là, le développeur junior de mon équipe n'avait construit que des fonctionnalités dans ax3, toujours à l'intérieur d'une architecture déjà décidée par quelqu'un d'autre. Il lui fallait un projet à mener de bout en bout, de la première maquette au service qui tourne sur le serveur. Un site vitrine avait la bonne taille pour ça : de vrais enjeux et une vraie échéance, mais un périmètre qu'il pouvait tenir en tête.",
+			"L'anglais et le japonais ont été la vraie difficulté. Le site est une longue page de copie marketing, et le japonais n'a ni la même longueur ni la même densité que l'anglais. Chaque section devait tenir dans les deux, le genre de contrainte qu'on n'apprend qu'en s'y heurtant.",
+		],
+		role: [
+			"Je n'ai pas écrit l'essentiel de ce site. C'était justement le but, et mon travail était de faire en sorte qu'il sorte bien quand même.",
+			"Nous l'avons conçu à deux. Il récupérait les textes de l'équipe marketing et nous reprenions ensemble ce que chaque section devait dire, et dans quel ordre, avant que quoi que ce soit ne devienne une page. Je relisais la structure : ce qui doit se trouver en haut, quelle section suit laquelle, où le raisonnement perd le lecteur. Puis les détails : la cohérence des espacements d'une section à l'autre, les problèmes d'accessibilité qu'il n'avait pas encore rencontrés, et les mises en page qui fonctionnent en anglais et s'effondrent en japonais.",
+			"Les retours se faisaient par tours. Les miens d'abord, puis ceux de toute l'entreprise : le marketing sur le message, tout le monde sur la question de savoir si le site remplissait bien sa mission. Il corrigeait en réponse à ces retours plutôt qu'à mon avis, ce qui est une chose différente et plus utile à apprendre.",
+			"Là où j'ai vraiment mis les mains, c'est le déploiement, parce qu'il n'en avait jamais fait. Nous l'avons traversé ensemble : une branche de release dans le dépôt, puis le serveur Linux, pull, installation, un environnement virtuel Python pour le petit service Django derrière le formulaire de contact, un service pour l'application Next.js, et NGINX devant les deux. Il conduisait, j'expliquais pourquoi chaque étape existait.",
+			"Depuis la mise en ligne, c'est de la maintenance plutôt que du développement : le garder en ligne, et surveiller les dépendances.",
+		],
+		roleOwned: [
+			"Structure, hiérarchie et ordre des sections",
+			"Direction artistique, à deux",
+			"Revue de design : espacements, cohérence, accessibilité",
+			"Revue de code",
+			"Revue des mises en page bilingues (EN / JP)",
+			"Serveur Linux, mise en service, NGINX",
+			"Premier déploiement, fait ensemble",
+			"Encadrement et tours de relecture",
+		],
+		roleTeam: [
+			"Développeur junior (réalisation)",
+			"Équipe marketing (textes)",
+			"Relecture par toute l'entreprise",
+		],
+		resultLead:
+			"Un développeur qui n'avait construit que des fonctionnalités dans ax3 a mené un site entier de la première maquette au service en production.",
+		resultBody:
+			"Le site est en ligne en anglais et en japonais depuis 2023, et c'est ce vers quoi Manzanita oriente ses prospects : une page qui explique le Gen3 en partant de zéro et se termine par un formulaire de contact, et il génère les demandes pour lesquelles il a été construit. Depuis, il a demandé de la maintenance, pas du développement.",
+		outroLead:
+			"Ça vous parle ? Écrivez-moi au sujet de votre projet, que vous cherchiez quelqu'un pour le construire ou pour vous assurer qu'il soit bien construit.",
+		shotCaptions: ["l'étude de cas gen3, en anglais", "la même section, en japonais"],
+		shotAlts: [
+			"La section étude de cas Gen3 du site de Manzanita en anglais : une chaîne de fitness nationale, un CTR multiplié par 5 sur 3,3 millions d'impressions.",
+			"La même section en japonais, la mise en page tenant face à une longueur et une densité de texte différentes.",
+		],
+		metaTitle: "Manzanita",
+		metaDescription:
+			"Le site bilingue de Manzanita, reconstruit en Next.js par le développeur junior que j'ai accompagné sur son premier projet mené de bout en bout.",
 	},
 };
 
@@ -342,8 +481,10 @@ export function adjacentProjects(slug: string): {
 	if (withPages.length < 2) return {};
 	const index = withPages.findIndex((project) => project.slug === slug);
 	if (index === -1) return {};
-	return {
-		prev: withPages[(index - 1 + withPages.length) % withPages.length],
-		next: withPages[(index + 1) % withPages.length],
-	};
+	const prev = withPages[(index - 1 + withPages.length) % withPages.length];
+	const next = withPages[(index + 1) % withPages.length];
+	// With only two case studies the wrap makes both ends the same page:
+	// one link, not the same one pointed at twice.
+	if (prev === next) return { next };
+	return { prev, next };
 }
