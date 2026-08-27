@@ -78,10 +78,6 @@
 		}
 	}
 
-	&:hover .project-thumb img {
-		filter: grayscale(0.4) contrast(1.05) brightness(0.9) sepia(0.1);
-	}
-
 	.project-description {
 		flex: 1;
 		margin: 0;
@@ -145,5 +141,80 @@
 				color: var(--gt-green);
 			}
 		}
+	}
+}
+
+/* The thumb warms up whenever its card is hovered. On a linked card the
+   hit area is the whole panel, so the trigger has to be the panel; on the
+   others it's the body, which is everything below the header anyway. */
+@media (hover: hover) {
+	.panel--linked:hover .project-thumb img,
+	.project-body:hover .project-thumb img {
+		filter: grayscale(0.4) contrast(1.05) brightness(0.9) sepia(0.1);
+	}
+}
+
+/* ---- cards that lead to a case study ----------------------------- */
+
+/* The whole card is clickable, but it is still a real anchor doing the
+   work: .project-link--case keeps its own text and its ::after simply
+   stretches an invisible hit layer over the panel. So there is one tab
+   stop, one accessible name, and none of the problems a click handler on
+   a <div> would bring. */
+.panel--linked {
+	position: relative;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
+
+	.project-link--case::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+	}
+
+	/* Keyboard equivalent of the hover state below: the card lights up
+	   while its link holds focus. The link's own focus ring still marks
+	   exactly what is focused. */
+	&:focus-within {
+		border-color: var(--gt-gold);
+		background: rgba(201, 162, 39, 0.05);
+
+		.project-link--case {
+			color: var(--gt-green);
+		}
+
+		.project-link-label {
+			transform: translateX(4px);
+		}
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			border-color: var(--gt-gold);
+			background: rgba(201, 162, 39, 0.05);
+			cursor: pointer;
+
+			.project-link--case {
+				color: var(--gt-green);
+			}
+
+			.project-link-label {
+				transform: translateX(4px);
+			}
+		}
+	}
+}
+
+/* The ">" is a fixed prompt and the label sits after it, so on hover the
+   label can step away from the marker the way a terminal caret would. */
+.project-link--case {
+	display: inline-flex;
+	align-items: baseline;
+	/* One mono character, i.e. exactly the space the label used to have
+	   baked into its string. */
+	gap: 1ch;
+
+	.project-link-label {
+		display: inline-block;
+		transition: transform 0.2s ease;
 	}
 }

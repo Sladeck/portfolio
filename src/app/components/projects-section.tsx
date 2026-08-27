@@ -102,7 +102,11 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 						key={project.key}
 						title={project.name}
 						badge={dict.projects.badges[project.badgeKey]}
-						className="panel--name-as-authored"
+						className={
+							hasCaseStudy(project.slug)
+								? "panel--name-as-authored panel--linked"
+								: "panel--name-as-authored"
+						}
 					>
 						<div className="project-body">
 							<div className="project-thumb">
@@ -141,7 +145,10 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 							</div>
 
 							{/* Once a project has a case study, the card points there
-							    and the outbound links live on that page instead. */}
+							    and the outbound links live on that page instead. That
+							    link is also what makes the whole card clickable (see
+							    .panel--linked), so it stays a real, labelled anchor
+							    rather than a click handler on the card itself. */}
 							<div className="project-links">
 								{hasCaseStudy(project.slug) ? (
 									<SectionLink
@@ -150,7 +157,18 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 										onNavigate={onNavigate}
 										className="project-link project-link--case"
 									>
-										{dict.projects.readMore}
+										{/* Prompt and label are separate elements so the label
+										    can slide away from the ">" on hover. */}
+										<span className="project-link-prompt" aria-hidden="true">
+											&gt;
+										</span>
+										<span className="project-link-label">
+											{dict.projects.readMore}
+											{/* Out of context "read_case_study" says nothing:
+											    name the project for screen readers without
+											    repeating it on screen. */}
+											<span className="sr-only"> {project.name}</span>
+										</span>
 									</SectionLink>
 								) : (
 									<>

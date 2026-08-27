@@ -52,6 +52,8 @@ export interface Dictionary {
 		changelogLink: string;
 		repoLabel: string;
 		offlineLabel: string;
+		/** Card link to a case study. The "> " prompt in front of it is
+		    markup, not part of the string. */
 		readMore: string;
 		badges: {
 			personal: string;
@@ -207,7 +209,7 @@ const en: Dictionary = {
 		changelogLink: "> See latest changelogs...",
 		repoLabel: "repo",
 		offlineLabel: "OFFLINE",
-		readMore: "> read_case_study",
+		readMore: "read_case_study",
 		badges: {
 			personal: "PERSONAL",
 			platform: "PLATFORM",
@@ -368,7 +370,7 @@ const fr: Dictionary = {
 		changelogLink: "> Voir les derniers changelogs...",
 		repoLabel: "dépôt",
 		offlineLabel: "HORS LIGNE",
-		readMore: "> lire_l_etude",
+		readMore: "lire_l_etude",
 		badges: {
 			personal: "PERSONNEL",
 			platform: "PLATEFORME",
