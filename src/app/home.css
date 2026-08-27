@@ -10,6 +10,16 @@
 	box-sizing: border-box;
 	background: #000;
 
+	/* The section stays mounted through a transition (so its copy is in
+	   the server-rendered HTML) and is hidden here instead. visibility,
+	   not display or opacity: it keeps the content out of the
+	   accessibility tree and out of the tab order the way display: none
+	   would, while keeping the scroll container's height stable so the
+	   footer doesn't jump on every navigation. */
+	.home-main--hidden > * {
+		visibility: hidden;
+	}
+
 	.home-main {
 		position: relative;
 		z-index: 10;

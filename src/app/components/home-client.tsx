@@ -40,24 +40,28 @@ export default function HomeClient() {
 					transitioning={transitioning}
 				/>
 
-				<main className="home-main">
-					{!transitioning && activeSection === "home" && (
-						<HomeSection onNavigate={goTo} />
-					)}
-					{!transitioning && activeSection === "about" && <AboutSection />}
-					{!transitioning && activeSection === "changelog" && (
-						<ChangelogSection />
-					)}
-					{!transitioning && activeSection === "projects" && (
-						<ProjectsSection onNavigate={goTo} />
-					)}
-					{!transitioning && activeSection === "contact" && (
-						<ContactSection />
-					)}
-					{!transitioning && activeSection === "inspiration" && (
-						<InspirationSection />
-					)}
-					{!transitioning && activeSection === "project" && activeProjectSlug && (
+				{/* Rendered, then hidden while the lifeline animates, rather
+				    than unmounted. activeSection is derived from the URL on
+				    the server too, so the section's real copy ships in the
+				    server-rendered HTML instead of arriving only once the
+				    boot sequence finishes — which left crawlers and link
+				    unfurlers with nothing but the chrome.
+
+				    visibility (not opacity) so hidden content is also out
+				    of the accessibility tree and untabbable, with no
+				    aria-hidden/inert to keep in sync. */}
+				<main
+					className={
+						transitioning ? "home-main home-main--hidden" : "home-main"
+					}
+				>
+					{activeSection === "home" && <HomeSection onNavigate={goTo} />}
+					{activeSection === "about" && <AboutSection />}
+					{activeSection === "changelog" && <ChangelogSection />}
+					{activeSection === "projects" && <ProjectsSection onNavigate={goTo} />}
+					{activeSection === "contact" && <ContactSection />}
+					{activeSection === "inspiration" && <InspirationSection />}
+					{activeSection === "project" && activeProjectSlug && (
 						<ProjectDetail slug={activeProjectSlug} onNavigate={goTo} />
 					)}
 				</main>

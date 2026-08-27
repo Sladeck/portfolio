@@ -4,10 +4,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { SectionId } from "../components/nav";
 import { localeFromPathname, stripLocalePrefix, withLocalePrefix } from "../i18n/locale";
+import { URL_PATHS, type FixedSectionId } from "../i18n/routes";
 
-// Every section except "project", which is slug-driven and so has no
-// single fixed path of its own.
-type FixedSectionId = Exclude<SectionId, "project">;
+export { URL_PATHS };
 
 // Path shown in the lifeline header (display text, not a real URL). Kept
 // identical across locales on purpose, unlike the nav menu labels: it's
@@ -19,16 +18,6 @@ const PATHS: Record<FixedSectionId, string> = {
 	projects: "~/projects",
 	contact: "~/contact",
 	inspiration: "~/inspiration",
-};
-
-// Real URL for each fixed section, distinct from PATHS above.
-export const URL_PATHS: Record<FixedSectionId, string> = {
-	home: "/",
-	about: "/about",
-	changelog: "/changelog",
-	projects: "/projects",
-	contact: "/contact",
-	inspiration: "/inspiration",
 };
 
 const SECTION_BY_URL_PATH = Object.fromEntries(

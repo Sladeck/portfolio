@@ -4,6 +4,15 @@ export const DEFAULT_LOCALE: Locale = "en";
 
 const LOCALE_PREFIX = "/fr";
 
+// Set by the proxy on every page request so the shared root layout can
+// render the right <html lang> server-side. The layout sits above both
+// the / and /fr trees and has no params of its own to derive it from.
+export const LOCALE_HEADER = "x-locale";
+
+export function asLocale(value: string | null | undefined): Locale {
+	return value === "fr" ? "fr" : DEFAULT_LOCALE;
+}
+
 export function localeFromPathname(pathname: string): Locale {
 	return pathname === LOCALE_PREFIX || pathname.startsWith(`${LOCALE_PREFIX}/`)
 		? "fr"
