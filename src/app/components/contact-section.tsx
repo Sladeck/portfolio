@@ -1,10 +1,15 @@
 "use client";
 
 import "./contact-section.css";
-import { useState, type SubmitEvent } from "react";
+import { useEffect, useRef, useState, type SubmitEvent } from "react";
 import { useTranslations } from "../hooks/useTranslations";
 
 const CONTACT_EMAIL = "hello@gmmoulin.com";
+
+// Honeypot. Named after a field bots want to fill, positioned off-screen
+// rather than display:none (which the better scrapers skip), and hidden
+// from assistive tech and the tab order so no real visitor can reach it.
+const HONEYPOT_FIELD = "website";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -13,6 +18,13 @@ type Status = "idle" | "sending" | "sent" | "error";
 export default function ContactSection() {
 	const dict = useTranslations();
 	const [status, setStatus] = useState<Status>("idle");
+
+	// Set on mount, not during render, so it's always the visitor's own
+	// clock and never a server timestamp carried through hydration.
+	const mountedAt = useRef(0);
+	useEffect(() => {
+		mountedAt.current = Date.now();
+	}, []);
 
 	const statusMessages: Record<Status, string> = {
 		idle: "",
@@ -36,6 +48,13 @@ export default function ContactSection() {
 					from: data.get("from"),
 					replyTo: data.get("replyTo"),
 					body: data.get("body"),
+					[HONEYPOT_FIELD]: data.get(HONEYPOT_FIELD),
+					// How long the form was on screen. Omitted rather than
+					// sent as 0 if the mount effect somehow hasn't run, so a
+					// missing value can never read as "submitted instantly".
+					elapsedMs: mountedAt.current
+						? Date.now() - mountedAt.current
+						: undefined,
 				}),
 			});
 
@@ -56,6 +75,16 @@ export default function ContactSection() {
 
 			<div className="contact-grid">
 				<form className="contact-form" onSubmit={handleSubmit}>
+					{/* Not display:none on purpose, see HONEYPOT_FIELD. */}
+					<div className="contact-honeypot" aria-hidden="true">
+						<input
+							type="text"
+							name={HONEYPOT_FIELD}
+							tabIndex={-1}
+							autoComplete="off"
+						/>
+					</div>
+
 					<label className="contact-field">
 						<span>{dict.contact.fromLabel}</span>
 						<div className="contact-input-row">

@@ -12,10 +12,32 @@ interface ContactPayload {
 	from?: string;
 	replyTo?: string;
 	body?: string;
+	/** Honeypot: hidden from real visitors, so anything here is a bot. */
+	website?: string;
+	/** How long the form was on screen before it was submitted. */
+	elapsedMs?: number;
 }
 
+// Nobody fills in three fields in under three seconds. Generous on
+// purpose: this only has to catch scripts posting straight at the
+// endpoint, and a false positive costs a real person their message.
+const MIN_FILL_MS = 3000;
+
 export async function POST(request: Request) {
-	const { from, replyTo, body }: ContactPayload = await request.json();
+	const { from, replyTo, body, website, elapsedMs }: ContactPayload =
+		await request.json();
+
+	// Answer 200 without sending. A bot that gets an error learns to try
+	// something else; one that gets a success moves on believing it
+	// worked, which is the entire point of a honeypot.
+	const trapped = Boolean(website?.trim());
+	const tooFast = typeof elapsedMs === "number" && elapsedMs < MIN_FILL_MS;
+	if (trapped || tooFast) {
+		console.warn(
+			`Contact form rejected: ${trapped ? "honeypot" : "submitted in " + elapsedMs + "ms"}`,
+		);
+		return Response.json({ ok: true });
+	}
 
 	if (!from || !replyTo || !body) {
 		return Response.json({ error: "Missing fields" }, { status: 400 });

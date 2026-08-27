@@ -187,3 +187,17 @@
 		}
 	}
 }
+
+/* Honeypot wrapper. Deliberately not display:none or visibility:hidden:
+   the scrapers worth catching skip fields hidden that way, but happily
+   fill one that is merely parked off-screen. Real visitors can't reach
+   it (aria-hidden + tabindex="-1" on the input itself). */
+.contact-honeypot {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
