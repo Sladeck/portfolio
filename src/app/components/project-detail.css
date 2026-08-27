@@ -156,6 +156,14 @@
 		cursor: default;
 	}
 
+	/* The closing call to action, where the button is the point rather
+	   than a detail in a meta row. */
+	&.project-cta--lg {
+		padding: 13px 22px;
+		font-size: 14px;
+		letter-spacing: 0.14em;
+	}
+
 	@media (hover: hover) {
 		&:hover:not(.project-cta--offline) {
 			border-color: var(--gt-gold);
@@ -446,6 +454,55 @@
 		letter-spacing: 0.18em;
 		color: var(--gt-text-muted);
 		text-transform: uppercase;
+	}
+}
+
+/* ---- closing call to action -------------------------------------- */
+
+.project-outro {
+	.project-outro-body {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		gap: 22px;
+	}
+
+	.project-outro-lead {
+		max-width: 60ch;
+		margin: 0;
+		font-size: clamp(18px, 1.7vw, 21px);
+		line-height: 1.55;
+		color: var(--gt-text);
+	}
+
+	/* Second, quieter door: for readers who came for the project rather
+	   than for the person who built it. */
+	.project-outro-partner {
+		/* Stretched, so its hairline is a consistent rule across the
+		   column rather than one that stops wherever the text does. */
+		align-self: stretch;
+		max-width: 68ch;
+		margin: 0;
+		padding-top: 20px;
+		/* --gt-border, not the fainter --gt-hairline used for structural
+		   rules: this one has to actually read as a divider between the
+		   two doors. */
+		border-top: 1px solid var(--gt-border);
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--gt-text-dim);
+	}
+
+	.project-outro-link {
+		color: var(--gt-gold);
+		white-space: nowrap;
+		transition: color 0.15s ease;
+
+		@media (hover: hover) {
+			&:hover {
+				color: var(--gt-green);
+			}
+		}
 	}
 }
 

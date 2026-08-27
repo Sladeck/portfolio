@@ -313,6 +313,43 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 				)}
 			</section>
 
+			{/* Closing call to action. Deliberately back on the spine rather
+			    than in a box of its own: the result band above it is the
+			    page's loud moment, and a second bordered slab would fight
+			    it instead of following it. */}
+			<section className="project-block project-outro">
+				<h2 className="project-heading">{ui.outroHeading}</h2>
+
+				<div className="project-outro-body">
+					<p className="project-outro-lead">{copy.outroLead}</p>
+
+					<SectionLink
+						id="contact"
+						onNavigate={onNavigate}
+						className="project-cta project-cta--primary project-cta--lg"
+					>
+						{dict.nav.cta}
+					</SectionLink>
+
+					{/* Only projects that are live products of their own carry
+					    this second line: it is for people interested in the
+					    project rather than in hiring. */}
+					{copy.outroPartner && !project.offline && (
+						<p className="project-outro-partner">
+							{copy.outroPartner}{" "}
+							<a
+								href={project.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="project-outro-link"
+							>
+								{project.url.replace("https://", "")} &#8599;
+							</a>
+						</p>
+					)}
+				</div>
+			</section>
+
 			{(prev || next) && (
 				<nav className="project-pager">
 					{prev && (

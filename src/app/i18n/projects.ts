@@ -115,6 +115,12 @@ export interface ProjectCopy {
 	roleTeam: string[];
 	resultLead: string;
 	resultBody: string;
+	/** Closing pitch, in the reader's direction rather than the project's. */
+	outroLead: string;
+	/** Only for projects people might approach about the project itself
+	    (a live commercial platform), not about hiring. Paired with the
+	    project's own URL in the outro. */
+	outroPartner?: string;
 	/** Indexed to match ProjectMeta.gallery. */
 	shotCaptions: string[];
 	shotAlts: string[];
@@ -169,6 +175,10 @@ const EN_COPY: CopyBySlug = {
 			"Research that only specialists could read became a product a global consulting firm now puts in front of its own clients.",
 		resultBody:
 			"Eight years, many design iterations, and one constant: making psychometric data legible without making it wrong. What began as a Django prototype became a production SaaS running on its own infrastructure, serving brand work in English and Japanese.",
+		outroLead:
+			"Convinced? Send me a message about your own project and we will work out how I can help.",
+		outroPartner:
+			"Questions about ax3 itself, or a partnership around the platform? Ask me, or go straight to the source:",
 		shotCaptions: ["cluster analytics", "generated brief"],
 		shotAlts: [
 			"The ax3 analytics dashboard: audience totals, cluster distribution, top performers and keyword sentiment.",
@@ -225,6 +235,10 @@ const FR_COPY: CopyBySlug = {
 			"Une recherche que seuls des spécialistes pouvaient lire est devenue un produit qu'un cabinet de conseil d'envergure internationale présente aujourd'hui à ses propres clients.",
 		resultBody:
 			"Huit ans, de nombreuses itérations de design, et une constante : rendre la donnée psychométrique lisible sans la trahir. Ce qui a commencé comme un prototype Django est devenu un SaaS en production sur sa propre infrastructure, utilisé pour des marques en anglais et en japonais.",
+		outroLead:
+			"Ça vous parle ? Écrivez-moi au sujet de votre projet et on verra ensemble comment je peux aider.",
+		outroPartner:
+			"Des questions sur ax3 lui-même, ou un partenariat autour de la plateforme ? Écrivez-moi, ou allez directement à la source :",
 		shotCaptions: ["analyse des clusters", "brief genere"],
 		shotAlts: [
 			"Le tableau de bord analytique d'ax3 : volumes d'audience, répartition des clusters, top performers et sentiment par mot-clé.",
@@ -251,6 +265,7 @@ export interface ProjectUi {
 	roleHeading: string;
 	buildHeading: string;
 	resultHeading: string;
+	outroHeading: string;
 	owned: string;
 	workedWith: string;
 	clients: string;
@@ -271,6 +286,7 @@ export const PROJECT_UI: Record<Locale, ProjectUi> = {
 		roleHeading: "> my_role",
 		buildHeading: "> the_build",
 		resultHeading: "> the_result",
+		outroHeading: "> what_next",
 		owned: "OWNED",
 		workedWith: "WORKED WITH",
 		clients: "PARTNERS",
@@ -289,6 +305,7 @@ export const PROJECT_UI: Record<Locale, ProjectUi> = {
 		roleHeading: "> mon_role",
 		buildHeading: "> la_stack",
 		resultHeading: "> le_resultat",
+		outroHeading: "> la_suite",
 		owned: "PRIS EN CHARGE",
 		workedWith: "EN COLLABORATION AVEC",
 		clients: "PARTENAIRES",
