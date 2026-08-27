@@ -42,6 +42,52 @@ export interface ProjectMeta {
 
 export const PROJECTS: ProjectMeta[] = [
 	{
+		slug: "the-obsidian-table",
+		name: "The Obsidian Table",
+		url: "https://the-obsidian-table.com",
+		badgeKey: "personal",
+		repository: "https://github.com/Sladeck/TheObsidianTable",
+		years: "2026",
+		note: "EN",
+		stack: [
+			"VUE.JS",
+			"TYPESCRIPT",
+			"VITE",
+			"PRIMEVUE",
+			"NODE.JS",
+			"EXPRESS",
+			"PRISMA",
+			"POSTGRESQL",
+			"DOCKER",
+			"TRAEFIK",
+			"LINUX",
+			"CLOUDFLARE",
+		],
+		hero: {
+			src: "/projects/obsidian-hero.webp",
+			srcMobile: "/projects/obsidian-hero-sm.webp",
+			width: 1280,
+			height: 720,
+			mobileWidth: 640,
+		},
+		gallery: [
+			{
+				src: "/projects/obsidian-review.webp",
+				srcMobile: "/projects/obsidian-review-sm.webp",
+				width: 1280,
+				height: 900,
+				mobileWidth: 640,
+			},
+			{
+				src: "/projects/obsidian-scale.webp",
+				srcMobile: "/projects/obsidian-scale-sm.webp",
+				width: 1280,
+				height: 900,
+				mobileWidth: 640,
+			},
+		],
+	},
+	{
 		slug: "ax3",
 		name: "ax3",
 		url: "https://ax3.io",
@@ -211,6 +257,50 @@ export interface ProjectCopy {
 type CopyBySlug = Record<string, ProjectCopy>;
 
 const EN_COPY: CopyBySlug = {
+	"the-obsidian-table": {
+		tagline:
+			"A restaurant review site I designed, built and still write, and the reason I run my own server.",
+		stinger:
+			"It started as a joke among friends. It ended as the machine this portfolio is served from.",
+		goal: [
+			"My friends called me picky. What I am picky about is the whole thing being right: good ingredients, cooked properly, star on the door or not. Over the years the joke turned into an actual rating system, and eventually into somewhere to put it.",
+			"There were two things I wanted to practise on it. Vue was the first: I work in React and Next.js and had never shipped anything in Vue, and reading about a framework is not the same as living with its decisions for two months. The second was building alongside an AI agent. It is the standing question in every conversation with a recruiter right now, and among developers generally, and I wanted a real project to form an opinion on rather than a demo.",
+			"Then it had to actually be online, which meant a server. That turned out to be the part with the longest tail.",
+		],
+		role: [
+			"Everything here is a decision I made, including the ones about what not to write myself.",
+			"The design is mine and so is roughly seventy percent of the frontend, hand-written in Vue and TypeScript. The product thinking is mine too: four separate scores instead of one, because a single number never fairly describes a meal, and a review split along the same four axes so a low score always says which part it came from.",
+			"The database schema and the API I built by directing Claude Code, on purpose. The interesting part was not the generation, it was everything after it: reading code you did not write but do own, deciding where it was wrong, and staying responsible for something that has to keep running. That is a different skill from writing it yourself and it is the one worth having now.",
+			"Getting it online is what made me rent a server, and I set the machine up from nothing: Linux, dependencies, user accounts, SSH access, pulling and installing the repo, then the domain and DNS through Cloudflare, and Docker behind Traefik with automatic certificates. That box now serves this portfolio as well.",
+			"The admin side is a login with a TOTP second factor and rate limiting on both steps, and photos are resized in the browser before they are ever uploaded.",
+		],
+		roleOwned: [
+			"Product concept and the four-axis rating system",
+			"Visual design, end to end",
+			"Frontend in Vue 3 and TypeScript (~70% hand-written)",
+			"Database and API, built by directing Claude Code",
+			"Admin panel: login, TOTP 2FA, rate limiting",
+			"Image pipeline, resized client-side before upload",
+			"Linux server: users, SSH, dependencies, deploy",
+			"Domain and DNS (Cloudflare), Docker, Traefik, TLS",
+			"Every review on the site",
+		],
+		roleTeam: ["Claude Code (database and API)"],
+		resultLead:
+			"A joke among friends became a live product, on a server I set up myself and now run this portfolio from.",
+		resultBody:
+			"It has been up since July 2026: a Vue frontend I designed and mostly wrote, an API and database I built by directing an AI agent, and infrastructure I put together from an empty Linux box up to the TLS certificates. Two things I had never done before, a framework and a way of working, learned on something real enough that it has to stay up. The reviews are still mine to write.",
+		outroLead:
+			"Convinced? Send me a message about your project. I have a soft spot for the ones that start as an idea nobody has scoped yet.",
+		shotCaptions: ["a review", "the g-scale breakdown"],
+		shotAlts: [
+			"A restaurant review on The Obsidian Table: the name in Japanese, a score out of ten, a photo carousel and the written impression.",
+			"The G-Scale breakdown: quality, atmosphere, price and service each scored on their own segmented bar, beside the address and price level.",
+		],
+		metaTitle: "The Obsidian Table",
+		metaDescription:
+			"A restaurant review site built solo in Vue and Express: my own design, my own reviews, and the server that now runs this portfolio.",
+	},
 	ax3: {
 		tagline:
 			"Manzanita's SaaS platform that turns real neuroscience research into marketing decisions.",
@@ -361,6 +451,50 @@ const EN_COPY: CopyBySlug = {
 };
 
 const FR_COPY: CopyBySlug = {
+	"the-obsidian-table": {
+		tagline:
+			"Un site de critiques de restaurants que j'ai conçu, construit et que j'écris encore, et la raison pour laquelle j'ai mon propre serveur.",
+		stinger:
+			"Ça a commencé comme une blague entre amis. Ça a fini en machine depuis laquelle ce portfolio est servi.",
+		goal: [
+			"Mes amis me trouvaient difficile. Ce sur quoi je suis difficile, c'est que l'ensemble soit juste : de bons produits, bien cuisinés, avec ou sans étoile à la porte. Au fil des années, la blague est devenue un vrai système de notation, puis il a fallu un endroit où le mettre.",
+			"Il y avait deux choses que je voulais travailler dessus. Vue d'abord : je fais du React et du Next.js, je n'avais jamais rien mis en production en Vue, et lire sur un framework n'a rien à voir avec vivre deux mois avec ses partis pris. Ensuite, construire aux côtés d'un agent IA. C'est la question qui revient dans toutes les discussions avec les recruteurs en ce moment, et entre développeurs en général, et je voulais un vrai projet pour m'en faire une idée, pas une démo.",
+			"Et il fallait que ce soit réellement en ligne, donc un serveur. C'est la partie qui a eu la plus longue traîne.",
+		],
+		role: [
+			"Tout ici est une décision que j'ai prise, y compris celles qui portent sur ce que je n'ai pas écrit moi-même.",
+			"Le design est de moi, et environ soixante-dix pour cent du front-end aussi, écrits à la main en Vue et TypeScript. La réflexion produit également : quatre notes distinctes plutôt qu'une seule, parce qu'un chiffre unique ne décrit jamais correctement un repas, et une critique découpée selon les mêmes quatre axes pour qu'une note basse dise toujours d'où elle vient.",
+			"Le schéma de base de données et l'API, je les ai construits en dirigeant Claude Code, volontairement. L'intéressant n'était pas la génération, c'était tout ce qui vient après : lire du code qu'on n'a pas écrit mais qu'on assume, décider où il a tort, et rester responsable de quelque chose qui doit continuer à tourner. C'est une compétence différente de celle d'écrire soi-même, et c'est celle qui vaut le coup aujourd'hui.",
+			"C'est la mise en ligne qui m'a poussé à louer un serveur, et j'ai monté la machine à partir de rien : Linux, dépendances, comptes utilisateurs, accès SSH, récupération et installation du dépôt, puis le domaine et le DNS via Cloudflare, et Docker derrière Traefik avec certificats automatiques. Cette machine sert aussi ce portfolio.",
+			"Côté administration, c'est une connexion avec un second facteur TOTP et une limitation de débit sur les deux étapes, et les photos sont redimensionnées dans le navigateur avant même d'être envoyées.",
+		],
+		roleOwned: [
+			"Concept produit et système de notation à quatre axes",
+			"Design visuel, de bout en bout",
+			"Front-end en Vue 3 et TypeScript (~70% écrit à la main)",
+			"Base de données et API, en dirigeant Claude Code",
+			"Panneau d'administration : connexion, 2FA TOTP, rate limiting",
+			"Pipeline d'images, redimensionnées côté navigateur",
+			"Serveur Linux : utilisateurs, SSH, dépendances, déploiement",
+			"Domaine et DNS (Cloudflare), Docker, Traefik, TLS",
+			"Toutes les critiques du site",
+		],
+		roleTeam: ["Claude Code (base de données et API)"],
+		resultLead:
+			"Une blague entre amis est devenue un produit en ligne, sur un serveur que j'ai monté moi-même et depuis lequel tourne ce portfolio.",
+		resultBody:
+			"Il est en ligne depuis juillet 2026 : un front-end Vue que j'ai conçu et écrit en grande partie, une API et une base de données construites en dirigeant un agent IA, et une infrastructure montée depuis une machine Linux vide jusqu'aux certificats TLS. Deux choses que je n'avais jamais faites, un framework et une manière de travailler, apprises sur quelque chose d'assez réel pour devoir rester en ligne. Les critiques, elles, restent à écrire de ma main.",
+		outroLead:
+			"Ça vous parle ? Écrivez-moi au sujet de votre projet. J'ai un faible pour ceux qui démarrent comme une idée que personne n'a encore cadrée.",
+		shotCaptions: ["une critique", "le détail de la g-scale"],
+		shotAlts: [
+			"Une critique de restaurant sur The Obsidian Table : le nom en japonais, une note sur dix, un carrousel de photos et l'impression écrite.",
+			"Le détail de la G-Scale : qualité, ambiance, prix et service notés chacun sur sa propre barre segmentée, à côté de l'adresse et du niveau de prix.",
+		],
+		metaTitle: "The Obsidian Table",
+		metaDescription:
+			"Un site de critiques de restaurants construit en solo en Vue et Express : mon design, mes critiques, et le serveur qui héberge aujourd'hui ce portfolio.",
+	},
 	ax3: {
 		tagline:
 			"Une plateforme SaaS qui transforme la recherche en neurosciences en décisions marketing.",
