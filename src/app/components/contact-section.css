@@ -150,6 +150,7 @@
 				color: var(--gt-green);
 			}
 
+			&.contact-status--limited,
 			&.contact-status--error {
 				color: var(--gt-red);
 			}

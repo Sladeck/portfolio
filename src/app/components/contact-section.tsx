@@ -11,7 +11,7 @@ const CONTACT_EMAIL = "hello@gmmoulin.com";
 // from assistive tech and the tab order so no real visitor can reach it.
 const HONEYPOT_FIELD = "website";
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error" | "limited";
 
 // Contact page: form (POSTs to /api/contact, which sends via Resend) plus
 // direct email/GitHub/LinkedIn links.
@@ -31,6 +31,9 @@ export default function ContactSection() {
 		sending: dict.contact.statusSending,
 		sent: dict.contact.statusSent,
 		error: dict.contact.statusError,
+		// The address lives in one place; the dictionary supplies the
+		// sentence it gets appended to.
+		limited: `${dict.contact.statusLimited} ${CONTACT_EMAIL}`,
 	};
 
 	async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
@@ -57,6 +60,14 @@ export default function ContactSection() {
 						: undefined,
 				}),
 			});
+
+			// Rate-limited: not a failure the visitor can fix by retrying,
+			// so point them at the address that still works instead of
+			// showing the generic "try again" error.
+			if (res.status === 429) {
+				setStatus("limited");
+				return;
+			}
 
 			if (!res.ok) throw new Error("send failed");
 

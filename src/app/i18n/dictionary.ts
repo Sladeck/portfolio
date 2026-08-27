@@ -81,6 +81,8 @@ export interface Dictionary {
 		statusSending: string;
 		statusSent: string;
 		statusError: string;
+		/** Rate-limited. The address is appended by the component. */
+		statusLimited: string;
 		directLabel: string;
 		channelsLabel: string;
 	};
@@ -240,6 +242,7 @@ const en: Dictionary = {
 		statusSending: "sending...",
 		statusSent: "sent, I'll get back to you soon",
 		statusError: "failed to send, email me directly instead",
+		statusLimited: "too many attempts, email me directly at",
 		directLabel: "DIRECT",
 		channelsLabel: "CHANNELS",
 	},
@@ -401,6 +404,7 @@ const fr: Dictionary = {
 		statusSending: "envoi en cours...",
 		statusSent: "envoyé, je vous répondrai bientôt",
 		statusError: "échec de l'envoi, écrivez-moi directement",
+		statusLimited: "trop de tentatives, écrivez-moi directement à",
 		directLabel: "DIRECT",
 		channelsLabel: "CANAUX",
 	},
