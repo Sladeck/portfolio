@@ -148,6 +148,41 @@ export const PROJECTS: ProjectMeta[] = [
 			},
 		],
 	},
+	{
+		slug: "cominauv",
+		name: "cominauv",
+		url: "https://cominauv.fr",
+		badgeKey: "clientWork",
+		// The domain no longer resolves at all: the company behind it is
+		// gone, so there is nothing left to link out to.
+		offline: true,
+		years: "2022 \u2013 2024",
+		note: "FR / EN",
+		stack: ["HTML5", "CSS", "JAVASCRIPT", "FIGMA"],
+		hero: {
+			src: "/projects/cominauv.webp",
+			srcMobile: "/projects/cominauv-sm.webp",
+			width: 1280,
+			height: 700,
+			mobileWidth: 640,
+		},
+		gallery: [
+			{
+				src: "/projects/cominauv-sections.webp",
+				srcMobile: "/projects/cominauv-sections-sm.webp",
+				width: 1280,
+				height: 1000,
+				mobileWidth: 640,
+			},
+			{
+				src: "/projects/cominauv-produits.webp",
+				srcMobile: "/projects/cominauv-produits-sm.webp",
+				width: 1280,
+				height: 1000,
+				mobileWidth: 640,
+			},
+		],
+	},
 ];
 
 export interface ProjectCopy {
@@ -280,6 +315,49 @@ const EN_COPY: CopyBySlug = {
 		metaDescription:
 			"Manzanita's bilingual company site, rebuilt in Next.js by the junior developer I mentored through his first end-to-end build and deployment.",
 	},
+	cominauv: {
+		tagline:
+			"A five-page bilingual site for an amethyst quarry, built by hand from a brand guide drawn for print.",
+		stinger:
+			"No dependencies to update, no build to rerun, no framework to migrate off. There is nothing in it that can rot.",
+		goal: [
+			"A design studio had already produced the brand guide: a display face, a green accent, diagonal section cuts, and a geometric crystal mark. My job was to turn that into a working website without a designer to hand it back to and without changing anything they had decided.",
+			"The client set one hard constraint: as little JavaScript as possible. So there is no framework, no build step and not a single .js file on the site. What logic exists is a handful of inline blocks, a mobile menu, a size switcher on the product cards, the copyright year.",
+			"The site had to carry a real sales job. Six sections of it explain the quarry, the products and the visits, in French, with the front page and the visits page also in English, and end on a page aimed squarely at investors.",
+		],
+		role: [
+			"Everything on the web side was mine: the whole layout, every page, both languages, all of it written by hand.",
+			"The interesting part was translating a print-minded brand guide into something that behaves. Diagonal section edges that hold at any width, a display face that stays readable down to a phone, a palette that alternates light and dark section by section without turning into noise, and a product catalogue with size tabs and price tables that had to look designed rather than tabulated.",
+			"Working without a framework changes what you spend your time on. There is no component to reach for, so consistency has to come from the stylesheet and from discipline, and every page is written out. In exchange, nothing sits between the visitor and the page.",
+			"No AI was involved at any point. The client did not want it, which is their call to make, and it was theirs to make.",
+		],
+		roleOwned: [
+			"Full web design from the supplied brand guide",
+			"Every page, hand-written HTML and CSS",
+			"Responsive layout, including the diagonal sections",
+			"Product catalogue: size tabs, pricing tables",
+			"Bilingual pages (FR / EN)",
+			"Favicons, manifest, sitemap, SEO metadata",
+		],
+		roleTeam: [
+			"Design studio (brand guide)",
+			"Client (copy, photography, press links)",
+		],
+		resultLead:
+			"A brand guide drawn for print became a working bilingual site, with nothing to install, nothing to compile and nothing to go out of date.",
+		resultBody:
+			"The venture behind it never found its funding, and the company and its domain are both gone now. That was never something a website could decide. What the site itself did was outlive all of it: with no framework and no build, the whole thing still opens and works today exactly as it did in production, straight from a local folder.",
+		outroLead:
+			"Convinced? Send me a message about your project, constraints included. The awkward ones are usually the interesting part.",
+		shotCaptions: ["the section system", "the product catalogue"],
+		shotAlts: [
+			"Two sections of the cominauv home page meeting on a diagonal cut, dark above and light below, with the product range and its photography underneath.",
+			"The cominauv product catalogue: each amethyst grade as a card with size tabs, a photograph, a description and a price table.",
+		],
+		metaTitle: "cominauv",
+		metaDescription:
+			"A bilingual site for a French amethyst quarry, hand-built in HTML and CSS from a supplied brand guide, with no framework and no build step.",
+	},
 };
 
 const FR_COPY: CopyBySlug = {
@@ -386,6 +464,49 @@ const FR_COPY: CopyBySlug = {
 		metaTitle: "Manzanita",
 		metaDescription:
 			"Le site bilingue de Manzanita, reconstruit en Next.js par le développeur junior que j'ai accompagné sur son premier projet mené de bout en bout.",
+	},
+	cominauv: {
+		tagline:
+			"Un site bilingue de cinq pages pour une carrière d'améthyste, construit à la main à partir d'une charte graphique pensée pour le papier.",
+		stinger:
+			"Aucune dépendance à mettre à jour, aucun build à relancer, aucun framework à quitter. Rien là-dedans ne peut se périmer.",
+		goal: [
+			"Un studio de design avait déjà produit la charte graphique : une police de titrage, un accent vert, des coupes de sections en diagonale et un logo cristal géométrique. Mon travail était d'en faire un site qui fonctionne, sans designer à qui la renvoyer et sans rien changer à ce qu'ils avaient décidé.",
+			"Le client avait posé une contrainte ferme : le moins de JavaScript possible. Il n'y a donc aucun framework, aucune étape de build et pas un seul fichier .js sur le site. La logique qui existe tient dans quelques blocs en ligne : un menu mobile, un sélecteur de calibre sur les fiches produits, l'année du copyright.",
+			"Le site devait porter un vrai travail commercial. Six sections expliquent la carrière, les produits et les visites, en français, avec la page d'accueil et la page visites également en anglais, et se terminent sur une page qui vise directement les investisseurs.",
+		],
+		role: [
+			"Toute la partie web était à moi : la mise en page complète, chaque page, les deux langues, le tout écrit à la main.",
+			"Le plus intéressant a été de traduire une charte pensée pour le papier en quelque chose qui se comporte. Des bords de sections en diagonale qui tiennent à toutes les largeurs, une police de titrage qui reste lisible jusqu'au téléphone, une palette qui alterne clair et sombre section par section sans virer au bruit, et un catalogue produits avec calibres et grilles tarifaires qui devait avoir l'air dessiné plutôt que tabulé.",
+			"Travailler sans framework change ce sur quoi on passe son temps. Il n'y a pas de composant vers lequel se tourner, donc la cohérence vient de la feuille de style et de la discipline, et chaque page est écrite en entier. En échange, plus rien ne s'interpose entre le visiteur et la page.",
+			"Aucune IA n'a été utilisée, à aucun moment. Le client n'en voulait pas, et c'était à lui d'en décider.",
+		],
+		roleOwned: [
+			"Tout le design web à partir de la charte fournie",
+			"Chaque page, HTML et CSS écrits à la main",
+			"Mise en page responsive, sections diagonales comprises",
+			"Catalogue produits : calibres, grilles tarifaires",
+			"Pages bilingues (FR / EN)",
+			"Favicons, manifest, sitemap, métadonnées SEO",
+		],
+		roleTeam: [
+			"Studio de design (charte graphique)",
+			"Client (textes, photographies, revue de presse)",
+		],
+		resultLead:
+			"Une charte graphique pensée pour le papier est devenue un site bilingue qui fonctionne, sans rien à installer, rien à compiler et rien qui se périme.",
+		resultBody:
+			"Le projet derrière n'a jamais trouvé son financement, et l'entreprise comme son domaine ont disparu depuis. Ce n'était pas à un site web d'en décider. Ce que le site a fait, lui, c'est leur survivre : sans framework ni build, l'ensemble s'ouvre et fonctionne encore aujourd'hui exactement comme en production, directement depuis un dossier local.",
+		outroLead:
+			"Ça vous parle ? Écrivez-moi au sujet de votre projet, contraintes comprises. Ce sont souvent elles, le plus intéressant.",
+		shotCaptions: ["le système de sections", "le catalogue produits"],
+		shotAlts: [
+			"Deux sections de la page d'accueil de cominauv se rejoignant sur une coupe en diagonale, sombre en haut et claire en bas, avec la gamme de produits et ses photographies en dessous.",
+			"Le catalogue produits de cominauv : chaque qualité d'améthyste en fiche, avec calibres, photographie, description et grille tarifaire.",
+		],
+		metaTitle: "cominauv",
+		metaDescription:
+			"Un site bilingue pour une carrière d'améthyste française, construit à la main en HTML et CSS à partir d'une charte fournie, sans framework ni build.",
 	},
 };
 
