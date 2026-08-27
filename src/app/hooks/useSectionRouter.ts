@@ -6,8 +6,6 @@ import type { SectionId } from "../components/nav";
 import { localeFromPathname, stripLocalePrefix, withLocalePrefix } from "../i18n/locale";
 import { URL_PATHS, type FixedSectionId } from "../i18n/routes";
 
-export { URL_PATHS };
-
 // Path shown in the lifeline header (display text, not a real URL). Kept
 // identical across locales on purpose, unlike the nav menu labels: it's
 // styled to look like literal terminal/file output, not prose.

@@ -18,7 +18,7 @@ export const URL_PATHS = {
 
 export type FixedSectionId = keyof typeof URL_PATHS;
 
-export const FIXED_SECTION_IDS = Object.keys(URL_PATHS) as FixedSectionId[];
+const FIXED_SECTION_IDS = Object.keys(URL_PATHS) as FixedSectionId[];
 
 // Top-level segments that are real pages: "about" from "/about", etc.
 // Home is "/" and so contributes no segment.
@@ -26,7 +26,7 @@ const SEGMENTS = new Set(
 	FIXED_SECTION_IDS.map((id) => URL_PATHS[id].slice(1)).filter(Boolean),
 );
 
-export const PROJECT_SLUG = /^[a-z0-9-]+$/;
+const PROJECT_SLUG = /^[a-z0-9-]+$/;
 
 /**
  * Does this optional-catch-all slug name a page that actually exists?
