@@ -35,6 +35,18 @@ interface Project {
 // the translation dictionary, looked up by key/badgeKey below.
 const PROJECTS: Project[] = [
 	{
+		key: "hikari",
+		slug: "hikari-atlas",
+		name: "Hikari Atlas",
+		url: "https://hikari-atlas.com",
+		badgeKey: "personal",
+		stack: ["VUE.JS", "WEBGL", "PYTHON"],
+		note: "EN / JP",
+		image: "/projects/hikari-atlas.webp",
+		imageMobile: "/projects/hikari-atlas-sm.webp",
+		repository: "https://github.com/Sladeck/hikari-atlas",
+	},
+	{
 		key: "obsidian",
 		slug: "the-obsidian-table",
 		name: "The Obsidian Table",

@@ -42,6 +42,54 @@ export interface ProjectMeta {
 
 export const PROJECTS: ProjectMeta[] = [
 	{
+		slug: "hikari-atlas",
+		name: "Hikari Atlas",
+		url: "https://hikari-atlas.com",
+		badgeKey: "personal",
+		repository: "https://github.com/Sladeck/hikari-atlas",
+		years: "2026",
+		note: "EN / JP",
+		stack: [
+			"VUE.JS",
+			"VITE",
+			"GSAP",
+			"WEBGL",
+			"PYTHON",
+			"NUMPY",
+			"SCIPY",
+			"PANDAS",
+			"PILLOW",
+			"DOCKER",
+			"NGINX",
+			"TRAEFIK",
+		],
+		hero: {
+			src: "/projects/hikari-atlas.webp",
+			srcMobile: "/projects/hikari-atlas-sm.webp",
+			width: 1280,
+			height: 700,
+			mobileWidth: 640,
+		},
+		// The live animation, then a finished wallpaper with its downloads:
+		// what the site shows, then what it gives away.
+		gallery: [
+			{
+				src: "/projects/hikari-atlas-quakes.webp",
+				srcMobile: "/projects/hikari-atlas-quakes-sm.webp",
+				width: 1280,
+				height: 782,
+				mobileWidth: 640,
+			},
+			{
+				src: "/projects/hikari-atlas-rivers.webp",
+				srcMobile: "/projects/hikari-atlas-rivers-sm.webp",
+				width: 1280,
+				height: 782,
+				mobileWidth: 640,
+			},
+		],
+	},
+	{
 		slug: "the-obsidian-table",
 		name: "The Obsidian Table",
 		url: "https://the-obsidian-table.com",
@@ -257,6 +305,55 @@ export interface ProjectCopy {
 type CopyBySlug = Record<string, ProjectCopy>;
 
 const EN_COPY: CopyBySlug = {
+	"hikari-atlas": {
+		tagline:
+			"Japan drawn only with light, from real scientific data, and given away as free OLED wallpapers.",
+		stinger:
+			"Every earthquake since 1973, every typhoon since 1951 and every river in the country, turned into 45 wallpapers whose unlit pixels are switched off.",
+		goal: [
+			"On an OLED screen a black pixel is not dark, it is off. I liked the idea of wallpapers built on that: images made only of light, where everything that is not data costs nothing. The idea is not mine. Blackbody, by Alistair Roberts, does it for science in general, and the site credits it. What I wanted was the same idea pointed at one country, the one I lived in for eight years, with its own data, its own renders and a site that looks nothing like the original.",
+			"Japan is an unusually good subject for it. It shakes, erupts, floods and blooms on a schedule, and its agencies publish all of it. The earthquakes draw the plate boundaries without a single line of coast, the rivers draw the islands by themselves, and the railways draw the cities.",
+			"The other goal was the one behind The Obsidian Table, pushed further: see how far I could get by directing an AI agent on something I could not have built alone, in fields I did not know. Seismology, hydrology, tsunami simulation and seasonal phenology were not on my CV, and I wanted to understand how each picture was made, not just to own it.",
+		],
+		role: [
+			"This one I directed rather than wrote. Claude Code wrote most of the code, the Vue site and the Python pipeline behind the images alike. What it should be, what it should look like and whether each picture was true were my calls.",
+			"The concept, the scope and the art direction: ten chapters, one subject each, each with its own colour of light, and a front page built as a station departure board where every row rebuilds the same 36,000 points of light into that chapter's scene. Choosing which datasets deserved a chapter, and which did not, was most of the editorial work.",
+			"The rest was checking. Every figure on the site is computed from the data, and a number that does not come out of a dataset does not go on the page. The errors worth catching were the quiet ones: the 3D Fuji was 3.2 times too steep for a while and looked perfectly fine. Approximations stay, but they are stated, like the simplified source of the 2011 tsunami or the doubled depth of the 3D plates.",
+			"The whole site exists in English and Japanese, one language at a time. Animations pause off-screen, honour reduced motion and fall back to still images without WebGL, and every wallpaper ships in a desktop (3840×2160) and a phone (1290×2796) version.",
+			"It runs on the same server as this portfolio and The Obsidian Table: a static build served by nginx in Docker, behind the Traefik already there, with no database and no secrets. I also settled the licences: noncommercial for the code, CC BY-NC for the images, and every data provider credited under its own terms.",
+		],
+		roleOwned: [
+			"Concept, scope and the ten chapters",
+			"Art direction and visual system",
+			"Front page as a live departure board",
+			"Dataset selection (USGS, JMA, NOAA, NASA, Smithsonian, HydroSHEDS)",
+			"Review of every render and every figure",
+			"Bilingual site (EN / JP)",
+			"Deployment on my own server (Docker, nginx, Traefik)",
+			"Licensing and data credits",
+		],
+		roleTeam: [
+			"Claude Code (Vue site and Python render pipeline)",
+		],
+		resultLead:
+			"Japan drawn in ten chapters of light, live at hikari-atlas.com, with 45 wallpapers anyone can download for free.",
+		resultBody:
+			"From Mount Fuji to Japan at night, each chapter has a live animation, a gallery and a section on how it was made and from which sources. Ninety PNG files, desktop and phone, every unlit pixel exactly #000000. It is also the clearest answer I have to the question every recruiter asks about AI: it moves the hard part from writing the code to knowing whether the result is right.",
+		outroLead:
+			"Convinced? Send me a message about your project, especially if it starts with data nobody has made readable yet.",
+		shotCaptions: [
+			"the earthquakes chapter, live",
+			"a wallpaper and its downloads",
+		],
+		shotAlts: [
+			"The Earthquakes chapter of Hikari Atlas: the departure board of chapters on the left, a live animation of earthquakes since 1973 tracing Japan's plate boundaries, and the chapter's figures below.",
+			"The Rivers wallpaper on Hikari Atlas: every river reach in Japan lit by its flow, shown as desktop and phone versions beside their download buttons.",
+		],
+		metaTitle:
+			"Hikari Atlas",
+		metaDescription:
+			"Japan drawn only with light from real scientific data, in ten chapters and 45 free OLED wallpapers, directed by me and built with Claude Code.",
+	},
 	"the-obsidian-table": {
 		tagline:
 			"A restaurant review site I designed, built and still write, and the reason I run my own server.",
@@ -451,6 +548,55 @@ const EN_COPY: CopyBySlug = {
 };
 
 const FR_COPY: CopyBySlug = {
+	"hikari-atlas": {
+		tagline:
+			"Le Japon dessiné uniquement avec de la lumière, à partir de vraies données scientifiques, et offert en fonds d'écran OLED gratuits.",
+		stinger:
+			"Chaque séisme depuis 1973, chaque typhon depuis 1951 et chaque rivière du pays, transformés en 45 fonds d'écran dont les pixels non éclairés sont éteints.",
+		goal: [
+			"Sur un écran OLED, un pixel noir n'est pas sombre, il est éteint. L'idée de fonds d'écran construits là-dessus me plaisait : des images faites uniquement de lumière, où tout ce qui n'est pas de la donnée ne coûte rien. L'idée n'est pas de moi. Blackbody, d'Alistair Roberts, le fait pour la science en général, et le site le crédite. Ce que je voulais, c'était la même idée tournée vers un seul pays, celui où j'ai vécu huit ans, avec ses propres données, ses propres rendus et un site qui ne ressemble en rien à l'original.",
+			"Le Japon s'y prête particulièrement bien. Il tremble, entre en éruption, déborde et fleurit selon un calendrier, et ses agences publient tout. Les séismes dessinent les frontières des plaques sans une seule ligne de côte, les rivières dessinent les îles d'elles-mêmes, et les chemins de fer dessinent les villes.",
+			"L'autre objectif était celui de The Obsidian Table, poussé plus loin : voir jusqu'où je pouvais aller en dirigeant un agent IA sur quelque chose que je n'aurais pas pu construire seul, dans des domaines que je ne connaissais pas. Sismologie, hydrologie, simulation de tsunami et phénologie n'étaient pas sur mon CV, et je voulais comprendre comment chaque image était faite, pas seulement la posséder.",
+		],
+		role: [
+			"Celui-ci, je l'ai dirigé plutôt qu'écrit. Claude Code a écrit l'essentiel du code, le site Vue comme le pipeline Python derrière les images. Ce que le projet devait être, à quoi il devait ressembler et si chaque image disait vrai, c'étaient mes décisions.",
+			"Le concept, le périmètre et la direction artistique : dix chapitres, un sujet chacun, chacun avec sa propre couleur de lumière, et une page d'accueil construite comme un tableau des départs de gare, où chaque ligne reconstruit les mêmes 36 000 points de lumière en la scène de son chapitre. Choisir quels jeux de données méritaient un chapitre, et lesquels non, a été l'essentiel du travail éditorial.",
+			"Le reste, c'était vérifier. Chaque chiffre du site est calculé à partir des données, et un nombre qui ne sort pas d'un jeu de données ne va pas sur la page. Les erreurs qui valaient la peine d'être attrapées étaient les discrètes : le Fuji en 3D a été 3,2 fois trop pentu pendant un moment, et avait l'air parfaitement correct. Les approximations restent, mais elles sont annoncées, comme la source simplifiée du tsunami de 2011 ou la profondeur doublée des plaques en 3D.",
+			"Tout le site existe en anglais et en japonais, une langue à la fois. Les animations se mettent en pause hors écran, respectent la réduction des animations et basculent sur des images fixes sans WebGL, et chaque fond d'écran existe en version bureau (3840×2160) et téléphone (1290×2796).",
+			"Il tourne sur le même serveur que ce portfolio et The Obsidian Table : un build statique servi par nginx dans Docker, derrière le Traefik déjà en place, sans base de données ni secrets. J'ai aussi fixé les licences : non commerciale pour le code, CC BY-NC pour les images, et chaque fournisseur de données crédité selon ses propres conditions.",
+		],
+		roleOwned: [
+			"Concept, périmètre et les dix chapitres",
+			"Direction artistique et système visuel",
+			"Page d'accueil en tableau des départs animé",
+			"Choix des données (USGS, JMA, NOAA, NASA, Smithsonian, HydroSHEDS)",
+			"Revue de chaque rendu et de chaque chiffre",
+			"Site bilingue (EN / JP)",
+			"Déploiement sur mon propre serveur (Docker, nginx, Traefik)",
+			"Licences et crédits des données",
+		],
+		roleTeam: [
+			"Claude Code (site Vue et pipeline de rendu Python)",
+		],
+		resultLead:
+			"Le Japon dessiné en dix chapitres de lumière, en ligne sur hikari-atlas.com, avec 45 fonds d'écran que tout le monde peut télécharger gratuitement.",
+		resultBody:
+			"Du mont Fuji au Japon de nuit, chaque chapitre a son animation en direct, sa galerie et une section qui explique comment il a été fait et à partir de quelles sources. Quatre-vingt-dix fichiers PNG, bureau et téléphone, chaque pixel non éclairé exactement #000000. C'est aussi la réponse la plus claire que j'aie à la question que tous les recruteurs posent sur l'IA : elle déplace la difficulté, de l'écriture du code vers la capacité à savoir si le résultat est juste.",
+		outroLead:
+			"Ça vous parle ? Écrivez-moi au sujet de votre projet, surtout s'il part de données que personne n'a encore rendues lisibles.",
+		shotCaptions: [
+			"le chapitre séismes, en direct",
+			"un fond d'écran et ses téléchargements",
+		],
+		shotAlts: [
+			"Le chapitre Séismes de Hikari Atlas : le tableau des chapitres à gauche, une animation des séismes depuis 1973 qui trace les frontières des plaques du Japon, et les chiffres du chapitre en dessous.",
+			"Le fond d'écran Rivières sur Hikari Atlas : chaque tronçon de rivière du Japon éclairé selon son débit, en versions bureau et téléphone à côté des boutons de téléchargement.",
+		],
+		metaTitle:
+			"Hikari Atlas",
+		metaDescription:
+			"Le Japon dessiné uniquement avec de la lumière à partir de vraies données scientifiques, en dix chapitres et 45 fonds d'écran OLED gratuits, dirigé par moi et construit avec Claude Code.",
+	},
 	"the-obsidian-table": {
 		tagline:
 			"Un site de critiques de restaurants que j'ai conçu, construit et que j'écris encore, et la raison pour laquelle j'ai mon propre serveur.",

@@ -62,6 +62,7 @@ export interface Dictionary {
 			clientWork: string;
 		};
 		descriptions: {
+			hikari: string;
 			obsidian: string;
 			ax3: string;
 			manzanita: string;
@@ -125,7 +126,7 @@ const en: Dictionary = {
 		descriptions: {
 			"": "Freelance full-stack engineer based in France. Django, React and Next.js, eight years of shipping product end to end.",
 			about: "Background, toolbelt, and adjacent fields.",
-			projects: "A selection of projects, including ax3.io, Manzanita, and The Obsidian Table.",
+			projects: "A selection of projects, including ax3.io, Manzanita, The Obsidian Table, and Hikari Atlas.",
 			changelog: "Latest public commits from github.com/Sladeck.",
 			contact: "Get in touch about freelance work.",
 			inspiration: "The references behind this site's terminal look.",
@@ -219,6 +220,8 @@ const en: Dictionary = {
 			clientWork: "CLIENT WORK",
 		},
 		descriptions: {
+			hikari:
+				"Japan drawn only with light from real scientific data: ten chapters and 45 free OLED wallpapers. Directed by me, coded with Claude.",
 			obsidian:
 				"My own food blog, reviewing restaurants I love around the world. Design and frontend by me, backend built with Claude.",
 			ax3: "SaaS platform blending marketing with real neuroscience research. I owned product, design, and engineering at Manzanita for eight years. Login-gated, so the link only shows the front door.",
@@ -287,7 +290,7 @@ const fr: Dictionary = {
 		descriptions: {
 			"": "Ingénieur full-stack freelance basé en France. Django, React et Next.js, huit ans à livrer des produits de bout en bout.",
 			about: "Parcours, boîte à outils, et domaines connexes.",
-			projects: "Une sélection de projets, dont ax3.io, Manzanita, et The Obsidian Table.",
+			projects: "Une sélection de projets, dont ax3.io, Manzanita, The Obsidian Table, et Hikari Atlas.",
 			changelog: "Derniers commits publics depuis github.com/Sladeck.",
 			contact: "Contactez-moi pour une mission freelance.",
 			inspiration: "Les références derrière le style terminal de ce site.",
@@ -381,6 +384,8 @@ const fr: Dictionary = {
 			clientWork: "TRAVAIL CLIENT",
 		},
 		descriptions: {
+			hikari:
+				"Le Japon dessiné uniquement avec de la lumière à partir de vraies données scientifiques : dix chapitres et 45 fonds d'écran OLED gratuits. Dirigé par moi, codé avec Claude.",
 			obsidian:
 				"Mon propre blog culinaire, où je partage les restaurants que j'aime à travers le monde. Design et frontend par moi, backend construit avec Claude.",
 			ax3: "Plateforme SaaS mêlant marketing et recherche en neurosciences. J'ai porté le produit, le design et l'ingénierie chez Manzanita pendant huit ans. L'accès nécessite une connexion, le lien ne montre donc que la page d'accueil.",
