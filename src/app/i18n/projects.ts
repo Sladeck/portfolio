@@ -307,12 +307,12 @@ type CopyBySlug = Record<string, ProjectCopy>;
 const EN_COPY: CopyBySlug = {
 	"hikari-atlas": {
 		tagline:
-			"Japan drawn only with light, from real scientific data, and given away as free OLED wallpapers.",
+			"An atlas of Japan drawn only with light, where every picture comes from real scientific data.",
 		stinger:
-			"Every earthquake since 1973, every typhoon since 1951 and every river in the country, turned into 45 wallpapers whose unlit pixels are switched off.",
+			"Ten subjects, from Mount Fuji to the country at night, each in its own colour of light. Every chapter animates its data live, explains how it was drawn, and ends in free wallpapers.",
 		goal: [
-			"On an OLED screen a black pixel is not dark, it is off. I liked the idea of wallpapers built on that: images made only of light, where everything that is not data costs nothing. The idea is not mine. Blackbody, by Alistair Roberts, does it for science in general, and the site credits it. What I wanted was the same idea pointed at one country, the one I lived in for eight years, with its own data, its own renders and a site that looks nothing like the original.",
-			"Japan is an unusually good subject for it. It shakes, erupts, floods and blooms on a schedule, and its agencies publish all of it. The earthquakes draw the plate boundaries without a single line of coast, the rivers draw the islands by themselves, and the railways draw the cities.",
+			"On an OLED screen a black pixel is not dark, it is off. Hikari Atlas is built on that idea: Japan drawn only with light, where everything that is not data stays switched off. I wanted to take the country I lived in for eight years and see how much of it could be told with real data alone, one subject at a time, each in its own colour.",
+			"Japan is an unusually good subject for it. It shakes, erupts, floods and blooms on a schedule, and its agencies publish all of it. Each chapter shows a different side of it: the earthquakes trace the plate boundaries without a single line of coast, the rivers draw the islands by themselves, the sakura and autumn fronts cross them with the seasons, and the railways and the night lights show where people live.",
 			"The other goal was the one behind The Obsidian Table, pushed further: see how far I could get by directing an AI agent on something I could not have built alone, in fields I did not know. Seismology, hydrology, tsunami simulation and seasonal phenology were not on my CV, and I wanted to understand how each picture was made, not just to own it.",
 		],
 		role: [
@@ -550,12 +550,12 @@ const EN_COPY: CopyBySlug = {
 const FR_COPY: CopyBySlug = {
 	"hikari-atlas": {
 		tagline:
-			"Le Japon dessiné uniquement avec de la lumière, à partir de vraies données scientifiques, et offert en fonds d'écran OLED gratuits.",
+			"Un atlas du Japon dessiné uniquement avec de la lumière, où chaque image vient de vraies données scientifiques.",
 		stinger:
-			"Chaque séisme depuis 1973, chaque typhon depuis 1951 et chaque rivière du pays, transformés en 45 fonds d'écran dont les pixels non éclairés sont éteints.",
+			"Dix sujets, du mont Fuji au pays de nuit, chacun dans sa propre couleur de lumière. Chaque chapitre anime ses données en direct, explique comment il a été dessiné, et se termine par des fonds d'écran gratuits.",
 		goal: [
-			"Sur un écran OLED, un pixel noir n'est pas sombre, il est éteint. L'idée de fonds d'écran construits là-dessus me plaisait : des images faites uniquement de lumière, où tout ce qui n'est pas de la donnée ne coûte rien. L'idée n'est pas de moi. Blackbody, d'Alistair Roberts, le fait pour la science en général, et le site le crédite. Ce que je voulais, c'était la même idée tournée vers un seul pays, celui où j'ai vécu huit ans, avec ses propres données, ses propres rendus et un site qui ne ressemble en rien à l'original.",
-			"Le Japon s'y prête particulièrement bien. Il tremble, entre en éruption, déborde et fleurit selon un calendrier, et ses agences publient tout. Les séismes dessinent les frontières des plaques sans une seule ligne de côte, les rivières dessinent les îles d'elles-mêmes, et les chemins de fer dessinent les villes.",
+			"Sur un écran OLED, un pixel noir n'est pas sombre, il est éteint. Hikari Atlas part de cette idée : le Japon dessiné uniquement avec de la lumière, où tout ce qui n'est pas de la donnée reste éteint. Je voulais prendre le pays où j'ai vécu huit ans et voir tout ce qu'on pouvait en raconter avec de vraies données seules, un sujet à la fois, chacun dans sa propre couleur.",
+			"Le Japon s'y prête particulièrement bien. Il tremble, entre en éruption, déborde et fleurit selon un calendrier, et ses agences publient tout. Chaque chapitre en montre une autre facette : les séismes tracent les frontières des plaques sans une seule ligne de côte, les rivières dessinent les îles d'elles-mêmes, les fronts des cerisiers et des érables les traversent au fil des saisons, et les chemins de fer et les lumières de la nuit montrent où vivent les gens.",
 			"L'autre objectif était celui de The Obsidian Table, poussé plus loin : voir jusqu'où je pouvais aller en dirigeant un agent IA sur quelque chose que je n'aurais pas pu construire seul, dans des domaines que je ne connaissais pas. Sismologie, hydrologie, simulation de tsunami et phénologie n'étaient pas sur mon CV, et je voulais comprendre comment chaque image était faite, pas seulement la posséder.",
 		],
 		role: [
