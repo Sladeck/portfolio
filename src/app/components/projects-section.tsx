@@ -108,6 +108,13 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 				{dict.projects.changelogLink}
 			</SectionLink>
 
+			<Panel
+				title={dict.projects.clientWorkTitle}
+				badge={dict.projects.clientWorkBadge}
+				items={dict.projects.clientWork}
+				className="panel--prose"
+			/>
+
 			<div className="projects-list">
 				{PROJECTS.map((project) => (
 					<Panel

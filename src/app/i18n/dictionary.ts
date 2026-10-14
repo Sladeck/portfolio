@@ -55,6 +55,9 @@ export interface Dictionary {
 		/** Card link to a case study. The "> " prompt in front of it is
 		    markup, not part of the string. */
 		readMore: string;
+		clientWorkTitle: string;
+		clientWorkBadge: string;
+		clientWork: LabelValue[];
 		badges: {
 			personal: string;
 			platform: string;
@@ -214,6 +217,18 @@ const en: Dictionary = {
 		repoLabel: "repo",
 		offlineLabel: "OFFLINE",
 		readMore: "read_case_study",
+		clientWorkTitle: "RECENT CLIENT WORK",
+		clientWorkBadge: "FREELANCE · 2026",
+		clientWork: [
+			{
+				label: "MANZANITA",
+				value: "Moved sessions to Redis with idle and absolute timeouts, added per-client rate limiting behind Cloudflare, and hardened production against silent mass logouts. Also redesigned parts of the interface and built an AI ad-analysis prototype.",
+			},
+			{
+				label: "DYN&SYS CONSULTING",
+				value: "Built a tool that automates packing calculations for distribution companies, handling item shape, liquids and rotation constraints.",
+			},
+		],
 		badges: {
 			personal: "PERSONAL",
 			platform: "PLATFORM",
@@ -379,6 +394,18 @@ const fr: Dictionary = {
 		repoLabel: "dépôt",
 		offlineLabel: "HORS LIGNE",
 		readMore: "lire_l_etude",
+		clientWorkTitle: "MISSIONS CLIENTS RÉCENTES",
+		clientWorkBadge: "FREELANCE · 2026",
+		clientWork: [
+			{
+				label: "MANZANITA",
+				value: "Migration des sessions vers Redis avec expiration après inactivité et durée maximale, limitation de débit par client derrière Cloudflare, et durcissement de la production contre les déconnexions massives silencieuses. Refonte de parties de l'interface et prototype d'analyse publicitaire par IA.",
+			},
+			{
+				label: "DYN&SYS CONSULTING",
+				value: "Outil qui automatise les calculs de colisage pour des entreprises de distribution, en tenant compte de la forme des articles, des liquides et des contraintes de rotation.",
+			},
+		],
 		badges: {
 			personal: "PERSONNEL",
 			platform: "PLATEFORME",
