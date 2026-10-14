@@ -42,100 +42,6 @@ export interface ProjectMeta {
 
 export const PROJECTS: ProjectMeta[] = [
 	{
-		slug: "hikari-atlas",
-		name: "Hikari Atlas",
-		url: "https://hikari-atlas.com",
-		badgeKey: "personal",
-		repository: "https://github.com/Sladeck/hikari-atlas",
-		years: "2026",
-		note: "EN / JP",
-		stack: [
-			"VUE.JS",
-			"VITE",
-			"GSAP",
-			"WEBGL",
-			"PYTHON",
-			"NUMPY",
-			"SCIPY",
-			"PANDAS",
-			"PILLOW",
-			"DOCKER",
-			"NGINX",
-			"TRAEFIK",
-		],
-		hero: {
-			src: "/projects/hikari-atlas.webp",
-			srcMobile: "/projects/hikari-atlas-sm.webp",
-			width: 1280,
-			height: 700,
-			mobileWidth: 640,
-		},
-		// The live animation, then a finished wallpaper with its downloads:
-		// what the site shows, then what it gives away.
-		gallery: [
-			{
-				src: "/projects/hikari-atlas-quakes.webp",
-				srcMobile: "/projects/hikari-atlas-quakes-sm.webp",
-				width: 1280,
-				height: 782,
-				mobileWidth: 640,
-			},
-			{
-				src: "/projects/hikari-atlas-rivers.webp",
-				srcMobile: "/projects/hikari-atlas-rivers-sm.webp",
-				width: 1280,
-				height: 782,
-				mobileWidth: 640,
-			},
-		],
-	},
-	{
-		slug: "the-obsidian-table",
-		name: "The Obsidian Table",
-		url: "https://the-obsidian-table.com",
-		badgeKey: "personal",
-		repository: "https://github.com/Sladeck/TheObsidianTable",
-		years: "2026",
-		note: "EN",
-		stack: [
-			"VUE.JS",
-			"TYPESCRIPT",
-			"VITE",
-			"PRIMEVUE",
-			"NODE.JS",
-			"EXPRESS",
-			"PRISMA",
-			"POSTGRESQL",
-			"DOCKER",
-			"TRAEFIK",
-			"LINUX",
-			"CLOUDFLARE",
-		],
-		hero: {
-			src: "/projects/obsidian-hero.webp",
-			srcMobile: "/projects/obsidian-hero-sm.webp",
-			width: 1280,
-			height: 720,
-			mobileWidth: 640,
-		},
-		gallery: [
-			{
-				src: "/projects/obsidian-review.webp",
-				srcMobile: "/projects/obsidian-review-sm.webp",
-				width: 1280,
-				height: 900,
-				mobileWidth: 640,
-			},
-			{
-				src: "/projects/obsidian-scale.webp",
-				srcMobile: "/projects/obsidian-scale-sm.webp",
-				width: 1280,
-				height: 900,
-				mobileWidth: 640,
-			},
-		],
-	},
-	{
 		slug: "ax3",
 		name: "ax3",
 		url: "https://ax3.io",
@@ -198,6 +104,54 @@ export const PROJECTS: ProjectMeta[] = [
 		],
 	},
 	{
+		slug: "hikari-atlas",
+		name: "Hikari Atlas",
+		url: "https://hikari-atlas.com",
+		badgeKey: "personal",
+		repository: "https://github.com/Sladeck/hikari-atlas",
+		years: "2026",
+		note: "EN / JP",
+		stack: [
+			"VUE.JS",
+			"VITE",
+			"GSAP",
+			"WEBGL",
+			"PYTHON",
+			"NUMPY",
+			"SCIPY",
+			"PANDAS",
+			"PILLOW",
+			"DOCKER",
+			"NGINX",
+			"TRAEFIK",
+		],
+		hero: {
+			src: "/projects/hikari-atlas.webp",
+			srcMobile: "/projects/hikari-atlas-sm.webp",
+			width: 1280,
+			height: 700,
+			mobileWidth: 640,
+		},
+		// The live animation, then a finished wallpaper with its downloads:
+		// what the site shows, then what it gives away.
+		gallery: [
+			{
+				src: "/projects/hikari-atlas-quakes.webp",
+				srcMobile: "/projects/hikari-atlas-quakes-sm.webp",
+				width: 1280,
+				height: 782,
+				mobileWidth: 640,
+			},
+			{
+				src: "/projects/hikari-atlas-rivers.webp",
+				srcMobile: "/projects/hikari-atlas-rivers-sm.webp",
+				width: 1280,
+				height: 782,
+				mobileWidth: 640,
+			},
+		],
+	},
+	{
 		slug: "manzanita",
 		name: "Manzanita",
 		url: "https://mnzt.io",
@@ -238,6 +192,52 @@ export const PROJECTS: ProjectMeta[] = [
 				srcMobile: "/projects/manzanita-case-jp-sm.webp",
 				width: 1280,
 				height: 968,
+				mobileWidth: 640,
+			},
+		],
+	},
+	{
+		slug: "the-obsidian-table",
+		name: "The Obsidian Table",
+		url: "https://the-obsidian-table.com",
+		badgeKey: "personal",
+		repository: "https://github.com/Sladeck/TheObsidianTable",
+		years: "2026",
+		note: "EN",
+		stack: [
+			"VUE.JS",
+			"TYPESCRIPT",
+			"VITE",
+			"PRIMEVUE",
+			"NODE.JS",
+			"EXPRESS",
+			"PRISMA",
+			"POSTGRESQL",
+			"DOCKER",
+			"TRAEFIK",
+			"LINUX",
+			"CLOUDFLARE",
+		],
+		hero: {
+			src: "/projects/obsidian-hero.webp",
+			srcMobile: "/projects/obsidian-hero-sm.webp",
+			width: 1280,
+			height: 720,
+			mobileWidth: 640,
+		},
+		gallery: [
+			{
+				src: "/projects/obsidian-review.webp",
+				srcMobile: "/projects/obsidian-review-sm.webp",
+				width: 1280,
+				height: 900,
+				mobileWidth: 640,
+			},
+			{
+				src: "/projects/obsidian-scale.webp",
+				srcMobile: "/projects/obsidian-scale-sm.webp",
+				width: 1280,
+				height: 900,
 				mobileWidth: 640,
 			},
 		],
@@ -441,15 +441,15 @@ const EN_COPY: CopyBySlug = {
 		resultLead:
 			"Research that only specialists could read became a product a global consulting firm now puts in front of its own clients.",
 		resultBody:
-			"Eight years, many design iterations, and one constant: making psychometric data legible without making it wrong. What began as a Django prototype became a production SaaS running on its own infrastructure, serving brand work in English and Japanese.",
+			"Eight years, many design iterations, and one constant: making psychometric data legible without making it wrong. What began as a Django prototype became a production SaaS running on its own infrastructure, serving brand work in English and Japanese: around 200,000 user profiles processed across 95+ psychological traits, 25 client analyses, and a single outage in five years of production.",
 		outroLead:
 			"Convinced? Send me a message about your own project and we will work out how I can help.",
 		outroPartner:
 			"Questions about ax3 itself, or a partnership around the platform? Ask me, or go straight to the source:",
-		shotCaptions: ["cluster analytics", "generated brief"],
+		shotCaptions: ["project analytics", "generated brief"],
 		shotAlts: [
-			"The ax3 analytics dashboard: audience totals, cluster distribution, top performers and keyword sentiment.",
-			"A generated brief in ax3: a personality trait, the clusters it maps to, its top markers, and example ad copy.",
+			"The analytics tab of an ax3 project: people and posts analysed, the source terms that drew the most engagement, how the audience splits into four clusters, and sentiment per term.",
+			"A communication brief in ax3: the clusters a trait reaches, who those people are, how to trigger them, and three generated example ads.",
 		],
 		metaTitle: "ax3",
 		metaDescription:
@@ -684,15 +684,15 @@ const FR_COPY: CopyBySlug = {
 		resultLead:
 			"Une recherche que seuls des spécialistes pouvaient lire est devenue un produit qu'un cabinet de conseil d'envergure internationale présente aujourd'hui à ses propres clients.",
 		resultBody:
-			"Huit ans, de nombreuses itérations de design, et une constante : rendre la donnée psychométrique lisible sans la trahir. Ce qui a commencé comme un prototype Django est devenu un SaaS en production sur sa propre infrastructure, utilisé pour des marques en anglais et en japonais.",
+			"Huit ans, de nombreuses itérations de design, et une constante : rendre la donnée psychométrique lisible sans la trahir. Ce qui a commencé comme un prototype Django est devenu un SaaS en production sur sa propre infrastructure, utilisé pour des marques en anglais et en japonais : environ 200 000 profils utilisateurs traités sur plus de 95 traits psychologiques, 25 analyses clients, et une seule panne en cinq ans de production.",
 		outroLead:
 			"Ça vous parle ? Écrivez-moi au sujet de votre projet et on verra ensemble comment je peux aider.",
 		outroPartner:
 			"Des questions sur ax3 lui-même, ou un partenariat autour de la plateforme ? Écrivez-moi, ou allez directement à la source :",
-		shotCaptions: ["analyse des clusters", "brief genere"],
+		shotCaptions: ["analyse d'un projet", "brief généré"],
 		shotAlts: [
-			"Le tableau de bord analytique d'ax3 : volumes d'audience, répartition des clusters, top performers et sentiment par mot-clé.",
-			"Un brief généré dans ax3 : un trait de personnalité, les clusters correspondants, ses marqueurs principaux et des exemples de copies publicitaires.",
+			"L'onglet analytique d'un projet ax3 : personnes et publications analysées, les termes sources qui ont suscité le plus d'engagement, la répartition de l'audience en quatre clusters et le sentiment par terme.",
+			"Un brief de communication dans ax3 : les clusters qu'un trait touche, qui sont ces personnes, comment les faire réagir, et trois exemples d'annonces générés.",
 		],
 		metaTitle: "ax3",
 		metaDescription:

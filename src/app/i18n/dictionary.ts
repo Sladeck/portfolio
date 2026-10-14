@@ -225,7 +225,7 @@ const en: Dictionary = {
 				"Japan drawn only with light from real scientific data: ten chapters and 45 free OLED wallpapers. Directed by me, coded with Claude.",
 			obsidian:
 				"My own food blog, reviewing restaurants I love around the world. Design and frontend by me, backend built with Claude.",
-			ax3: "SaaS platform blending marketing with real neuroscience research. I owned product, design, and engineering at Manzanita for eight years. Login-gated, so the link only shows the front door.",
+			ax3: "SaaS platform turning neuroscience research into marketing decisions, now licensed by a major international consulting firm. I owned product, design and engineering for eight years, with a single outage in five years of production. Login-gated, so the link only shows the front door.",
 			manzanita:
 				"Public website for Manzanita, my previous company in Tokyo. We built ax3's technology together.",
 			cominauv:
@@ -390,7 +390,7 @@ const fr: Dictionary = {
 				"Le Japon dessiné uniquement avec de la lumière à partir de vraies données scientifiques : dix chapitres et 45 fonds d'écran OLED gratuits. Dirigé par moi, codé avec Claude.",
 			obsidian:
 				"Mon propre blog culinaire, où je partage les restaurants que j'aime à travers le monde. Design et frontend par moi, backend construit avec Claude.",
-			ax3: "Plateforme SaaS mêlant marketing et recherche en neurosciences. J'ai porté le produit, le design et l'ingénierie chez Manzanita pendant huit ans. L'accès nécessite une connexion, le lien ne montre donc que la page d'accueil.",
+			ax3: "Plateforme SaaS qui transforme la recherche en neurosciences en décisions marketing, aujourd'hui exploitée sous licence par un grand cabinet de conseil international. J'ai porté le produit, le design et l'ingénierie pendant huit ans, avec une seule panne en cinq ans de production. L'accès nécessite une connexion, le lien ne montre donc que la page d'accueil.",
 			manzanita:
 				"Site public de Manzanita, ma précédente entreprise à Tokyo. Nous avons construit la technologie d'ax3 ensemble.",
 			cominauv:

@@ -35,6 +35,17 @@ interface Project {
 // the translation dictionary, looked up by key/badgeKey below.
 const PROJECTS: Project[] = [
 	{
+		key: "ax3",
+		slug: "ax3",
+		name: "ax3",
+		url: "https://ax3.io",
+		badgeKey: "platform",
+		stack: ["DJANGO", "NEXT.JS", "I18N"],
+		note: "EN / JP",
+		image: "/projects/ax3.webp",
+		imageMobile: "/projects/ax3-sm.webp",
+	},
+	{
 		key: "hikari",
 		slug: "hikari-atlas",
 		name: "Hikari Atlas",
@@ -47,28 +58,6 @@ const PROJECTS: Project[] = [
 		repository: "https://github.com/Sladeck/hikari-atlas",
 	},
 	{
-		key: "obsidian",
-		slug: "the-obsidian-table",
-		name: "The Obsidian Table",
-		url: "https://the-obsidian-table.com",
-		badgeKey: "personal",
-		stack: ["VUE.JS", "NODE.JS"],
-		note: "EN",
-		image: "/projects/obsidian_table.webp",
-		repository: "https://github.com/Sladeck/TheObsidianTable"
-	},
-	{
-		key: "ax3",
-		slug: "ax3",
-		name: "ax3",
-		url: "https://ax3.io",
-		badgeKey: "platform",
-		stack: ["DJANGO", "NEXT.JS", "I18N"],
-		note: "EN / JP",
-		image: "/projects/ax3.webp",
-		imageMobile: "/projects/ax3-sm.webp",
-	},
-	{
 		key: "manzanita",
 		slug: "manzanita",
 		name: "Manzanita",
@@ -78,6 +67,17 @@ const PROJECTS: Project[] = [
 		note: "EN / JP",
 		image: "/projects/manzanita.webp",
 		imageMobile: "/projects/manzanita-sm.webp",
+	},
+	{
+		key: "obsidian",
+		slug: "the-obsidian-table",
+		name: "The Obsidian Table",
+		url: "https://the-obsidian-table.com",
+		badgeKey: "personal",
+		stack: ["VUE.JS", "NODE.JS"],
+		note: "EN",
+		image: "/projects/obsidian_table.webp",
+		repository: "https://github.com/Sladeck/TheObsidianTable"
 	},
 	{
 		key: "cominauv",
