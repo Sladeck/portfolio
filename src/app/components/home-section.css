@@ -103,6 +103,11 @@
 	}
 
 	.home-intro {
+		/* Top, not centred: the panels column is taller than the
+		   viewport on a laptop, and centring pushed the actions below
+		   the fold. */
+		align-self: start;
+
 		.home-name {
 			position: relative;
 			margin: 0;
@@ -209,5 +214,30 @@
 	.home-panels {
 		display: grid;
 		gap: 16px;
+	}
+
+	/* Desktop: intro and languages stack in the left column while the
+	   panels span both rows on the right. The second row is 1fr so the
+	   panels' extra height lands there, keeping languages right under
+	   the actions instead of halfway down the page. */
+	@media (min-width: 641px) {
+		grid-template-rows: auto 1fr;
+
+		.home-intro {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.home-panels {
+			grid-column: 2;
+			grid-row: 1 / span 2;
+			align-self: start;
+		}
+
+		.home-languages {
+			grid-column: 1;
+			grid-row: 2;
+			align-self: start;
+		}
 	}
 }

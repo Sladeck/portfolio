@@ -10,8 +10,8 @@ interface HomeSectionProps {
 	onNavigate: (id: SectionId) => void;
 }
 
-// Homepage hero: name, tagline, hire_me/view_work actions, and the
-// toolset/languages panels.
+// Homepage hero: name, tagline, hire_me/view_work actions, languages,
+// and the services/toolset panels.
 export default function HomeSection({ onNavigate }: HomeSectionProps) {
 	const dict = useTranslations();
 
@@ -70,17 +70,28 @@ export default function HomeSection({ onNavigate }: HomeSectionProps) {
 
 				<div className="home-panels">
 					<Panel
+						title={dict.home.servicesTitle}
+						badge={dict.home.servicesBadge}
+						items={dict.home.services}
+						className="panel--stacked panel--prose"
+					/>
+					<Panel
 						title={dict.home.toolsetTitle}
 						badge={dict.home.toolsetBadge}
 						items={dict.home.toolset}
-						className="panel--span-last"
-					/>
-					<Panel
-						title={dict.home.languagesTitle}
-						badge={dict.home.languagesBadge}
-						items={dict.home.languages}
+						className="panel--two-col"
 					/>
 				</div>
+
+				{/* Its own grid item rather than part of the intro: on desktop
+				    it sits under the actions, on a phone it drops below the
+				    panels so services come first. */}
+				<Panel
+					title={dict.home.languagesTitle}
+					badge={dict.home.languagesBadge}
+					items={dict.home.languages}
+					className="home-languages"
+				/>
 			</section>
 		</>
 	);

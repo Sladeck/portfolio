@@ -32,6 +32,9 @@ export interface Dictionary {
 		tagline: string;
 		hireMe: string;
 		viewWork: string;
+		servicesTitle: string;
+		servicesBadge: string;
+		services: LabelValue[];
 		toolsetTitle: string;
 		toolsetBadge: string;
 		toolset: LabelValue[];
@@ -158,6 +161,13 @@ const en: Dictionary = {
 			"Based in France with 8 years of international experience. I take product from a blank page to a live release, start to finish.",
 		hireMe: "> hire_me",
 		viewWork: "> view_work",
+		servicesTitle: "SERVICES",
+		servicesBadge: "FREELANCE",
+		services: [
+			{ label: "BUILD", value: "MVPs, SaaS platforms and internal tools, from the first design to a running service." },
+			{ label: "HARDEN", value: "Security, sessions, rate limiting and infrastructure on an existing Python or JavaScript app." },
+			{ label: "TAKE OVER", value: "Pick up a product someone else built, keep it running, and keep shipping features." },
+		],
 		toolsetTitle: "TOOLSET",
 		toolsetBadge: "8 YRS",
 		toolset: [
@@ -335,6 +345,13 @@ const fr: Dictionary = {
 			"Basé en France, avec 8 ans d'expérience internationale. Je prends un produit de la page blanche jusqu'à sa mise en ligne, du début à la fin.",
 		hireMe: "> me_recruter",
 		viewWork: "> voir_projets",
+		servicesTitle: "SERVICES",
+		servicesBadge: "FREELANCE",
+		services: [
+			{ label: "CONSTRUIRE", value: "MVP, plateformes SaaS et outils internes, du premier écran de design au service en ligne." },
+			{ label: "SÉCURISER", value: "Sécurité, sessions, limitation de débit et infrastructure sur une application Python ou JavaScript existante." },
+			{ label: "REPRENDRE", value: "Reprendre un produit construit par d'autres, le maintenir en ligne et continuer à livrer des fonctionnalités." },
+		],
 		toolsetTitle: "OUTILS",
 		toolsetBadge: "8 ANS",
 		toolset: [

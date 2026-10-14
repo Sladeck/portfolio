@@ -50,13 +50,6 @@
 	}
 }
 
-/* When an item count doesn't divide evenly into the tile grid's columns,
-   the last tile is left alone in its row with empty space beside it:
-   stretch it to fill the row instead. */
-.panel--span-last .panel-group:last-child {
-	grid-column: 1 / -1;
-}
-
 /* Panels whose title is a project/brand name rather than a label:
    keep the authored casing instead of shouting it. */
 .panel--name-as-authored .panel-header h2 {
@@ -88,4 +81,19 @@
 .panel--prose .panel-body .panel-group .panel-value {
 	line-height: 1.55;
 	color: var(--gt-text);
+}
+
+/* One tile per row, for tiles too wordy to sit side by side. */
+.panel--stacked .panel-body {
+	grid-template-columns: 1fr;
+}
+
+/* Exactly two tiles per row: an even tile count fills every row, and
+   long values get room to wrap on phrases rather than single words. */
+.panel--two-col .panel-body {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+
+	@media (max-width: 480px) {
+		grid-template-columns: 1fr;
+	}
 }
