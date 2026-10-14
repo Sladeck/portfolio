@@ -247,7 +247,7 @@ const en: Dictionary = {
 		},
 		descriptions: {
 			hikari:
-				"Japan drawn only with light from real scientific data: ten chapters and 45 free OLED wallpapers. Directed by me, coded with Claude.",
+				"Japan drawn only with light from real scientific data: ten chapters and 45 free OLED wallpapers. Concept, art direction and review by me, code written with Claude Code.",
 			obsidian:
 				"My own food blog, reviewing restaurants I love around the world. Design and frontend by me, backend built with Claude.",
 			ax3: "SaaS platform turning neuroscience research into marketing decisions, licensed by a major consulting firm. I owned product, design and engineering for eight years.",
@@ -431,7 +431,7 @@ const fr: Dictionary = {
 		},
 		descriptions: {
 			hikari:
-				"Le Japon dessiné uniquement avec de la lumière à partir de vraies données scientifiques : dix chapitres et 45 fonds d'écran OLED gratuits. Dirigé par moi, codé avec Claude.",
+				"Le Japon dessiné uniquement avec de la lumière, à partir de vraies données : dix chapitres et 45 fonds d'écran OLED gratuits. Concept, direction artistique et relecture par moi, code par Claude Code.",
 			obsidian:
 				"Mon propre blog culinaire, où je partage les restaurants que j'aime à travers le monde. Design et frontend par moi, backend construit avec Claude.",
 			ax3: "Plateforme SaaS qui transforme la recherche en neurosciences en décisions marketing, aujourd'hui sous licence chez un grand cabinet de conseil. J'en ai porté le produit, le design et l'ingénierie pendant huit ans.",

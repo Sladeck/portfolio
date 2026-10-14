@@ -338,7 +338,7 @@ const EN_COPY: CopyBySlug = {
 		resultLead:
 			"Japan drawn in ten chapters of light, live at hikari-atlas.com, with 45 wallpapers anyone can download for free.",
 		resultBody:
-			"From Mount Fuji to Japan at night, each chapter has a live animation, a gallery and a section on how it was made and from which sources. Ninety PNG files, desktop and phone, every unlit pixel exactly #000000. It is also the clearest answer I have to the question every recruiter asks about AI: it moves the hard part from writing the code to knowing whether the result is right.",
+			"From Mount Fuji to Japan at night, each chapter has a live animation, a gallery and a section on how it was made and from which sources. Ninety PNG files, desktop and phone, every unlit pixel exactly #000000. It also shows how I work with AI: the agent writes the code quickly, and the hard part, knowing whether the result is right, stays mine.",
 		outroLead:
 			"Convinced? Send me a message about your project, especially if it starts with data nobody has made readable yet.",
 		shotCaptions: [
@@ -361,7 +361,7 @@ const EN_COPY: CopyBySlug = {
 			"It started as a joke among friends. It ended as the machine this portfolio is served from.",
 		goal: [
 			"My friends called me picky. What I am picky about is the whole thing being right: good ingredients, cooked properly, star on the door or not. Over the years the joke turned into an actual rating system, and eventually into somewhere to put it.",
-			"There were two things I wanted to practise on it. Vue was the first: I work in React and Next.js and had never shipped anything in Vue, and reading about a framework is not the same as living with its decisions for two months. The second was building alongside an AI agent. It is the standing question in every conversation with a recruiter right now, and among developers generally, and I wanted a real project to form an opinion on rather than a demo.",
+			"There were two things I wanted to practise on it. Vue was the first: I work in React and Next.js and had never shipped anything in Vue, and reading about a framework is not the same as living with its decisions for two months. The second was building alongside an AI agent. Every team is asking how far it can be trusted right now, and I wanted a real project to form an opinion on rather than a demo.",
 			"Then it had to actually be online, which meant a server. That turned out to be the part with the longest tail.",
 		],
 		role: [
@@ -396,7 +396,7 @@ const EN_COPY: CopyBySlug = {
 		],
 		metaTitle: "The Obsidian Table",
 		metaDescription:
-			"A restaurant review site built solo in Vue and Express: my own design, my own reviews, and the server that now runs this portfolio.",
+			"A restaurant review site in Vue and Express: my own design and frontend, an API built by directing Claude Code, and the server that now runs this portfolio.",
 	},
 	ax3: {
 		tagline:
@@ -581,7 +581,7 @@ const FR_COPY: CopyBySlug = {
 		resultLead:
 			"Le Japon dessiné en dix chapitres de lumière, en ligne sur hikari-atlas.com, avec 45 fonds d'écran que tout le monde peut télécharger gratuitement.",
 		resultBody:
-			"Du mont Fuji au Japon de nuit, chaque chapitre a son animation en direct, sa galerie et une section qui explique comment il a été fait et à partir de quelles sources. Quatre-vingt-dix fichiers PNG, bureau et téléphone, chaque pixel non éclairé exactement #000000. C'est aussi la réponse la plus claire que j'aie à la question que tous les recruteurs posent sur l'IA : elle déplace la difficulté, de l'écriture du code vers la capacité à savoir si le résultat est juste.",
+			"Du mont Fuji au Japon de nuit, chaque chapitre a son animation en direct, sa galerie et une section qui explique comment il a été fait et à partir de quelles sources. Quatre-vingt-dix fichiers PNG, bureau et téléphone, chaque pixel non éclairé exactement #000000. Il montre aussi comment je travaille avec l'IA : l'agent écrit le code vite, et le plus difficile, savoir si le résultat est juste, reste mon travail.",
 		outroLead:
 			"Ça vous parle ? Écrivez-moi au sujet de votre projet, surtout s'il part de données que personne n'a encore rendues lisibles.",
 		shotCaptions: [
@@ -604,7 +604,7 @@ const FR_COPY: CopyBySlug = {
 			"Ça a commencé comme une blague entre amis. Ça a fini en machine depuis laquelle ce portfolio est servi.",
 		goal: [
 			"Mes amis me trouvaient difficile. Ce sur quoi je suis difficile, c'est que l'ensemble soit juste : de bons produits, bien cuisinés, avec ou sans étoile à la porte. Au fil des années, la blague est devenue un vrai système de notation, puis il a fallu un endroit où le mettre.",
-			"Il y avait deux choses que je voulais travailler dessus. Vue d'abord : je fais du React et du Next.js, je n'avais jamais rien mis en production en Vue, et lire sur un framework n'a rien à voir avec vivre deux mois avec ses partis pris. Ensuite, construire aux côtés d'un agent IA. C'est la question qui revient dans toutes les discussions avec les recruteurs en ce moment, et entre développeurs en général, et je voulais un vrai projet pour m'en faire une idée, pas une démo.",
+			"Il y avait deux choses que je voulais travailler dessus. Vue d'abord : je fais du React et du Next.js, je n'avais jamais rien mis en production en Vue, et lire sur un framework n'a rien à voir avec vivre deux mois avec ses partis pris. Ensuite, construire aux côtés d'un agent IA. Toutes les équipes se demandent en ce moment jusqu'où on peut lui faire confiance, et je voulais un vrai projet pour m'en faire une idée, pas une démo.",
 			"Et il fallait que ce soit réellement en ligne, donc un serveur. C'est la partie qui a eu la plus longue traîne.",
 		],
 		role: [
@@ -639,7 +639,7 @@ const FR_COPY: CopyBySlug = {
 		],
 		metaTitle: "The Obsidian Table",
 		metaDescription:
-			"Un site de critiques de restaurants construit en solo en Vue et Express : mon design, mes critiques, et le serveur qui héberge aujourd'hui ce portfolio.",
+			"Un site de critiques de restaurants en Vue et Express : mon design et mon frontend, une API construite en dirigeant Claude Code, et le serveur qui héberge aujourd'hui ce portfolio.",
 	},
 	ax3: {
 		tagline:
