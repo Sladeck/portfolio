@@ -88,12 +88,14 @@
 	grid-template-columns: 1fr;
 }
 
-/* Exactly two tiles per row: an even tile count fills every row, and
-   long values get room to wrap on phrases rather than single words. */
+/* At most two tiles per row, and only when each tile gets 200px, so
+   long values wrap on phrases and single-word labels like
+   INFRASTRUCTURE never spill out. The column floor is the larger of
+   200px and half the row, which caps it at two; min() with 100% drops
+   it to one column in a narrow panel. 8px is .panel-body's gap. */
 .panel--two-col .panel-body {
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-
-	@media (max-width: 480px) {
-		grid-template-columns: 1fr;
-	}
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(min(100%, max(200px, calc((100% - 8px) / 2))), 1fr)
+	);
 }
