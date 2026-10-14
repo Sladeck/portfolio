@@ -29,6 +29,14 @@ const TOOLBELT = [
 	"TYPESCRIPT",
 	"CSS/SCSS",
 	"HTML5",
+	"VUE.JS",
+	"NODE.JS",
+	"FASTAPI",
+	"POSTGRESQL",
+	"MYSQL",
+	"REDIS",
+	"DOCKER",
+	"JIRA",
 	"UX/UI"
 ];
 
