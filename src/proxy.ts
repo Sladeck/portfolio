@@ -38,9 +38,38 @@ export function proxy(request: NextRequest) {
 
 	// Every other path just carries its locale through to the root layout,
 	// which can't work it out for itself (see LOCALE_HEADER).
+	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+	const csp = contentSecurityPolicy(nonce);
+
 	const headers = new Headers(request.headers);
 	headers.set(LOCALE_HEADER, localeFromPathname(pathname));
-	return NextResponse.next({ request: { headers } });
+	// Next reads the nonce back out of this request header while rendering
+	// and stamps it on every script and style tag it emits.
+	headers.set("Content-Security-Policy", csp);
+
+	const response = NextResponse.next({ request: { headers } });
+	response.headers.set("Content-Security-Policy", csp);
+	return response;
+}
+
+// Pages are already rendered per request (the root layout reads headers()
+// for the locale), so a fresh nonce on each one costs nothing extra.
+function contentSecurityPolicy(nonce: string): string {
+	const isDev = process.env.NODE_ENV === "development";
+	return [
+		"default-src 'self'",
+		// React's dev build needs eval for its error overlay; production
+		// never does.
+		`script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDev ? " 'unsafe-eval'" : ""}`,
+		`style-src 'self' ${isDev ? "'unsafe-inline'" : `'nonce-${nonce}'`}`,
+		"img-src 'self' blob: data:",
+		"font-src 'self'",
+		"object-src 'none'",
+		"base-uri 'self'",
+		"form-action 'self'",
+		"frame-ancestors 'none'",
+		"upgrade-insecure-requests",
+	].join("; ");
 }
 
 export const config = {

@@ -1,10 +1,37 @@
 "use client";
 
 import "./contact-section.css";
-import { useEffect, useRef, useState, type SubmitEvent } from "react";
+import {
+	useEffect,
+	useRef,
+	useState,
+	useSyncExternalStore,
+	type SubmitEvent,
+} from "react";
 import { useTranslations } from "../hooks/useTranslations";
 
-const CONTACT_EMAIL = "hello@gmmoulin.com";
+// hello@gmmoulin.com, base64-encoded so the bundle never holds the address
+// as a string a scraper can grep for. Not ["hello", "gmmoulin.com"].join(),
+// which the minifier folds straight back into the literal: it can't
+// evaluate atob() at build time.
+const CONTACT_EMAIL = atob("aGVsbG9AZ21tb3VsaW4uY29t");
+// What the server-rendered HTML shows instead. It has no "@" and no
+// mailto:, so scrapers reading the raw HTML get nothing usable, and
+// Cloudflare's Email Obfuscation (whose decoder script the CSP in
+// src/proxy.ts would block) finds nothing to rewrite.
+const CONTACT_EMAIL_FALLBACK = "hello [at] gmmoulin.com";
+
+// The address only exists once the page is running in a browser: the
+// server snapshot is null, so hydration matches the fallback, then React
+// swaps in the real link. Nothing to subscribe to, it never changes.
+const subscribeNever = () => () => {};
+function useClientEmail(): string | null {
+	return useSyncExternalStore(
+		subscribeNever,
+		() => CONTACT_EMAIL,
+		() => null,
+	);
+}
 
 // Honeypot. Named after a field bots want to fill, positioned off-screen
 // rather than display:none (which the better scrapers skip), and hidden
@@ -18,6 +45,7 @@ type Status = "idle" | "sending" | "sent" | "error" | "limited";
 export default function ContactSection() {
 	const dict = useTranslations();
 	const [status, setStatus] = useState<Status>("idle");
+	const email = useClientEmail();
 
 	// Set on mount, not during render, so it's always the visitor's own
 	// clock and never a server timestamp carried through hydration.
@@ -156,9 +184,13 @@ export default function ContactSection() {
 				<div className="contact-side">
 					<div className="contact-card">
 						<span className="contact-card-label">{dict.contact.directLabel}</span>
-						<a href={`mailto:${CONTACT_EMAIL}`} className="contact-card-link">
-							{CONTACT_EMAIL}
-						</a>
+						{email ? (
+							<a href={`mailto:${email}`} className="contact-card-link">
+								{email}
+							</a>
+						) : (
+							<span className="contact-card-link">{CONTACT_EMAIL_FALLBACK}</span>
+						)}
 					</div>
 
 					<div className="contact-card">
