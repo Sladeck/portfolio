@@ -3,8 +3,10 @@
 import "./projects-section.css";
 import Panel from "./panel";
 import SectionLink from "./section-link";
+import StarCount from "./star-count";
 import { useTranslations } from "../hooks/useTranslations";
-import { hasCaseStudy } from "../i18n/projects";
+import { useLocale } from "../hooks/useLocale";
+import { getProject, getProjectCopy, hasCaseStudy } from "../i18n/projects";
 import type { Dictionary } from "../i18n/dictionary";
 import type { SectionId } from "./nav";
 
@@ -44,6 +46,18 @@ const PROJECTS: Project[] = [
 		note: "EN / JP",
 		image: "/projects/ax3.webp",
 		imageMobile: "/projects/ax3-sm.webp",
+	},
+	{
+		key: "guidance",
+		slug: "guidance",
+		name: "GUIdance",
+		url: "https://github.com/Sladeck/GUIdance",
+		badgeKey: "openSource",
+		stack: ["CLAUDE CODE", "WCAG 2.2", "DESIGN TOKENS"],
+		note: "EN",
+		image: "/projects/guidance.webp",
+		imageMobile: "/projects/guidance-sm.webp",
+		repository: "https://github.com/Sladeck/GUIdance",
 	},
 	{
 		key: "hikari",
@@ -96,6 +110,7 @@ const PROJECTS: Project[] = [
 // Project cards, plus a small link over to the changelog page.
 export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 	const dict = useTranslations();
+	const locale = useLocale();
 
 	return (
 		<section className="projects-section">
@@ -107,13 +122,6 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 			>
 				{dict.projects.changelogLink}
 			</SectionLink>
-
-			<Panel
-				title={dict.projects.clientWorkTitle}
-				badge={dict.projects.clientWorkBadge}
-				items={dict.projects.clientWork}
-				className="panel--prose"
-			/>
 
 			<div className="projects-list">
 				{PROJECTS.map((project) => (
@@ -138,7 +146,10 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 											: undefined
 									}
 									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
-									alt={`Screenshot of ${project.name}`}
+									alt={
+										getProjectCopy(project.slug, locale)?.heroAlt ??
+										`Screenshot of ${project.name}`
+									}
 									loading="lazy"
 								/>
 								{project.offline && (
@@ -160,7 +171,14 @@ export default function ProjectsSection({ onNavigate }: ProjectsSectionProps) {
 										</span>
 									))}
 								</div>
-								<span className="project-note">{project.note}</span>
+								<span className="project-note">
+									{project.note}
+									<StarCount
+										slug={project.slug}
+										enabled={Boolean(getProject(project.slug)?.showStars)}
+										before={<span aria-hidden="true"> · </span>}
+									/>
+								</span>
 							</div>
 
 							{/* Once a project has a case study, the card points there

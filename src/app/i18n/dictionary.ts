@@ -58,16 +58,18 @@ export interface Dictionary {
 		/** Card link to a case study. The "> " prompt in front of it is
 		    markup, not part of the string. */
 		readMore: string;
-		clientWorkTitle: string;
-		clientWorkBadge: string;
-		clientWork: LabelValue[];
+		/** Screen-reader words after the star count: "1 GitHub star", "12 GitHub stars". */
+		starLabel: string;
+		starsLabel: string;
 		badges: {
 			personal: string;
 			platform: string;
 			companySite: string;
 			clientWork: string;
+			openSource: string;
 		};
 		descriptions: {
+			guidance: string;
 			hikari: string;
 			obsidian: string;
 			ax3: string;
@@ -132,7 +134,7 @@ const en: Dictionary = {
 		descriptions: {
 			"": "Freelance full-stack engineer based in France. Django, React and Next.js, eight years of shipping product end to end.",
 			about: "Background, toolbelt, and adjacent fields.",
-			projects: "A selection of projects, including ax3.io, Manzanita, The Obsidian Table, and Hikari Atlas.",
+			projects: "A selection of projects, including ax3.io, GUIdance, Hikari Atlas, Manzanita, and The Obsidian Table.",
 			changelog: "Latest public commits from github.com/Sladeck.",
 			contact: "Get in touch about freelance work.",
 			inspiration: "The references behind this site's terminal look.",
@@ -227,34 +229,27 @@ const en: Dictionary = {
 		repoLabel: "repo",
 		offlineLabel: "OFFLINE",
 		readMore: "read_case_study",
-		clientWorkTitle: "RECENT CLIENT WORK",
-		clientWorkBadge: "FREELANCE · 2026",
-		clientWork: [
-			{
-				label: "MANZANITA",
-				value: "Moved sessions to Redis with idle and absolute timeouts, added per-client rate limiting behind Cloudflare, and hardened production against silent mass logouts. Also redesigned parts of the interface and built an AI ad-analysis prototype.",
-			},
-			{
-				label: "DYN&SYS CONSULTING",
-				value: "Built a tool that automates packing calculations for distribution companies, handling item shape, liquids and rotation constraints.",
-			},
-		],
+		starLabel: "GitHub star",
+		starsLabel: "GitHub stars",
 		badges: {
 			personal: "PERSONAL",
 			platform: "PLATFORM",
 			companySite: "COMPANY SITE",
 			clientWork: "CLIENT WORK",
+			openSource: "OPEN SOURCE",
 		},
 		descriptions: {
+			guidance:
+				"Open-source Claude plugin giving an AI agent UI design rules with their sources, from spacing to WCAG 2.2. On twelve UI tests, Claude scores 97 to 100% with it, 69 to 87% without.",
 			hikari:
 				"Japan drawn only with light from real scientific data: ten chapters and 45 free OLED wallpapers. Concept, art direction and review by me, code written with Claude Code.",
 			obsidian:
-				"My own food blog, reviewing restaurants I love around the world. Design and frontend by me, backend built with Claude.",
+				"My own food blog, reviewing restaurants I love around the world. Design and frontend by me, backend built with Claude, on a Linux server I set up from scratch.",
 			ax3: "SaaS platform turning neuroscience research into marketing decisions, licensed by a major consulting firm. I owned product, design and engineering for eight years.",
 			manzanita:
 				"Public website for Manzanita, my previous company in Tokyo, where we built ax3. A junior developer I mentored built it in English and Japanese, with me as tech lead.",
 			cominauv:
-				"Website for a startup that bought an amethyst quarry. Plain HTML/CSS by client request, no framework.",
+				"Website for a startup that bought an amethyst quarry. Plain HTML/CSS by client request, no framework, hand-built in two languages from a brand guide drawn for print.",
 		},
 	},
 	contact: {
@@ -316,7 +311,7 @@ const fr: Dictionary = {
 		descriptions: {
 			"": "Ingénieur full-stack freelance basé en France. Django, React et Next.js, huit ans à livrer des produits de bout en bout.",
 			about: "Parcours, boîte à outils, et domaines connexes.",
-			projects: "Une sélection de projets, dont ax3.io, Manzanita, The Obsidian Table, et Hikari Atlas.",
+			projects: "Une sélection de projets, dont ax3.io, GUIdance, Hikari Atlas, Manzanita et The Obsidian Table.",
 			changelog: "Derniers commits publics depuis github.com/Sladeck.",
 			contact: "Contactez-moi pour une mission freelance.",
 			inspiration: "Les références derrière le style terminal de ce site.",
@@ -411,34 +406,27 @@ const fr: Dictionary = {
 		repoLabel: "dépôt",
 		offlineLabel: "HORS LIGNE",
 		readMore: "lire_l_etude",
-		clientWorkTitle: "MISSIONS CLIENTS RÉCENTES",
-		clientWorkBadge: "FREELANCE · 2026",
-		clientWork: [
-			{
-				label: "MANZANITA",
-				value: "Migration des sessions vers Redis avec expiration après inactivité et durée maximale, limitation de débit par client derrière Cloudflare, et durcissement de la production contre les déconnexions massives silencieuses. Refonte de parties de l'interface et prototype d'analyse publicitaire par IA.",
-			},
-			{
-				label: "DYN&SYS CONSULTING",
-				value: "Outil qui automatise les calculs de colisage pour des entreprises de distribution, en tenant compte de la forme des articles, des liquides et des contraintes de rotation.",
-			},
-		],
+		starLabel: "étoile sur GitHub",
+		starsLabel: "étoiles sur GitHub",
 		badges: {
 			personal: "PERSONNEL",
 			platform: "PLATEFORME",
 			companySite: "SITE D'ENTREPRISE",
 			clientWork: "TRAVAIL CLIENT",
+			openSource: "OPEN SOURCE",
 		},
 		descriptions: {
+			guidance:
+				"Plugin Claude open source qui donne à un agent IA des règles de design d'interface avec leurs sources, de l'espacement aux WCAG 2.2. Sur douze tests, Claude obtient 97 à 100% avec et 69 à 87% sans.",
 			hikari:
 				"Le Japon dessiné uniquement avec de la lumière, à partir de vraies données : dix chapitres et 45 fonds d'écran OLED gratuits. Concept, direction artistique et relecture par moi, code par Claude Code.",
 			obsidian:
-				"Mon propre blog culinaire, où je partage les restaurants que j'aime à travers le monde. Design et frontend par moi, backend construit avec Claude.",
+				"Mon propre blog culinaire, où je partage les restaurants que j'aime à travers le monde. Design et frontend par moi, backend construit avec Claude, sur un serveur Linux monté de zéro.",
 			ax3: "Plateforme SaaS qui transforme la recherche en neurosciences en décisions marketing, aujourd'hui sous licence chez un grand cabinet de conseil. J'en ai porté le produit, le design et l'ingénierie pendant huit ans.",
 			manzanita:
 				"Site public de Manzanita, ma précédente entreprise à Tokyo, où nous avons construit ax3. Un développeur junior que j'encadrais l'a réalisé en anglais et en japonais, avec moi en lead technique.",
 			cominauv:
-				"Site web pour une startup qui a acheté une carrière d'améthyste. HTML/CSS pur à la demande du client, sans framework.",
+				"Site web pour une startup qui a acheté une carrière d'améthyste. HTML/CSS pur à la demande du client, sans framework, construit à la main en deux langues à partir d'une charte pensée pour le papier.",
 		},
 	},
 	contact: {

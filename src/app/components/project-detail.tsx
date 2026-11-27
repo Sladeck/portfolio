@@ -4,6 +4,7 @@ import "./project-detail.css";
 import { useId, useState } from "react";
 import Panel from "./panel";
 import SectionLink from "./section-link";
+import StarCount from "./star-count";
 import { useTranslations } from "../hooks/useTranslations";
 import { useLocale } from "../hooks/useLocale";
 import {
@@ -184,13 +185,23 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 						·
 					</span>
 					<span className="project-meta-fact">{project.note}</span>
+					<StarCount
+						slug={project.slug}
+						enabled={Boolean(project.showStars)}
+						className="project-meta-fact"
+						before={
+							<span className="project-meta-sep" aria-hidden="true">
+								·
+							</span>
+						}
+					/>
 
 					<span className="project-meta-links">
 						{project.offline ? (
 							<span className="project-cta project-cta--offline">
 								{ui.offline}
 							</span>
-						) : (
+						) : project.url === project.repository ? null : (
 							<a
 								href={project.url}
 								target="_blank"
@@ -201,12 +212,18 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 							</a>
 						)}
 
+						{/* A project whose repository is its only home gets one
+						    link, styled as the primary one. */}
 						{project.repository && (
 							<a
 								href={project.repository}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="project-cta"
+								className={
+									project.url === project.repository
+										? "project-cta project-cta--primary"
+										: "project-cta"
+								}
 							>
 								{ui.repo} &#8599;
 							</a>
@@ -234,7 +251,7 @@ export default function ProjectDetail({ slug, onNavigate }: ProjectDetailProps) 
 			<div className="project-shots">
 				<Shot
 					shot={project.hero}
-					alt={`${project.name} screenshot`}
+					alt={copy.heroAlt ?? `${project.name} screenshot`}
 					pendingLabel={ui.shotPending}
 					sizes="(max-width: 640px) 100vw, 1136px"
 					priority

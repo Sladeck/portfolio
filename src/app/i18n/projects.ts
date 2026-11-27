@@ -25,7 +25,7 @@ export interface ProjectMeta {
 	name: string;
 	url: string;
 	/** Category chip, resolved against dict.projects.badges. */
-	badgeKey: "personal" | "platform" | "companySite" | "clientWork";
+	badgeKey: "personal" | "platform" | "companySite" | "clientWork" | "openSource";
 	repository?: string;
 	/** No SSL on the live domain right now, so the link out is disabled. */
 	offline?: boolean;
@@ -38,6 +38,8 @@ export interface ProjectMeta {
 	gallery: ProjectShot[];
 	/** Publicly listed on the project's own site. */
 	clients?: string[];
+	/** Show the GitHub repository's live star count. */
+	showStars?: boolean;
 }
 
 export const PROJECTS: ProjectMeta[] = [
@@ -102,6 +104,36 @@ export const PROJECTS: ProjectMeta[] = [
 			"PERNOD RICARD",
 			"YAMAGATA",
 		],
+	},
+	{
+		slug: "guidance",
+		name: "GUIdance",
+		// No site of its own: the repository is the product page, so the
+		// detail page shows one link instead of two pointing at the same URL.
+		url: "https://github.com/Sladeck/GUIdance",
+		badgeKey: "openSource",
+		repository: "https://github.com/Sladeck/GUIdance",
+		showStars: true,
+		years: "2026",
+		note: "EN",
+		stack: [
+			"CLAUDE CODE",
+			"AGENT SKILLS",
+			"MARKDOWN",
+			"WCAG 2.2",
+			"DESIGN TOKENS",
+			"EVALS",
+		],
+		// The repository's social preview: there is no UI to screenshot,
+		// the plugin works inside Claude.
+		hero: {
+			src: "/projects/guidance.webp",
+			srcMobile: "/projects/guidance-sm.webp",
+			width: 1280,
+			height: 640,
+			mobileWidth: 640,
+		},
+		gallery: [],
 	},
 	{
 		slug: "hikari-atlas",
@@ -295,6 +327,8 @@ export interface ProjectCopy {
 	    (a live commercial platform), not about hiring. Paired with the
 	    project's own URL in the outro. */
 	outroPartner?: string;
+	/** Alt text for the hero, when it is not a plain screenshot. */
+	heroAlt?: string;
 	/** Indexed to match ProjectMeta.gallery. */
 	shotCaptions: string[];
 	shotAlts: string[];
@@ -305,6 +339,50 @@ export interface ProjectCopy {
 type CopyBySlug = Record<string, ProjectCopy>;
 
 const EN_COPY: CopyBySlug = {
+	guidance: {
+		tagline:
+			"A Claude plugin that gives an AI agent the UI design rules I kept looking up, each one with its source.",
+		stinger:
+			"On twelve benchmark tests, Claude scores 97 to 100% with GUIdance and 69 to 87% without it. Same model, same files, same tools.",
+		goal: [
+			"How much space between sections? Which corner radius? Is 14px fine for body text? Does this grey pass contrast on that blue? I kept searching for the same answers on every project. They exist, spread across Apple's guidelines, Material Design, the W3C and years of usability research, but ask an AI agent and you get a plausible number, a different one next time, and no source.",
+			"GUIdance puts them in one place, ranked by evidence: WCAG 2.2 first, then Apple, Material 3, Baymard, GOV.UK and large studies, then Nielsen Norman Group and smaller ones. Where sources disagree it settles the case, and every rule says when it is fine to break it. A rule with no source behind it is labelled as judgment instead of being dressed up as fact.",
+			"It also had to fit into real projects rather than replace them. GUIdance is not a UI kit: no components, no templates. It writes design tokens in the stack a project already uses, from plain CSS and Tailwind to MUI, shadcn/ui, SwiftUI and Jetpack Compose, and leaves the components and the design to the team that owns them.",
+		],
+		role: [
+			"The idea is mine, and so is every decision about what the plugin does: which rules it holds, how their sources are weighted, what each command is allowed to change, and when it has to stop and ask before touching a file.",
+			"Seven commands cover the work of a design system without being one. setup reads a project, builds colour roles from the brand colour and checks every text pair for contrast before writing anything. spacing and shape tune density and corners at the token source. build makes UI on those tokens. review returns one list, most serious first, each finding with its location, rule, source and fix. wcag goes through all 55 Level A and AA criteria of WCAG 2.2, on code or on a live page. fix repairs findings where they start: a token, the shared component, the parent's spacing.",
+			"Most of the work was testing. I built a testbed of small projects with problems planted in them, in plain HTML, Next.js and MUI, shadcn/ui, Vue, Expo and SwiftUI, each with an answer key, and scored more than 200 runs. Every failure became a fix: setup once wrote a file before the user had answered, a plain request to make a list tighter once never reached the spacing command. Each was caught by a test, fixed, and run again.",
+			"The benchmark is published with its limits: three runs per side, the lowest and highest scores, the problems GUIdance still missed in some runs, and the cost, 2 to 17 times more per task, because it reads its rules and more of the project. A number without its conditions is exactly what the plugin exists to avoid.",
+			"It is open source under the MIT licence, installs in one line in Claude Code, and also runs in the Claude desktop and web apps.",
+		],
+		roleOwned: [
+			"Concept and scope",
+			"Rule set: 16 topics, each rule with its sources",
+			"Source weighting and conflict resolution",
+			"The commands and what each may change",
+			"Design tokens in 9 stacks, web and native",
+			"Testbed, answer keys and scoring",
+			"Public benchmark, limits included",
+			"Documentation, versioning and MIT release",
+		],
+		roleTeam: ["Claude Code"],
+		resultLead:
+			"UI rules an agent cites instead of guessing, so the same question gets the same answer, with its source, every time.",
+		resultBody:
+			"Built and published in under two weeks, now at version 1.11. The gain is consistency more than knowledge: without GUIdance the score depends on which files Claude happens to open, and one landing-page review swung from 19.5 to 54 out of 55 on whether it read the stylesheet. GUIdance reads the theme and the global CSS every time, and every finding comes with the rule and the source behind it.",
+		outroLead:
+			"Convinced? Send me a message about your project, especially if its interface needs a second look against rules you can check.",
+		outroPartner:
+			"Want to try it on your own project? It is free and open source:",
+		heroAlt:
+			"The GUIdance logo, a bracketed square, with the line Design rules with sources, for Claude, and its sources: WCAG 2.2, Material 3, Apple, Baymard, GOV.UK and NN/g.",
+		shotCaptions: [],
+		shotAlts: [],
+		metaTitle: "GUIdance",
+		metaDescription:
+			"An open-source Claude plugin with evidence-ranked UI design rules: design tokens, reviews and WCAG 2.2 checks, scoring 97 to 100% on tests where Claude alone scores 69 to 87%.",
+	},
 	"hikari-atlas": {
 		tagline:
 			"An atlas of Japan drawn only with light, where every picture comes from real scientific data.",
@@ -548,6 +626,50 @@ const EN_COPY: CopyBySlug = {
 };
 
 const FR_COPY: CopyBySlug = {
+	guidance: {
+		tagline:
+			"Un plugin Claude qui donne à un agent IA les règles de design d'interface que je cherchais sans cesse, chacune avec sa source.",
+		stinger:
+			"Sur douze tests de benchmark, Claude obtient 97 à 100% avec GUIdance et 69 à 87% sans. Même modèle, mêmes fichiers, mêmes outils.",
+		goal: [
+			"Combien d'espace entre deux sections ? Quel arrondi pour les coins ? Du 14px, est-ce suffisant pour du texte courant ? Ce gris passe-t-il le contraste sur ce bleu ? Je cherchais les mêmes réponses à chaque projet. Elles existent, dispersées entre les recommandations d'Apple, Material Design, le W3C et des années de recherche en ergonomie, mais demandez à un agent IA et vous obtenez un chiffre plausible, un autre la fois suivante, et aucune source.",
+			"GUIdance les rassemble au même endroit, classées selon la solidité des preuves : WCAG 2.2 d'abord, puis Apple, Material 3, Baymard, GOV.UK et les grandes études, puis Nielsen Norman Group et les études plus modestes. Quand les sources se contredisent, il tranche, et chaque règle dit quand il est acceptable de l'enfreindre. Une règle sans source derrière elle est présentée comme un jugement, pas maquillée en fait établi.",
+			"Il devait aussi s'intégrer à de vrais projets plutôt que de les remplacer. GUIdance n'est pas un kit UI : ni composants, ni templates. Il écrit les design tokens dans la stack que le projet utilise déjà, du CSS pur et Tailwind à MUI, shadcn/ui, SwiftUI et Jetpack Compose, et laisse les composants et le design à l'équipe à qui ils appartiennent.",
+		],
+		role: [
+			"L'idée est de moi, tout comme chaque décision sur ce que fait le plugin : quelles règles il contient, comment leurs sources sont pondérées, ce que chaque commande a le droit de modifier, et quand elle doit s'arrêter pour demander avant de toucher un fichier.",
+			"Sept commandes couvrent le travail d'un design system sans en être un. setup lit le projet, construit les rôles de couleur à partir de la couleur de marque et vérifie le contraste de chaque paire de texte avant d'écrire quoi que ce soit. spacing et shape règlent la densité et les arrondis à la source des tokens. build construit l'interface sur ces tokens. review rend une seule liste, du plus grave au moins grave, chaque problème avec son emplacement, sa règle, sa source et sa correction. wcag passe en revue les 55 critères de niveau A et AA des WCAG 2.2, sur du code ou sur une page en ligne. fix corrige les problèmes là où ils naissent : un token, le composant partagé, l'espacement du parent.",
+			"L'essentiel du travail a été de tester. J'ai monté un banc d'essai de petits projets truffés de problèmes volontaires, en HTML pur, Next.js et MUI, shadcn/ui, Vue, Expo et SwiftUI, chacun avec son corrigé, et noté plus de 200 exécutions. Chaque échec est devenu une correction : setup a un jour écrit un fichier avant que l'utilisateur ait répondu, une simple demande pour resserrer une liste n'atteignait pas la commande spacing. Chacun a été repéré par un test, corrigé, puis relancé.",
+			"Le benchmark est publié avec ses limites : trois exécutions de chaque côté, le score le plus bas et le plus haut, les problèmes que GUIdance a encore manqués dans certaines exécutions, et le coût, de 2 à 17 fois plus élevé par tâche, parce qu'il lit ses règles et une plus grande partie du projet. Un chiffre sans ses conditions, c'est précisément ce que le plugin est conçu pour éviter.",
+			"Il est open source sous licence MIT, s'installe en une ligne dans Claude Code, et fonctionne aussi dans les applications Claude, bureau et web.",
+		],
+		roleOwned: [
+			"Concept et périmètre",
+			"Jeu de règles : 16 thèmes, chaque règle avec ses sources",
+			"Pondération des sources et arbitrage des désaccords",
+			"Les commandes et ce que chacune peut modifier",
+			"Design tokens dans 9 stacks, web et natives",
+			"Banc d'essai, corrigés et notation",
+			"Benchmark public, limites comprises",
+			"Documentation, versioning et publication sous licence MIT",
+		],
+		roleTeam: ["Claude Code"],
+		resultLead:
+			"Des règles d'interface qu'un agent cite au lieu de deviner : la même question obtient la même réponse, avec sa source, à chaque fois.",
+		resultBody:
+			"Construit et publié en moins de deux semaines, aujourd'hui en version 1.11. Le gain tient plus à la constance qu'aux connaissances : sans GUIdance, le score dépend des fichiers que Claude ouvre par hasard, et la revue d'une landing page est passée de 19,5 à 54 sur 55 selon qu'il lisait ou non la feuille de style. GUIdance lit le thème et le CSS global à chaque fois, et chaque problème signalé vient avec la règle et la source qui le justifient.",
+		outroLead:
+			"Ça vous parle ? Écrivez-moi au sujet de votre projet, surtout si son interface mérite un second regard, à l'aune de règles vérifiables.",
+		outroPartner:
+			"Envie de l'essayer sur votre propre projet ? Il est gratuit et open source :",
+		heroAlt:
+			"Le logo de GUIdance, un carré entre crochets, avec la phrase Design rules with sources, for Claude, et ses sources : WCAG 2.2, Material 3, Apple, Baymard, GOV.UK et NN/g.",
+		shotCaptions: [],
+		shotAlts: [],
+		metaTitle: "GUIdance",
+		metaDescription:
+			"Un plugin Claude open source de règles de design d'interface classées par niveau de preuve : design tokens, revues et contrôles WCAG 2.2, avec 97 à 100% aux tests où Claude seul obtient 69 à 87%.",
+	},
 	"hikari-atlas": {
 		tagline:
 			"Un atlas du Japon dessiné uniquement avec de la lumière, où chaque image vient de vraies données scientifiques.",
